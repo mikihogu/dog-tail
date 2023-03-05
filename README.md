@@ -29,7 +29,11 @@
 
 ## 設計書
 - [実装機能リスト](https://docs.google.com/spreadsheets/d/1uibf8WzyrorbvmAVGgPADHIxtlQzcdWY0-Ia8a2LICc/edit#gid=885378170)
-- その他作成中のため、随時更新します。
+- [テーブル定義書](https://docs.google.com/spreadsheets/d/1Vg60vlp4J8IuGgUmoPncdSRsUhZXsSVHsGsOeahPf0o/edit#gid=1442913927)
+- [詳細設計書](https://docs.google.com/spreadsheets/d/116qFBjLM16b-cSfXoUtjNvBnW8o79Ya05zE9A7bcaPA/edit#gid=60403140)
+- [ワイヤーフレーム](https://www.figma.com/file/4BJmmAL4gTf422EgEqxIk0/Wireframing-in-Figma?node-id=118%3A275&t=gM5si8bRzkqzBjgH-0)
+- [ER図](https://user-images.githubusercontent.com/121223610/222967325-2a0f7100-fb64-489f-995f-aff8c799712c.png)
+
 
 ## 開発環境
 - OS：Linux(CentOS)
