@@ -1,1 +1,35 @@
-<h2><i class="fas fa-dog"></i>with Doggie というサイトについて🐾</h2>
+<div class="container my-3">
+  <div class="row">
+    <div class="col-md-10 text-center mx-auto my-5">
+      <h2 class="border-bottom">
+        <i class="fas fa-dog"></i>
+        We can go anywhere "with Doggies"
+        <i class="fas fa-paw"></i>
+      </h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-10 mx-auto">
+        <div class="row bg-image">
+          <%= image_tag 'dog.jpeg', size: '1000x600', class: 'img-fluid img-thumbnail' %>
+          <div class="row info align-center shadow-lg p-3">
+            <div class="col-md-4">
+              <%= link_to "Sign up -新規登録-", new_member_registration_path, class: "btn btn-light" %>
+              <p class="text-center mt-1">まだ会員登録していない方はこちら</p>
+            </div>
+            <div class="col-md-4">
+              <%= link_to "Sign in -ログイン-", new_member_session_path, class: "btn btn-light" %>
+              <p class="text-center mt-1">会員登録がお済みの方はこちら</p>
+            </div>
+            <div class="col-md-4">
+              <%= link_to "Guest sign in -ゲストログイン-", new_member_session_path, class: "btn btn-light" %>
+              <p class="text-center mt-1">
+                会員登録せずにサイトをご覧いただけます<br>
+                （閲覧できるページは制限されます）
+              </p>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>

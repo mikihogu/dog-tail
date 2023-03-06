@@ -8,3 +8,12 @@ header {
 footer {
   background-color: #E38B29  !important
 }
+
+.bg-image {
+  position: relative;
+}
+.info {
+  position: absolute;
+  /* top: 0; */
+  /* left: 0; */
+}
