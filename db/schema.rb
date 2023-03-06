@@ -134,7 +134,7 @@ ActiveRecord::Schema.define(version: 2023_03_06_093642) do
     t.string "name", null: false
     t.string "introduction", null: false
     t.text "information", null: false
-    t.string "prefecture", null: false
+    t.integer "prefecture", null: false
     t.string "address", null: false
     t.float "latitude", null: false
     t.float "longitude", null: false
