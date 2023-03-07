@@ -1,1 +1,36 @@
-<h1>Topページ</h1>
+<div class="container my-3">
+  <div class="row">
+    <div class="col-md-10 text-center mx-auto mb-5">
+      <h2 class="border-bottom">
+        <i class="fas fa-dog"></i>
+        We can go anywhere "with Doggies"<br>
+        Let's see doggie friendly places
+        <i class="fas fa-paw"></i>
+      </h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-10 mx-auto">
+        <div class="row top-image">
+          <%= image_tag 'dog.jpeg', class: 'img-fluid img-thumbnail' %>
+          <div class="top-action shadow-lg p-3">
+            <div>
+              <%= link_to "Sign up -新規登録-", new_member_registration_path, class: "btn  btn-sm btn-outline-dark" %>
+              <p class="text-center mt-1">まだ会員登録していない方はこちら</p>
+            </div>
+            <div>
+              <%= link_to "Sign in -ログイン-", new_member_session_path, class: "btn btn-sm btn-outline-dark" %>
+              <p class="text-center mt-1">会員登録がお済みの方はこちら</p>
+            </div>
+            <div>
+              <%= link_to "Guest sign in -ゲストログイン-", about_path, class: "btn  btn-sm btn-outline-dark" %>
+              <p class="text-center mt-1">
+                会員登録せずにサイトをご覧いただけます<br>
+                （閲覧できるページは制限されます）
+              </p>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
