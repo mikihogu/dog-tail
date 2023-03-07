@@ -1,1 +1,74 @@
-<h3>マイページ</h3>
+<div class="container my-3">
+  <div class="row">
+    <div class="col-md-6 text-center border-bottom">
+      <h2 class="m-3"><i class="fas fa-dog"></i> "<%= current_member.nickname %>" のマイページ</h2>
+    </div>
+    <div class="col-md-2 text-center">
+      <%= link_to '編集', edit_member_path, class: 'btn btn-sm btn-outline-success' %>
+    </div>
+    <div class="col-md-1">
+      <i class="far fa-thumbs-up"></i>
+    </div>
+    <div class="col-md-1">
+      <i class="far fa-star"></i>
+    </div>
+    <div class="col-md-1">
+      <i class="far fa-comment-dots"></i>
+    </div>
+    <div class="col-md-1">
+      <i class="fas fa-exclamation"></i>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 my-5 shadow-lg">
+      <div class="row">
+        <div class="col my-3 text-center">
+          <%= image_tag @member.get_image, height: 200 %>
+        </div>
+      </div>
+      <% if @member.id == current_member.id %>
+      <div class="row">
+        <div class="col-md-4">
+          <p>名前：</p>
+        </div>
+        <div class="col-md-8">
+          <%= @member.name %>
+        </div>
+      </div>
+      <% end %>
+      <div class="row">
+        <div class="col-md-4">
+          <p>ニックネーム：</p>
+        </div>
+        <div class="col-md-8">
+          <%= @member.nickname %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <p>好きな犬種：</p>
+        </div>
+        <div class="col-md-8">
+          <%= @member.dog %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <p>自己紹介文：</p>
+        </div>
+        <div class="col-md-8">
+          <%= @member.introduction %>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="col-md-5 offset-1">
+      <% if @member.dog_images.attached? %>
+        <% @member.dog_images.each do |image| %>
+          <%= image_tag image.variant(height: 200) %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
