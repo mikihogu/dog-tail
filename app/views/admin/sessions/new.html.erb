@@ -1,26 +1,32 @@
-<h2>Log in</h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+<div class="container my-3">
+  <div class="row">
+    <div class="col-md-10 text-center mx-auto mb-3">
+      <h2 class="border-bottom">
+        <i class="fas fa-dog"></i>
+        We can go anywhere "with Doggies"<br>
+        Let's see doggie friendly places
+        <i class="fas fa-paw"></i>
+      </h2>
     </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
   </div>
-<% end %>
-
-<%= render "admin/shared/links" %>
+  <div class="row">
+    <div class="col-md-8 mx-auto">
+    <h3 class="m-3"><i class="fas fa-dog"></i> 管理者ログイン</h3>
+      <%= form_with model: @admin, url: admin_session_path, html: {class: 'p-5 shadow-lg'} do |f| %>
+        <div class="form-group row">
+          <%= f.label :email, 'メールアドレス', class: 'col-md-3 offset-1' %>
+          <%= f.email_field :email, autofocus: true, placeholder: 'dog@dog', autocomplete: 'off', class: 'col-md-7' %>
+        </div>
+        <div class="form-group row">
+          <%= f.label :password, 'パスワード', class: 'col-md-3 offset-1' %>
+          <%= f.text_field :password, autofocus: true, placeholder: 'thedoggies', autocomplete: 'off', class: 'col-md-7' %>
+        </div>
+        <div class="form-group row mt-5">
+          <div class="col text-right">
+            <%= f.submit "Sign in", class: 'btn btn-outline-info' %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
