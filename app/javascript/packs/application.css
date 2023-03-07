@@ -1,5 +1,3 @@
-/* フッター固定 */
-html, body { height: 100%;}
 
 header {
   background-color: #E38B29 !important
@@ -9,11 +7,14 @@ footer {
   background-color: #E38B29  !important
 }
 
-.bg-image {
+.top-image {
   position: relative;
 }
-.info {
+.top-action {
   position: absolute;
   /* top: 0; */
   /* left: 0; */
+}
+.top-action p:hover {
+  background: rgba(255, 255, 255, 0.3)
 }
