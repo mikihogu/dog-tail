@@ -18,7 +18,7 @@ Rails.application.routes.draw do
         get :done, on: :collection
       end
       resource :favorites, only: [:create, :destroy]
-      resource :interests, only: [:create, :destroy]
+      resources :interests, only: [:create, :index, :destroy]
       resources :comments, only: [:create, :destroy] do
         resources :comment_reports, only: [:new, :create] do
           get :done, on: :collection
