@@ -32,7 +32,7 @@ Rails.application.routes.draw do
     root to: "homes#top"
     resources :posts, only: [:show, :index, :destroy]
     resources :categories, only: [:create, :index, :destroy]
-    resources :tag, only: [:create, :index, :destroy]
+    resources :tags, only: [:create, :index, :destroy]
     resources :members, only: [:index, :show, :update]
   end
 
