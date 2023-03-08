@@ -2,7 +2,7 @@ class Member < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable, authentication_keys: [:name]
 
   validates :name, presence: true
   validates :nickname, presence: true, uniqueness: true
@@ -13,8 +13,8 @@ class Member < ApplicationRecord
   has_many :posts
 
   has_one_attached :image
-  has_one_attached :dog_image
-  # has_many_attached :dog_images
+  # has_one_attached :dog_image
+  has_many_attached :dog_image
 
   def get_image
     (image.attached?) ? image: 'no-image.jpeg'

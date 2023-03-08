@@ -10,6 +10,7 @@ class Post < ApplicationRecord
   validates :address, presence: true
 
   belongs_to :member
+  belongs_to :category
   has_one_attached :post_image
 
   def get_post_image

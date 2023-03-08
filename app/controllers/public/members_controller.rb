@@ -20,7 +20,7 @@ class Public::MembersController < ApplicationController
 
   private
   def member_params
-    params.require(:member).permit(:name, :nickname, :password, :email, :image, :dog, :introduction, :dog_image)
-    # params.require(:member).permit(:name, :nickname, :password, :email, :image, :dog, :introduction, dog_images: [])
+    # params.require(:member).permit(:name, :nickname, :password, :email, :image, :dog, :introduction, :dog_image)
+    params.require(:member).permit(:name, :nickname, :password, :email, :image, :dog, :introduction, dog_image: [])
   end
 end
