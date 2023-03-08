@@ -9,7 +9,8 @@ class Member < ApplicationRecord
   validates :image, presence: true
   validates :dog, presence: true
   validates :introduction, presence: true
-  validates :dog_images, presence: true
+
+  has_many :posts
 
   has_one_attached :image
   has_one_attached :dog_image
