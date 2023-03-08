@@ -6,20 +6,21 @@ class Public::MembersController < ApplicationController
   end
 
   def edit
-    @member = Member.find(params[:id])
+    @member = current_member
   end
 
   def update
-    @member = Member.find(params[:id])
+    @member = current_member
     if @member.update(member_params)
-      redirect_to member_path(current_member)
+      redirect_to member_path(@member)
     else
-      redirect_to request.referer
+      render :edit
     end
   end
 
   private
   def member_params
-    params.require(:member).permit(:name, :nickname, :password, :email, :image, :dog, :introduction, dog_images: [])
+    params.require(:member).permit(:name, :nickname, :password, :email, :image, :dog, :introduction, :dog_image)
+    # params.require(:member).permit(:name, :nickname, :password, :email, :image, :dog, :introduction, dog_images: [])
   end
 end
