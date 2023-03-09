@@ -1,10 +1,10 @@
-<header class="shadow-sm">
+<header>
   <nav class="navbar navbar-expand-lg navbar-light">
     <div class="container">
       <% if request.path.match(/\/admin(\/)?/) %>
-        <a class="navbar-brand" href="/admin"><%= image_tag 'papillon.jpeg', size: '60x60' %></a>
+        <a class="navbar-brand" href="/admin"><%= image_tag 'logo.jpg', size: '60x60' %></a>
       <% else %>
-        <a class="navbar-brand" href="/"><%= image_tag 'papillon.jpeg', size: '60x60' %></a>
+        <a class="navbar-brand" href="/"><%= image_tag 'logo.jpg', size: '60x60' %></a>
       <% end %>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -18,25 +18,21 @@
               <div class="nav-link text-light a-header rounded-pill">施設一覧</div>
             <% end %>
           </li>
-          <li class="line-header nav-link">|</li>
           <li>
             <%= link_to admin_members_path, class:"a-header" do %>
               <div class="nav-link text-light a-header rounded-pill">会員一覧</div>
             <% end %>
           </li>
-          <li class="line-header nav-link">|</li>
           <li>
             <%= link_to admin_tags_path, class:"a-header" do %>
               <div class="nav-link text-light a-header rounded-pill">タグ一覧</div>
             <% end %>
           </li>
-          <li class="line-header nav-link">|</li>
           <li>
             <%= link_to admin_categories_path, class:"a-header" do %>
               <div class="nav-link text-light a-header rounded-pill">カテゴリー一覧</div>
             <% end %>
           </li>
-          <li class="line-header nav-link">|</li>
           <li>
             <%= link_to destroy_admin_session_path, method: :delete, class:"a-header" do %>
               <div class="nav-link text-light a-header rounded-pill">ログアウト</div>
@@ -56,25 +52,21 @@
               <div class="nav-link text-light a-header rounded-pill">About</div>
             <% end %>
           </li>
-          <li class="line-header nav-link">|</li>
           <li>
             <%= link_to member_path(current_member), class:"a-header" do %>
               <div class="nav-link text-light a-header rounded-pill">マイページ</div>
             <% end %>
           </li>
-          <li class="line-header nav-link">|</li>
           <li>
             <%= link_to posts_path, class:"a-header" do %>
               <div class="nav-link text-light a-header rounded-pill">気になる施設一覧</div>
             <% end %>
           </li>
-          <li class="line-header nav-link">|</li>
           <li>
             <%= link_to posts_path, class:"a-header" do %>
               <div class="nav-link text-light a-header rounded-pill">施設一覧</div>
             <% end %>
           </li>
-          <li class="line-header nav-link">|</li>
           <li>
             <%= link_to destroy_member_session_path, method: :delete, class:"a-header" do %>
               <div class="nav-link text-light a-header rounded-pill">ログアウト</div>
@@ -87,19 +79,16 @@
               <div class="nav-link text-light a-header rounded-pill">About</div>
             <% end %>
           </li>
-          <li class="line-header nav-link">|</li>
           <li>
             <%= link_to posts_path, class:"a-header" do %>
               <div class="nav-link text-light a-header rounded-pill">施設一覧</div>
             <% end %>
           </li>
-          <li class="line-header nav-link">|</li>
           <li>
             <%= link_to new_member_registration_path, class:"a-header" do %>
               <div class="nav-link text-light a-header rounded-pill">新規登録</div>
             <% end %>
           </li>
-          <li class="line-header nav-link">|</li>
           <li>
             <%= link_to new_member_session_path, class:"a-header" do %>
               <div class="nav-link text-light a-header rounded-pill">ログイン</div>

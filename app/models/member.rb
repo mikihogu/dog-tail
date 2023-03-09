@@ -12,6 +12,7 @@ class Member < ApplicationRecord
 
   has_many :posts
 
+
   has_one_attached :image
   # has_one_attached :dog_image
   has_many_attached :dog_image

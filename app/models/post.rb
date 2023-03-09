@@ -5,12 +5,14 @@ class Post < ApplicationRecord
   validates :information, presence: true
   validates :post_image, presence: true
   validates :category, presence: true
-  validates :tag, presence: true
+  # validates :tag, presence: true
   validates :prefecture, presence: true
   validates :address, presence: true
 
   belongs_to :member
   belongs_to :category
+  has_many :post_tags, dependent: :destroy
+  has_many :tags, through: :post_tag
   has_one_attached :post_image
 
   def get_post_image

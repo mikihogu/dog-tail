@@ -2,11 +2,13 @@ class Public::PostsController < ApplicationController
   def new
     @post = Post.new
     @posts = Post.all
+    @categories = Category.all
+    @tags = Tag.all
   end
   
   def create
     @post = Post.new(post_params)
-    if @post.save(post_params)
+    if @post.save
       redirect_to post_path(@post)
     else
       render :new
@@ -37,7 +39,7 @@ class Public::PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:name, :introduction, :information, :post_image, :category, tag, :prefecture, :address)
+    params.require(:post).permit(:name, :introduction, :information, :post_image, :category, :category_id, {tags: []}, :prefecture, :address)
   end
 
 end
