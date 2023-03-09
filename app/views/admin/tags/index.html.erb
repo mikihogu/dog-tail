@@ -9,7 +9,7 @@
           <% @tags.each do |tag| %>
             <div class="item shadow-sm col-md-4 p-3 my-3">
               <%= tag.name %>
-              <%= link_to '削除', admin_category_path(tag.id), method: :delete, class: 'btn btn-sm btn-outline-danger', 'data-confirm' => 'このカテゴリーを削除します' %>
+              <%= link_to '削除', admin_tag_path(tag.id), method: :delete, class: 'btn btn-sm btn-outline-danger', 'data-confirm' => 'このタグを削除します' %>
             </div>
           <% end %>
         </div>

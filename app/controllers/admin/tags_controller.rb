@@ -14,7 +14,7 @@ class Admin::TagsController < ApplicationController
   end
 
   def destroy
-    @tag = Tag.find(parama[:id])
+    @tag = Tag.find(params[:id])
     if @tag.destroy
       redirect_to request.referer
     else

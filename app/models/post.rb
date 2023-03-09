@@ -12,7 +12,7 @@ class Post < ApplicationRecord
   belongs_to :member
   belongs_to :category
   has_many :post_tags, dependent: :destroy
-  has_many :tags, through: :post_tag
+  has_many :tags, through: :post_tags
   has_one_attached :post_image
 
   def get_post_image
