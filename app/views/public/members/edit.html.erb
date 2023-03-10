@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-10 mx-auto">
       <h2 class="m-3 border-bottom"><i class="fas fa-dog"></i> 会員情報編集</h2>
-      <%= form_with model: @member, html: {class: 'p-5 shadow-lg', autocomplete: 'off'} do |f| %>
+      <%= form_with model: @member, method: :patch, html: {class: 'p-5 shadow-lg', autocomplete: 'off'} do |f| %>
         <%= render "public/shared/error_messages", resource: @member %>
         
         <div class="form-group row">
@@ -12,10 +12,6 @@
         <div class="form-group row">
           <%= f.label :nickname, 'ニックネーム', class: 'col-md-3 offset-1' %>
           <%= f.text_field :nickname, autofocus: true, placeholder: 'サイト上で表示されます', class: 'col-md-7' %>
-        </div>
-        <div class="form-group row">
-          <%= f.label :password, 'パスワード', class: 'col-md-3 offset-1' %>
-          <%= f.text_field :password, autofocus: true, placeholder: '6文字以上', class: 'col-md-7' %>
         </div>
         <div class="form-group row">
           <%= f.label :email, 'メールアドレス', class: 'col-md-3 offset-1' %>
@@ -39,8 +35,9 @@
         <div class="form-group row">
           <%= f.label :dog_image, '犬の画像', class: 'col-md-3 offset-1' %>
           <div class="img-preview col-md-7">
-            <%= f.file_field :dog_image, accept: 'image/*', multiple: true, class: 'img_field', style: 'display:none;' %>
-            <%= image_tag @member.get_dog_image, height: 100, onClick: "$('.img_field').click()", class: "img_prev" %>
+            <%= f.file_field :dog_image, accept: 'image/*', multiple: true, class: 'img_field2', style: 'display:none;' %>
+            <%= image_tag @member.get_dog_image, height: 100, onClick: "$('.img_field2').click()", class: "img_prev2" %>
+            <button type="button" class="add-dog-image">画像を追加する</button>
           </div>
         </div>
         <div class="form-group row">

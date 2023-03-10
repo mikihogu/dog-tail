@@ -1,0 +1,103 @@
+<div class="container my-3">
+  <div class="row">
+    <div class="col-md-6 text-center border-bottom">
+      <h2 class="m-3"><i class="fas fa-dog"></i>施設詳細</h2>
+    </div>
+    <div>
+    <% if @post.member.id == current_member.id %>
+      # 編集ボタン
+      <%= link_to edit_post_path(@post), class: 'col-md-2' do %>
+        <i class="fas fa-edit"></i>
+      <% end %>
+
+      # 削除ボタン
+      <%= link_to post_path(@post), method: :delete, 'date-confirm' => 'この投稿を削除します', class: 'col-md-2' do %>
+        <i class="fas fa-trash-alt"></i></i>
+      <% end %>
+    <% end %>
+    </div>
+    # 通報ボタン
+    <%= link_to new_post_post_reports_path(@post.id), class: 'col-md-2' do %>
+      <i class="far fa-sensor-alert"></i>
+    <% end %>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4">
+      <div class="row">
+        <h6>名称：<%= @post.name %></h6>
+      </div>
+      <div>
+        <%= image_tag @post.get_post_image, height: '200' %>
+      </div>
+      <div class"row align-right">
+        <div class="col-md-3 favorite-btn">
+          <% if @post.favorited_by?(current_member) %>
+            <p>
+              <%= link_to post_favorites_path(@post), method: :delete do |f| %>
+                < class="fas fa-heart"></i><%= @post.favorites.count %>
+              <% end %>
+            </p>
+          <% else %>
+            <p>
+              <%= link_to post_favorites_path(@post), method: :post do |f| %>
+                <i class="far fa-heart"></i><%= @post.favorites.count %>
+              <% end %>
+            </p>
+          <% end %>
+        </div>
+        <div class="col-md-3 interest-btn">
+          <% if @post.interested_by?(current_member) %>
+            <p>
+              <%= link_to post_interest_path(@post), method: :delete do |f| %>
+                <i class="fas fa-thumbs-up"></i><%= @post.interesrs.count %>
+              <% end %>
+            </p>
+              <% else %>
+              <p>
+                <%= link_to post_interests_path(@post), method: :post do |f| %>
+                  <i class="far fa-heart"></i><%= @post.interests.count %>
+                <% end %>
+            </p>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div id='map'></div>
+
+        <style>
+        #map {
+          height: 200px;
+          width: 300px;
+        }
+        </style>
+        
+        # js部分
+        <script>
+          # 初期マップの設定
+          let map
+          let marker
+          function initMap(){
+            geocoder = new google.maps.Geocoder()
+          
+            map = new google.maps.Map(document.getElementById('map'), {
+              center:  {latitude: <%= @post.latitude %>, longitude: <%= @post.longitude%>},
+              zoom: 15,
+            });
+          
+            marker = new google.maps.Marker({
+              position:  {latitude: <%= @post.latitude %>, longitude: <%= @post.longitude %>},
+              map: map
+            });
+          }
+        </script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY'] %>&callback=initMap" async defer></script>
+      </div>
+    </div>
+
+    </div class="col-md-7 offset-1">
+    
+    </div>
+  <div>
+<div>

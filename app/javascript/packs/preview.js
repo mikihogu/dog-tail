@@ -1,14 +1,33 @@
 $(function() {
-  function readURL(input) {
+
+   // 会員画像プレビュー
+  function readURL(input, img_preview) {
     if (input.files && input.files[0]) {
       var reader = new FileReader();
       reader.onload = function (e) {
-        $('.img_prev').attr('src', e.target.result);
+        img_preview.attr('src', e.target.result);
       }
       reader.readAsDataURL(input.files[0]);
     }
   }
   $(document).on('change', '.img_field', function(){
-    readURL(this);
+    readURL(this, $('.img-preview').find('.img_prev'));
   });
+
+  // 犬画像プレビュー
+  $(function() {
+    function readURL(input) {
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+          $('.img_prev2').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+    $(document).on('change', '.img_field2', function(){
+      readURL(this, $('.img-preview').find('.img_prev2'));
+    });
+  });
+  
 });

@@ -14,7 +14,8 @@ import "popper.js";
 import "bootstrap";
 import "../stylesheets/application";
 import '@fortawesome/fontawesome-free/js/all';
-import "../javascripts/preview"
+import "./preview"
+import "./map"
 
 Rails.start()
 Turbolinks.start()
