@@ -11,7 +11,8 @@ class Member < ApplicationRecord
   validates :introduction, presence: true
 
   has_many :posts
-
+  has_many :favorites, dependent: :destroy
+  has_many :interests, dependent: :destroy
 
   has_one_attached :image
   # has_one_attached :dog_image

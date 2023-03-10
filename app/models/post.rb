@@ -8,16 +8,32 @@ class Post < ApplicationRecord
   # validates :tag, presence: true
   validates :prefecture, presence: true
   validates :address, presence: true
+  validates :latitude, presence: true
+  validates :longitude, presence: true
 
   belongs_to :member
   belongs_to :category
   has_many :post_tags, dependent: :destroy
   has_many :tags, through: :post_tags
+  has_many :favorites, dependent: :destroy
+  has_many :interests, dependent: :destroy
   has_one_attached :post_image
 
+  geocoded_by :address
+  after_validation :geocode, if: :address_changed?
+
   def get_post_image
-    (post_image.attached?) ? image: 'no-image.jpeg'
+    (post_image.attached?) ? post_image : 'no-image.jpeg'
   end
+
+  def favorited_by?(member)
+    favorites.exists?(member_id: member.id)
+  end
+
+  def interested_by?(member)
+    interests.exists?(member_id: member.id)
+  end
+
 
   # enum利用
   enum prefecture:{

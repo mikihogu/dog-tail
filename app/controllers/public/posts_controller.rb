@@ -10,10 +10,13 @@ class Public::PostsController < ApplicationController
     @categories = Category.all
     @tags = Tag.all
     @post = Post.new(post_params)
+    @post.latitude = params[:post][:latitude]
+    @post.longitude = params[:post][:longitude]
     @post.member_id = current_member.id
     if @post.save
-      redirect_to post_path(@post)
+      redirect_to post_path(@post), notice: "You've saccessfully posted."
     else
+      flash.now[:alert] = 'There was something wrong.'
       render :new
     end   
   end
@@ -42,7 +45,7 @@ class Public::PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:name, :introduction, :information, :post_image, :category, :category_id, {tags: []}, {tag_ids: []}, :prefecture, :address)
+    params.require(:post).permit(:name, :introduction, :information, :post_image, :category, :category_id, {tags: []}, {tag_ids: []}, :prefecture, :address, :latitude, :longitude)
   end
 
 end
