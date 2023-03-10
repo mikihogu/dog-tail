@@ -45,7 +45,11 @@ class Public::PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:name, :introduction, :information, :post_image, :category, :category_id, {tags: []}, {tag_ids: []}, :prefecture, :address, :latitude, :longitude)
+    params.require(:post).permit(
+      :name, :introduction, :information, :post_image, 
+      :category, :category_id, {tags: []}, {tag_ids: []}, 
+      :prefecture, :address, :latitude, :longitude
+    )
   end
 
 end
