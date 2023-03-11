@@ -43,7 +43,7 @@
 
         <div class="form-group row">
           <%= f.label :address, '施設住所', class: 'col-md-3 offset-1' %>
-          <%= f.text_area :address, autofocus: true, placeholder: '〒  住所（入力していただくとMapが表示されます）', class: 'col-md-7', size: '30x2' %>
+          <%= f.text_area :address, id: :address, autofocus: true, placeholder: '〒  住所（入力していただくとMapが表示されます）', class: 'col-md-7', size: '30x2' %>
         </div>
         <div class="row">
           <%= f.label :latitude, '緯度', class: 'col-md-2 offset-1' %>

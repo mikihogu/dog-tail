@@ -1,5 +1,5 @@
 <!--Map表示-->
-<input id="address" type="textbox" value="施設名を入力">
+<!--<input id="address" type="textbox" value="施設名を入力">-->
 <input type="button" value="検索" onclick="codeAddress()">
 <p>マーカーをドラック＆ドロップで位置の調整ができます。<p>
 <div id='map'></div>
@@ -26,7 +26,7 @@
   }
 
   // 位置情報を入力してEnter押したらMapに反映される
-  document.getElementById('address').addEventListener('keydown',(event) => {
+  document.getElementById('post_address').addEventListener('keydown',(event) => {
     if (event.keyCode == 13) {
       codeAddress();
     }
@@ -37,7 +37,7 @@
   let geocoder
   let aft
   function codeAddress(){
-    let inputAddress = document.getElementById('address').value;
+    let inputAddress = document.getElementById('post_address').value;
     geocoder.geocode( { 'address': inputAddress}, function(results, status) {
       if (status == 'OK') {
           //マーカーが複数できないようにする
@@ -58,7 +58,11 @@
 
           //検索した時に緯度経度を入力する
           document.getElementById('latitude').value = results[0].geometry.location.lat();
-          document.getElementById('lngitute').value = results[0].geometry.location.lng();
+          document.getElementById('longitude').value = results[0].geometry.location.lng();
+
+          // hidden_fieldに入れる緯度経度
+          document.getElementById('post_latitude').value = results[0].geometry.location.lat();
+          document.getElementById('post_longitude').value = results[0].geometry.location.lng();
 
           // マーカーのドロップ（ドラッグ終了）時のイベント
           google.maps.event.addListener( marker, 'dragend', function(ev){
