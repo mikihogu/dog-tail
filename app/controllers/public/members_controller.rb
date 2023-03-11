@@ -11,6 +11,12 @@ class Public::MembersController < ApplicationController
 
   def update
     @member = current_member
+    if params[:member][:dog_image_ids]
+      params[:member][:dog_image_ids].each do |dimage_id|
+        image = post.dog-images.find(dimage_id)
+        image.purge
+      end
+    end
     if @member.update(member_params)
       redirect_to member_path(@member)
     else
@@ -20,7 +26,6 @@ class Public::MembersController < ApplicationController
 
   private
   def member_params
-    # params.require(:member).permit(:name, :nickname, :password, :email, :image, :dog, :introduction, :dog_image)
-    params.require(:member).permit(:name, :nickname, :password, :email, :image, :dog, :introduction, dog_image: [])
+    params.require(:member).permit(:name, :nickname, :password, :email, :image, :dog, :introduction, dog_images: [])
   end
 end

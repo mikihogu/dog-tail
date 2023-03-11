@@ -67,8 +67,8 @@
     </div>
 
     <div class="col-md-5 offset-1">
-      <% if @member.dog_image.attached? %>
-        <% @member.dog_image.each do |dimage| %>
+      <% if @member.dog_images.attached? %>
+        <% @member.dog_images.each do |dimage| %>
           <%= image_tag dimage, height: 150 %>
         <% end %>
       <% end %>

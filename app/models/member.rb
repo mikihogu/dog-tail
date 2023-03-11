@@ -16,18 +16,18 @@ class Member < ApplicationRecord
 
   has_one_attached :image
   # has_one_attached :dog_image
-  has_many_attached :dog_image
+  has_many_attached :dog_images
 
   def get_image
     (image.attached?) ? image : 'no-image.jpeg'
   end
   
-  def get_dog_image
-    (dog_image.attached?) ? dog_image[0] : 'dog-no-image.jpeg'
-  end
-
-  # def get_dog_images
-  #   (dog_images.attached?) ? image: 'dog-no-image.jpeg'
+  # def get_dog_image
+  #   (dog_image.attached?) ? dog_image[0] : 'dog-no-image.jpeg'
   # end
+
+  def get_dog_images
+    (dog_images.attached?) ? dog_images[0] : 'dog-no-image.jpeg'
+  end
 
 end
