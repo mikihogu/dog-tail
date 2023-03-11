@@ -5,57 +5,7 @@
       <%= form_with model: @post, html: {class: 'p-5 shadow-lg', autocomplete: 'off'} do |f| %>
         <%= render "public/shared/error_messages", resource: @post %>
         
-        <div class="form-group row">
-          <%= f.label :name, '施設名称', class: 'col-md-3 offset-1' %>
-          <%= f.text_field :name, autofocus: true, class: 'col-md-7' %>
-        </div>
-
-        <div class="form-group row">
-          <%= f.label :introduction, '一言紹介', class: 'col-md-3 offset-1' %>
-          <%= f.text_field :introduction, autofocus: true, class: 'col-md-7' %>
-        </div>
-
-        <div class="form-group row">
-          <%= f.label :information, '施設詳細', class: 'col-md-3 offset-1' %>
-          <%= f.text_area :information, autofocus: true, placeholder: '施設の情報、おすすめポイント 等', class: 'col-md-7', size: '30x5' %>
-        </div>
-
-        <div class="form-group row">
-          <%= f.label :post_image, '施設画像', class: 'col-md-3 offset-1' %>
-          <div class="img-preview col-md-7">
-            <%= f.file_field :post_image, accept: 'image/*', class: 'img_field' %>
-            <%= image_tag @post.get_post_image, height: 200, onClick: "$('.img_field').click()", class: "img_prev" %>
-          </div>
-        </div>
-
-        <div class="form-group row">
-          <%= f.label :category, '施設カテゴリー', class: 'col-md-3 offset-1' %>
-          <%= f.collection_select :category_id, @categories, :id, :name, include_blank: '選択してください', class: 'form-control col-md-7' %>
-        </div>
-
-        <div class="form-group row">
-          <%= f.label :tag_ids, 'タグ', class: 'col-md-3 offset-1' %>
-          <%= f.collection_check_boxes :tag_ids, @tags, :id, :name, class: 'flex-wrap col-md-7' %>
-        </div>
-
-        <div class="form-group row">
-          <%= f.label :prefecture, '施設所在地', class: 'col-md-3 offset-1' %>
-          <%= f.select :prefecture, Post.prefectures.keys, include_blank: '選択してください', class: 'col-md-7' %>
-        </div>
-
-        <div class="form-group row">
-          <%= f.label :address, '施設住所', class: 'col-md-3 offset-1' %>
-          <%= f.text_area :address, id: :address, autofocus: true, placeholder: '住所または施設名（入力していただくとMapが表示されます）', class: 'col-md-6', size: '30x2' %>
-          <input type="button" value="Map更新" onclick="codeAddress()">
-        </div>
-        <div class="row">
-          <%= f.label :latitude, '緯度', class: 'col-md-2 offset-1', style: 'display: none;' %>
-          <%= f.text_field :latitude, id: :latitude, class: 'col-md-3', style: 'display: none;' %>
-          <%= f.label :longitude, '経度', class: 'col-md-2 offset-1', style: 'display: none;' %>
-          <%= f.text_field :longitude, id: :longitude, class: 'col-md-3', style: 'display: none;' %>
-          <%= f.hidden_field :latitude, id: 'post_latitude' %>
-          <%= f.hidden_field :longitude, id: 'post_longitude' %>
-        </div>
+        <%= render 'form', f: f %>
 
         <!--Map表示-->
         <div class="row">
