@@ -8,7 +8,6 @@ class Public::PostsController < ApplicationController
   
   def create
     @categories = Category.all
-    @tags = Tag.all
     @post = Post.new(post_params)
     @post.latitude = params[:post][:latitude]
     @post.longitude = params[:post][:longitude]
@@ -31,6 +30,8 @@ class Public::PostsController < ApplicationController
   
   def edit
     @post = Post.find(params[:id])
+    @categories = Category.all
+    @tags = Tag.all
   end
 
   def update
