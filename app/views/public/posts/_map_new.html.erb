@@ -1,13 +1,11 @@
-<!--Map表示-->
-<!--<input id="address" type="textbox" value="施設名を入力">-->
-<input type="button" value="検索" onclick="codeAddress()">
 <p>マーカーをドラック＆ドロップで位置の調整ができます。<p>
 <div id='map'></div>
+<input type="button" value="検索" onclick="codeAddress()">
 
 <style>
   #map {
-    height: 600px;
-    width: 600px;
+    height: 300px;
+    width: 300px;
   }
 </style>
 
@@ -21,12 +19,11 @@
     map = new google.maps.Map(document.getElementById('map'), {
       center:  {latitude: 35.6803997, longitude:139.7690174},  //東京
       zoom: 15,
-
     });
   }
 
   // 位置情報を入力してEnter押したらMapに反映される
-  document.getElementById('post_address').addEventListener('keydown',(event) => {
+  document.getElementById('address').addEventListener('keydown',(event) => {
     if (event.keyCode == 13) {
       codeAddress();
     }
@@ -37,7 +34,7 @@
   let geocoder
   let aft
   function codeAddress(){
-    let inputAddress = document.getElementById('post_address').value;
+    let inputAddress = document.getElementById('address').value;
     geocoder.geocode( { 'address': inputAddress}, function(results, status) {
       if (status == 'OK') {
           //マーカーが複数できないようにする

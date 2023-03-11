@@ -5,7 +5,7 @@ class Post < ApplicationRecord
   validates :information, presence: true
   validates :post_image, presence: true
   validates :category, presence: true
-  validates :tag, presence: true
+  # validates :tag, presence: true
   validates :prefecture, presence: true
   validates :address, presence: true
   validates :latitude, presence: true
