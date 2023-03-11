@@ -4,23 +4,23 @@
       <h2 class="m-3"><i class="fas fa-dog"></i> "<%= @member.nickname %>" のページ</h2>
     </div>
     <div class="col-md-1">
-    <% if @member.id == current_member.id %>
-      <%= link_to edit_member_path do %>
-        <i class="fas fa-edit"></i>
+      <% if @member.id == current_member.id %>
+        <%= link_to edit_member_path do %>
+          <i class="fas fa-edit"></i>
+        <% end %>
       <% end %>
-    <% end %>
     </div>
     <div class="col-md-1">
-      <i class="far fa-thumbs-up"></i>
+      <i class="far fa-thumbs-up"></i> <%= @member.interests.count %>
     </div>
     <div class="col-md-1">
-      <i class="far fa-star"></i>
+      <i class="far fa-star"></i> <%= @member.favorites.count %>
     </div>
     <div class="col-md-1">
-      <i class="far fa-comment-dots"></i>
+      <i class="far fa-comment-dots"></i> <%= @member.comments.count %>
     </div>
     <div class="col-md-1">
-      <i class="fas fa-exclamation"></i>
+      <i class="fas fa-exclamation"></i> <%= (@member.comment_reports.count) + (@member.post_reports.count) %>
     </div>
   </div>
   <div class="row">
@@ -67,8 +67,8 @@
     </div>
 
     <div class="col-md-5 offset-1">
-      <% if @member.dog_image.attached? %>
-        <% @member.dog_image.each do |dimage| %>
+      <% if @member.dog_images.attached? %>
+        <% @member.dog_images.each do |dimage| %>
           <%= image_tag dimage, height: 150 %>
         <% end %>
       <% end %>

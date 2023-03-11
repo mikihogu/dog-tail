@@ -33,13 +33,29 @@
           <%= f.text_area :introduction, autofocus: true, class: 'col-md-7' %>
         </div>
         <div class="form-group row">
-          <%= f.label :dog_image, '犬の画像', class: 'col-md-3 offset-1' %>
+          <%= f.label :dog_images, '犬の画像', class: 'col-md-3 offset-1' %>
           <div class="img-preview col-md-7">
-            <%= f.file_field :dog_image, accept: 'image/*', multiple: true, class: 'img_field2', style: 'display:none;' %>
-            <%= image_tag @member.get_dog_image, height: 100, onClick: "$('.img_field2').click()", class: "img_prev2" %>
-            <button type="button" class="add-dog-image">画像を追加する</button>
+            <% if @member.dog_images.attached? %>
+              <%= f.file_field :dog_images, accept: 'image/*', multiple: true, class: 'img_field2' %>
+              <% @member.dog_images.each do |dimage| %>
+                <div style="display: flex; margin:5px 5px 5px 0;">
+                  <%= f.check_box :dog_images_ids, {multiple: true}, dimage.id, false %>
+                  <%= image_tag @member.get_dog_images, height: 100, onClick: "$('.img_field2').click()", class: "img_prev2" %>
+                </div>
+              <% end %>
+              <script>
+                $(document).ready(function() {
+                  $('.add-dog-image').on('click', function() {
+                    $('.img_field2').click();
+                  });
+                });
+              </script>
+            <% end %>
+            <button type="button" class="add-dog-images">画像を追加する</button>
           </div>
         </div>
+    
+
         <div class="form-group row">
           <div class="col text-right">
             <%= f.submit "Update", class: 'btn btn-outline-info' %>
