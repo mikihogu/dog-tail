@@ -11,12 +11,12 @@ class Public::MembersController < ApplicationController
 
   def update
     @member = current_member
-    if params[:member][:dog_image_ids]
-      params[:member][:dog_image_ids].each do |dimage_id|
-        image = post.dog-images.find(dimage_id)
-        image.purge
-      end
-    end
+    # if params[:member][:dog_images_ids]
+    #   params[:member][:dog_images_ids].each do |dimage_id|
+    #     image = post.dog_images.find(dimage_id)
+    #     image.purge
+    #   end
+    # end
     if @member.update(member_params)
       redirect_to member_path(@member)
     else

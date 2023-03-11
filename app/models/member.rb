@@ -13,6 +13,9 @@ class Member < ApplicationRecord
   has_many :posts
   has_many :favorites, dependent: :destroy
   has_many :interests, dependent: :destroy
+  has_many :comments, dependent: :destroy
+  has_many :post_reports, dependent: :destroy
+  has_many :comment_reports, dependent: :destroy
 
   has_one_attached :image
   # has_one_attached :dog_image

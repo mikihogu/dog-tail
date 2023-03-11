@@ -36,10 +36,10 @@
           <%= f.label :dog_images, '犬の画像', class: 'col-md-3 offset-1' %>
           <div class="img-preview col-md-7">
             <% if @member.dog_images.attached? %>
-              <%= f.file_field :dog_images, accept: 'image/*', multiple: true, class: 'img_field2', style: 'display:none;' %>
+              <%= f.file_field :dog_images, accept: 'image/*', multiple: true, class: 'img_field2' %>
               <% @member.dog_images.each do |dimage| %>
                 <div style="display: flex; margin:5px 5px 5px 0;">
-                  <%= f.check_box :dog_image_ids, {multiple: true}, dimage.id, false %>
+                  <%= f.check_box :dog_images_ids, {multiple: true}, dimage.id, false %>
                   <%= image_tag @member.get_dog_images, height: 100, onClick: "$('.img_field2').click()", class: "img_prev2" %>
                 </div>
               <% end %>
@@ -51,7 +51,7 @@
                 });
               </script>
             <% end %>
-            <button type="button" class="add-dog-image">画像を追加する</button>
+            <button type="button" class="add-dog-images">画像を追加する</button>
           </div>
         </div>
     
