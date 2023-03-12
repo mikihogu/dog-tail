@@ -31,6 +31,8 @@ class Public::PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @comment = Comment.new
+    # @comments = @post.comments.all
   end
   
   def edit
@@ -46,6 +48,12 @@ class Public::PostsController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def destroy
+    @post = Post.find(params[:id])
+    @post.destroy
+    redirect_to posts_path
   end
 
 
