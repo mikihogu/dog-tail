@@ -1,8 +1,10 @@
 <!--コメント一覧-->
 <div class="card">
-  <p class="card-header">
-    この施設に関するコメント <i class="far fa-comment-dots"></i> <%= post.comments.count %>件
-  </P>
+  <div class="comments-count_<%= post.id %>">
+    <p class="card-header">
+      この施設に関するコメント <i class="far fa-comment-dots"></i> <%= post.comments.count %>件
+    </P>
+  </div>
   <div class="card-body">
     <% post.comments.each do |comment| %>
       <div class="row border-bottom align-items-center">
@@ -14,8 +16,10 @@
         <p class="col-md-7 px-2"><%= comment.comment %></p>
         <p class="col-md-3"><small><%= comment.created_at.strftime('%Y/%m/%d') %></small></p>
         <p class="col-md-1">
-        <%= link_to post_comment_path(post, comment), method: :delete, style: 'color: gray;', 'data-confirm'=>'このコメントを削除します' do %>
-          <i class="fas fa-trash-alt"></i>
+        <% if comment.member == current_member %>
+          <%= link_to post_comment_path(post, comment), method: :delete, remote: true, style: 'color: gray;', 'data-confirm'=>'このコメントを削除します' do %>
+            <i class="fas fa-trash-alt"></i>
+          <% end %>
         <% end %>
       </div>
     <% end %>
@@ -27,7 +31,7 @@
   <div class="card-body">
     <div class="card-title">コメントする</div>
     <div class="card-text">
-      <%= form_with model: [post, comment], local: true do |f| %>
+      <%= form_with model: [post, comment], local: false do |f| %>
         <%= f.text_area :comment, width: '80%', placeholder: 'コメント、追加情報', class: 'col-md-9' %>
         <%= f.submit '送信', class: 'btn btn-sm btn-outline-dark', class: 'col-md-2' %>
       <% end %>
