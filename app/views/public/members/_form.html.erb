@@ -22,11 +22,10 @@
     </div>
     # 編集画面では画像プレビュー表示
     <div class="form-group row">
+      <%= f.label :image, '会員画像', class: 'col-md-3 offset-1' %>
       <% if current_page?(new_member_registration_path) %>
-        <%= f.label :image, '会員画像', class: 'col-md-3 offset-1' %>
         <%= f.file_field :image, accept: 'image/*', class: 'img_field col-md-7' %>
       <% else %>
-        <%= f.label :image, '会員画像', class: 'col-md-3 offset-1' %>
         <div class="img-preview col-md-7">
           <%= f.file_field :image, accept: 'image/*', class: 'img_field', style: 'display:none;' %>
           <%= image_tag member.get_image, height: 200, onClick: "$('.img_field').click()", class: "img_prev" %>
