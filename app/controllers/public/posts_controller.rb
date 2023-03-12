@@ -21,7 +21,12 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all
+    @categories = Category.all
+    @posts = Post.all.order(created_at: :desc)
+    if params[:category]
+      @category = Category.find_by(name: params[:category])
+      @posts = @category.posts.order(created_at: :desc)
+    end
   end
 
   def show

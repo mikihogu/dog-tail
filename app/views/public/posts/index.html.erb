@@ -9,51 +9,71 @@
       <% end %>
     </div>
   </div>
-  <div class="row">
-    <% @posts.each do |post| %>
-    <div class="card-deck">
-      <div class="col-3 mb-3">
-        <div class="card border-secondary bg-light" style="width: 13rem">
-          <div class="card-img-top">
-            <%= image_tag post.get_post_image, size: "250x200", class: 'img-fluid' %>
+  
+  <div class="wrap">
+    <ul id="tab-menu">
+      <li><%= link_to '全て', posts_path , class: 'active' %></li>
+      <% @categories.each do |category| %>
+        <li><%= link_to category.name, posts_path(category: category.name), class: ('active' if category == @category) %></li>
+      <% end %>
+    </ul>
+
+    <div id="tab-contents">
+      <div id="tab0" class="tab">
+        <div class="row">
+          <% @posts.each do |post| %>
+          <div class="card-deck">
+            <div class="col-3 mb-3">
+              <div class="card border-secondary bg-light" style="width: 13rem">
+                <div class="card-img-top">
+                  <%= image_tag post.get_post_image, size: "250x200", class: 'img-fluid' %>
+                </div>
+                <div class="card-body">
+                  <%= link_to post_path(post) do %>
+                    <h6 class="card-title border-bottom"><b><%= post.name %></b></h6>
+                  <% end %>
+                  <small>
+                    <p class="card-text">一言紹介：<%= post.introduction %></p>
+                    <p class="card-text">所在地: <%= post.prefecture %></p>
+                    <p class="card-text">
+                      <% if post.favorited_by?(current_member) %>
+                        <%= link_to post_favorites_path(post), method: :delete do |f| %>
+                          <i class="fas fa-heart"></i> <%= post.favorites.count %>
+                        <% end %>
+                      <% else %>
+                        <%= link_to post_favorites_path(post), method: :post do |f| %>
+                          <i class="far fa-heart"></i> <%= post.favorites.count %>
+                        <% end %>
+                      <% end %>
+                      <% if post.interested_by?(current_member) %>
+                        <%= link_to post_interest_path(post), method: :delete do |f| %>
+                          <i class="fas fa-thumbs-up"></i> <%= post.interests.count %>
+                        <% end %>
+                      <% else %>
+                        <%= link_to post_interests_path(post), method: :post do |f| %>
+                          <i class="far fa-thumbs-up"></i> <%= post.interests.count %>
+                        <% end %>
+                      <% end %>
+                      <i class="far fa-comment-dots"></i> <%= post.comments.count %>
+                    </p>
+                    <p class="card-text">更新日: <%= post.updated_at %></p>
+                  </small>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="card-body">
-            <%= link_to post_path(post) do %>
-              <h6 class="card-title border-bottom"><b><%= post.name %></b></h6>
-            <% end %>
-            <small>
-              <p class="card-text">一言紹介：<%= post.introduction %></p>
-              <p class="card-text">所在地: <%= post.prefecture %></p>
-              <p class="card-text">
-                <% if post.favorited_by?(current_member) %>
-                  <%= link_to post_favorites_path(post), method: :delete do |f| %>
-                    <i class="fas fa-heart"></i> <%= post.favorites.count %>
-                  <% end %>
-                <% else %>
-                  <%= link_to post_favorites_path(post), method: :post do |f| %>
-                    <i class="far fa-heart"></i> <%= post.favorites.count %>
-                  <% end %>
-                <% end %>
-                <% if post.interested_by?(current_member) %>
-                  <%= link_to post_interest_path(post), method: :delete do |f| %>
-                    <i class="fas fa-thumbs-up"></i> <%= post.interests.count %>
-                  <% end %>
-                <% else %>
-                  <%= link_to post_interests_path(post), method: :post do |f| %>
-                    <i class="far fa-thumbs-up"></i> <%= post.interests.count %>
-                  <% end %>
-                <% end %>
-                <i class="far fa-comment-dots"></i> <%= post.comments.count %>
-              </p>
-              <p class="card-text">更新日: <%= post.updated_at %></p>
-            </small>
-          </div>
+          <% end %>
         </div>
       </div>
+
     </div>
-    <% end %>
   </div>
+  
+  <div>
+    <%= render 'map_index', posts: @posts %>
+  </div>
+
 </div>
-<div>
-  <%= render 'map_index', posts: @posts %>
-</div>    
+
+<script src="javascript/packs/jquery.min.js"></script>
+<script src="javascript/packs/tab.js"></script>

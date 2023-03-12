@@ -16,6 +16,8 @@ import "../stylesheets/application";
 import '@fortawesome/fontawesome-free/js/all';
 import "./preview"
 // import "./map"
+// import "./tab"
+// import "./jquery.min"
 
 Rails.start()
 Turbolinks.start()
