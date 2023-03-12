@@ -40,12 +40,12 @@
               <% @member.dog_images.each do |dimage| %>
                 <div style="display: flex; margin:5px 5px 5px 0;">
                   <%= f.check_box :dog_images_ids, {multiple: true}, dimage.id, false %>
-                  <%= image_tag @member.get_dog_images, height: 100, onClick: "$('.img_field2').click()", class: "img_prev2" %>
+                  <%= image_tag dimage, height: 100, onClick: "$('.img_field2').click()", class: "img_prev2" %>
                 </div>
               <% end %>
               <script>
                 $(document).ready(function() {
-                  $('.add-dog-image').on('click', function() {
+                  $('.add-dog-images').on('click', function() {
                     $('.img_field2').click();
                   });
                 });

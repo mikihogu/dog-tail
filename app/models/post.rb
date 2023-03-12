@@ -17,13 +17,19 @@ class Post < ApplicationRecord
   has_many :tags, through: :post_tags
   has_many :favorites, dependent: :destroy
   has_many :interests, dependent: :destroy
+  has_many :comments, dependent: :destroy
   has_one_attached :post_image
+  has_one_attached :image
 
   geocoded_by :address
   after_validation :geocode, if: :address_changed?
 
   def get_post_image
     (post_image.attached?) ? post_image : 'no-image.jpeg'
+  end
+
+  def get_image
+    (image.attached?) ? image : 'no-image.jpeg'
   end
 
   def favorited_by?(member)
