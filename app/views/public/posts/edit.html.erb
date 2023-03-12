@@ -1,7 +1,7 @@
 <div class="container my-3">
   <div class="row">
     <div class="col-md-10 mx-auto">
-      <h2 class="m-3 border-bottom"><i class="fas fa-dog"></i> 施設情報登録</h2>
+      <h2 class="m-3 border-bottom"><i class="fas fa-dog"></i> 施設情報編集</h2>
       <%= form_with model: @post, html: {class: 'p-5 shadow-lg', autocomplete: 'off'} do |f| %>
         <%= render "public/shared/error_messages", resource: @post %>
         
@@ -9,7 +9,7 @@
 
         <!--Map表示-->
         <div class="row">
-          <%= render 'map_new' %>
+          <%= render 'map_edit', post: @post %>
         </div>
 
         <div class="form-group row">
@@ -21,3 +21,6 @@
     </div>
   </div>
 </div>
+
+<--jsファイル読み込み-->
+<%= javascript_pack_tag 'preview' %>
