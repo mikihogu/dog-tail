@@ -13,6 +13,7 @@
   <div class="wrap">
     <ul id="tab-menu">
       <li><%= link_to '全て', posts_path , class: 'active' %></li>
+      <!--タブに表示されたカテゴリー名に紐づく投稿を一覧表示-->
       <% @categories.each do |category| %>
         <li><%= link_to category.name, posts_path(category: category.name), class: ('active' if category == @category) %></li>
       <% end %>
@@ -75,5 +76,4 @@
 
 </div>
 
-<script src="javascript/packs/jquery.min.js"></script>
-<script src="javascript/packs/tab.js"></script>
+

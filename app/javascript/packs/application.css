@@ -26,7 +26,7 @@ footer {
 
 /* tab表示 */
 .wrap {
-  width: 90%;
+  width: 100%;
   max-width: 800px;
   margin: 0 auto;
 }
@@ -44,11 +44,12 @@ footer {
   color: #fff;
   text-decoration: none;
   display: block;
+  margin: 0 2px;
   padding: 20px;
   text-align: center;
   background: #ddd;
-  border: 1px solid #000;
-  border-bottom: none;
+  /* border: 1px solid #000; */
+  /* border-bottom: none; */
 }
 
 #tab-menu .active {
@@ -64,7 +65,7 @@ footer {
 #tab-contents .tab {
   width: 100%;
   padding: 30px;
-  background: #fff;
-  border: 1px solid #000;
-  border-top: none;
+  background: #f9f9f1;
+  /* border: 1px solid #000; */
+  /* border-top: none; */
 }
