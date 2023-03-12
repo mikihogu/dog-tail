@@ -11,8 +11,12 @@
             <%= image_tag comment.member.get_image, size: '30x30' %>
           <% end %>
         </div>
-        <p class="col-md-8 px-2"><%= comment.comment %></p>
+        <p class="col-md-7 px-2"><%= comment.comment %></p>
         <p class="col-md-3"><small><%= comment.created_at.strftime('%Y/%m/%d') %></small></p>
+        <p class="col-md-1">
+        <%= link_to post_comment_path(post, comment), method: :delete, style: 'color: gray;', 'data-confirm'=>'このコメントを削除します' do %>
+          <i class="fas fa-trash-alt"></i>
+        <% end %>
       </div>
     <% end %>
   </div>

@@ -13,8 +13,9 @@ class Public::CommentsController < ApplicationController
   end
 
   def destroy
-    @post.comment = Post.comment.find(params[:id])
-    @post.comment.destroy
+    @comment = Comment.find(params[:id])
+    @post = Post.find(params[:id])
+    @comment.destroy
     redirect_to request.referer
   end
 
