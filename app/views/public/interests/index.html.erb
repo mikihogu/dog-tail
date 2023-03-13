@@ -4,10 +4,16 @@
       <h2 class="m-3 border-bottom"><i class="fas fa-dog"></i> 気になる施設一覧</h2>
     </div>
   </div>
-
-  <div class="wrap">
-    <!--一覧-->
-    <%= render 'public/posts/index', posts: @interest_posts %>
-  </div>
-
+  <% if @interest_posts.empty? %>
+    <div class="row">
+      <div class="col mt-5 text-center">
+        <h4>ブックマークした施設がありません</h4>
+      </div>
+    </div>
+  <% else %>
+    <div class="wrap">
+      <!--一覧-->
+      <%= render 'public/posts/index', posts: @interest_posts %>
+    </div>
+  <% end %>
 </div>
