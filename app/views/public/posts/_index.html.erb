@@ -14,10 +14,10 @@
             <p class="card-text">一言紹介：<%= post.introduction %></p>
             <p class="card-text">所在地: <%= post.prefecture %></p>
             <p class="card-text">
-              <div class="favorite-btn">
+              <div class="favorite-btn_<%= post.id %>">
                 <%= render 'public/favorites/favorite_btn', post: post %>
               </div>
-              <div class="interest-btn">
+              <div class="interest-btn_<%= post.id %>">
                 <%= render 'public/interests/interest_btn', post: post %>
               </div>
               <i class="far fa-comment-dots"></i> <%= post.comments.count %>

@@ -34,10 +34,10 @@
         <%= image_tag @post.get_post_image, height: 200, class: 'image-fluid img-thumbnail' %>
       </div>
       <div class"row align-right">
-        <div class="col-md-3 favorite-btn">
+        <div class="col-md-3 favorite-btn_<%= @post.id %>">
           <%= render 'public/favorites/favorite_btn', post: @post %>
         </div>
-        <div class="col-md-3 interest-btn">
+        <div class="col-md-3 interest-btn_<%= @post.id %>">
           <%= render 'public/interests/interest_btn', post: @post %>
         </div>
       </div>
