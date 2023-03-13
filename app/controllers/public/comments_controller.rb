@@ -6,8 +6,10 @@ class Public::CommentsController < ApplicationController
     @comment.member_id = current_member.id
     @comment.post_id = @post.id
     if @comment.save
-      @post.create_notification_comment!(current_member, @comment.id) #通知する
-      # redirect_to request.referer 非同期通信化のため
+      # @post.create_notification_comment!(current_member, @comment.id) #通知する
+      redirect_to request.referer
+    else
+      redirect_to request.referer
     end
   end
 
@@ -16,6 +18,7 @@ class Public::CommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     @comment.post_id = @post.id
     @comment.destroy
+    redirect_to request.referer
   end
 
   private

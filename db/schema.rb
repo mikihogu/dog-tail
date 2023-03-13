@@ -106,7 +106,7 @@ ActiveRecord::Schema.define(version: 2023_03_06_093642) do
   end
 
   create_table "notifications", force: :cascade do |t|
-    t.integer "member_id", null: false
+    t.integer "comment_id", null: false
     t.integer "post_id", null: false
     t.boolean "checked", null: false
     t.datetime "created_at", precision: 6, null: false
