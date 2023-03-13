@@ -5,7 +5,7 @@ class Public::PostsController < ApplicationController
     @categories = Category.all
     @tags = Tag.all
   end
-  
+
   def create
     @categories = Category.all
     @tags = Tag.all
@@ -19,7 +19,7 @@ class Public::PostsController < ApplicationController
     else
       flash.now[:alert] = 'There was something wrong.'
       render :new
-    end   
+    end
   end
 
   def index
@@ -36,7 +36,7 @@ class Public::PostsController < ApplicationController
     @comment = Comment.new
     # @comments = @post.comments.all
   end
-  
+
   def edit
     @post = Post.find(params[:id])
     @categories = Category.all
@@ -61,7 +61,7 @@ class Public::PostsController < ApplicationController
   private
   def post_params
     params.require(:post).permit(
-      :name, :introduction, :information, :post_image, 
+      :name, :introduction, :information, :post_image,
       :category_id,
       :prefecture, :address, :latitude, :longitude, tag_ids: []
     )

@@ -16,6 +16,9 @@ class Member < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :post_reports, dependent: :destroy
   has_many :comment_reports, dependent: :destroy
+  has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy
+  has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
+  
 
   has_one_attached :image
   has_many_attached :dog_images

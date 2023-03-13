@@ -18,7 +18,9 @@ Rails.application.routes.draw do
         get :done, on: :collection
       end
       resource :favorites, only: [:create, :destroy]
-      resources :interests, only: [:create, :index, :destroy]
+      resource :interests, only: [:create, :destroy] do
+        get :index, on: :member
+      end
       resources :comments, only: [:create, :destroy] do
         resources :comment_reports, only: [:new, :create] do
           get :done, on: :collection
@@ -37,6 +39,6 @@ Rails.application.routes.draw do
   end
 
   get "search" => "searches#search"
-  
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

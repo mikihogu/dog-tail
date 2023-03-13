@@ -1,8 +1,12 @@
 class Public::NotificationsController < ApplicationController
 
   def index
-    @notifications = Notification.joins(:post).where(posts: { member_id: current_member.id }, checked: false)
+    # @notifications = current_member.passive_notifications.page(params[:page]).per
+    @notifications = current_member.passive_notifications
 
+    # @notifications.where(checked: false).each do |notification|
+      # notification.update(checked: true)
+    # end
   end
 
 end

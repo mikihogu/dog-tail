@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_03_06_093642) do
+ActiveRecord::Schema.define(version: 2023_03_13_102422) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -111,6 +111,8 @@ ActiveRecord::Schema.define(version: 2023_03_06_093642) do
     t.boolean "checked", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "visitor_id", null: false
+    t.integer "visited_id", null: false
   end
 
   create_table "post_reports", force: :cascade do |t|
