@@ -11,18 +11,18 @@
       <% end %>
     </div>
     <div class="col-md-1">
-      <i class="far fa-thumbs-up"></i> <%= @member.interests.count %>
+      <i class="fas fa-thumbs-up" style= "color:gray;"></i> <%= @member.favorites.count %>
     </div>
     <div class="col-md-1">
-      <i class="far fa-star"></i> <%= @member.favorites.count %>
+      <i class="fas fa-star" style= "color:gray;"></i> <%= @member.interests.count %>
     </div>
     <div class="col-md-1">
-      <i class="far fa-comment-dots"></i> <%= @member.comments.count %>
+      <i class="fas fa-comment-dots" style= "color:gray;"></i> <%= @member.comments.count %>
     </div>
     <div class="col-md-1">
       <% if @member.id == current_member.id %>
         <%= link_to notifications_path do %>
-          <i class="fas fa-bell"></i> <%= @member.passive_notifications.where(checked: false).count %>
+          <i class="fas fa-bell" style= "color:gray;"></i> <%= @member.passive_notifications.where(checked: false).count %>
         <% end %>
       <% end %>
     

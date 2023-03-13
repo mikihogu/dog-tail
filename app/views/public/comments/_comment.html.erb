@@ -34,7 +34,7 @@
     <div class="card-text">
       <%= form_with model: [post, comment], local: false do |f| %>
         <%= f.text_area :comment, width: '80%', placeholder: 'コメント、追加情報', class: 'col-md-9' %>
-        <%= f.submit '送信', class: 'btn btn-sm btn-outline-dark', class: 'col-md-2' %>
+        <%= f.submit '送信', class: 'btn btn-sm btn-outline-secondary col-md-2' %>
       <% end %>
     </div>
   </div>

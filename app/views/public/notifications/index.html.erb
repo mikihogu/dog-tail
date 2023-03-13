@@ -4,7 +4,12 @@
 
       <div class="card">
         <div class="card-header">
-          <h3 class="m-3"><i class="fas fa-dog"></i> "<%= current_member.nickname %>" さんへのコメント<small>(未読 <%= @notifications.count %>件)</small></h3>
+          <h3 class="m-3"><i class="fas fa-dog"></i> "<%= current_member.nickname %>" さんへのコメント</h3>
+          <p class="text-right">
+            <%= link_to "全部", notifications_path, class: "btn btn-sm btn-outline-success" %>
+            <%= link_to "未読", notifications_path(filter: "unchecked"), class: "btn btn-sm btn-outline-success" %>
+            <small>(<%= @notifications.count %>件)</small>
+          </p>
         </div>
         <div class="card-body">
           <!--通知が存在する場合-->
@@ -36,7 +41,7 @@
             <% end %>
           <!--通知が存在しない場合-->
           <% else %>
-            <p>現在未読の通知はありません</p>
+            <p>現在、未読のコメントはありません</p>
           <% end %>
         </div>
       </div>
