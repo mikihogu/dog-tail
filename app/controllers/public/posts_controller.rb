@@ -8,10 +8,12 @@ class Public::PostsController < ApplicationController
   
   def create
     @categories = Category.all
+    @tags = Tag.all
     @post = Post.new(post_params)
     @post.latitude = params[:post][:latitude]
     @post.longitude = params[:post][:longitude]
     @post.member_id = current_member.id
+    @post.tags = Tag.where(id: params[:post][:tag_ids])
     if @post.save
       redirect_to post_path(@post), notice: "You've saccessfully posted."
     else
@@ -53,7 +55,6 @@ class Public::PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
-    redirect_to posts_path
   end
 
 
@@ -61,8 +62,8 @@ class Public::PostsController < ApplicationController
   def post_params
     params.require(:post).permit(
       :name, :introduction, :information, :post_image, 
-      :category, :category_id, {tags: []}, {tag_ids: []}, 
-      :prefecture, :address, :latitude, :longitude
+      :category_id,
+      :prefecture, :address, :latitude, :longitude, tag_ids: []
     )
   end
 
