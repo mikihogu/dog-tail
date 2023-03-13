@@ -1,34 +1,36 @@
 <div class="container my-3">
   <div class="row">
-    <div class="col-md-6 text-center border-bottom">
+    <div class="col-md-10 mx-auto">
 
       <div class="card">
         <div class="card-header">
-          <h2 class="m-3"><i class="fas fa-dog"></i> "<%= current_member.nickname %>さん"へのコメント(未読分)</h2>
+          <h3 class="m-3"><i class="fas fa-dog"></i> "<%= current_member.nickname %>" さんへのコメント<small>(未読 <%= @notifications.count %>件)</small></h3>
         </div>
         <div class="card-body">
           <!--通知が存在する場合-->
           <% if @notifications.exists? %>
             <% @notifications.each do |notification| %>
-              <% if notification.post.member.id == current_member.id %>
-                <div class="row border-bottom align-bottom">
-                  <div class="col-md-4">
+              <% if notification.visited_id == current_member.id %>
+                <div class="row align-bottom">
+                  <div class="col-md-9">
                     <%= link_to member_path(notification.comment.member) do %>
-                      <%= image_tag notification.comment.member.get_image, size: '30x30' %><%= notification.comment.member.name %>
+                      <%= image_tag notification.comment.member.get_image, size: '30x30' %> <%= notification.comment.member.nickname %>
                     <% end %>
                     さんから
-                  </div>
-                  <p class="col-md-4 px-2"><%= notification.post %>に</p>
-                  <div class="col-md-4 px-2">
                     <%= link_to post_path(notification.post) do %>
-                      "<%= notification.post.name %>"
+                      "<b><%= notification.post.name %></b>"
                     <% end %>
                     に対してコメントがあります。
                   </div>
-                  <p class="col-md-3"><small><%= notification.created_at.strftime('%Y/%m/%d') %></small></p>
-                  <%= link_to post_path(notification.post), style: 'color: gray;' do %>
-                    <i class="fas fa-eye"></i>
-                  <% end %>
+                  <div class="col-md-2"><small><%= notification.created_at.strftime('%Y/%m/%d') %></small></div>
+                  <div class="col-md-1">
+                    <%= link_to notification_path(notification), style: 'color: gray;' do %>
+                      <i class="far fa-comment-dots"></i>
+                    <% end %>
+                  </div>
+                </div>
+                <div class="row pl-5 border-bottom align-bottom">
+                  『 <%= notification.comment.comment %> 』
                 </div>
               <% end %>
             <% end %>

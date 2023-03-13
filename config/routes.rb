@@ -27,7 +27,7 @@ Rails.application.routes.draw do
         end
       end
     end
-    resources :notifications, only: [:index]
+    resources :notifications, only: [:index, :show]
   end
 
   namespace :admin do
