@@ -5,7 +5,10 @@ class Public::CommentsController < ApplicationController
     @comment = Comment.new(comment_params)
     @comment.member_id = current_member.id
     @comment.post_id = @post.id
-    @comment.save
+    if @comment.save
+      @post.create_notification_comment!(current_member, @comment.id) #通知する
+      # redirect_to request.referer 非同期通信化のため
+    end
   end
 
   def destroy

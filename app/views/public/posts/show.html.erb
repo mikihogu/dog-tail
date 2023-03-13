@@ -35,34 +35,10 @@
       </div>
       <div class"row align-right">
         <div class="col-md-3 favorite-btn">
-          <% if @post.favorited_by?(current_member) %>
-            <p>
-              <%= link_to post_favorites_path(@post), method: :delete do |f| %>
-                <i class="fas fa-heart"></i> <%= @post.favorites.count %>
-              <% end %>
-            </p>
-          <% else %>
-            <p>
-              <%= link_to post_favorites_path(@post), method: :post do |f| %>
-                <i class="far fa-heart"></i> <%= @post.favorites.count %>
-              <% end %>
-            </p>
-          <% end %>
+          <%= render 'public/favorites/favorite_btn', post: @post %>
         </div>
         <div class="col-md-3 interest-btn">
-          <% if @post.interested_by?(current_member) %>
-            <p>
-              <%= link_to post_interest_path(@post), method: :delete do |f| %>
-                <i class="fas fa-thumbs-up"></i> <%= @post.interests.count %>
-              <% end %>
-            </p>
-          <% else %>
-            <p>
-              <%= link_to post_interests_path(@post), method: :post do |f| %>
-                <i class="far fa-thumbs-up"></i> <%= @post.interests.count %>
-              <% end %>
-            </p>
-          <% end %>
+          <%= render 'public/interests/interest_btn', post: @post %>
         </div>
       </div>
 
@@ -75,6 +51,7 @@
       </div>
     </div>
 
+    <!--投稿施設詳細-->
     <div class="col-md-7 offset-1">
       <div class="row">
         <div class="col-12 my-3">

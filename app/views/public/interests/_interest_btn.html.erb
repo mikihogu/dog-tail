@@ -1,0 +1,13 @@
+<% if post.interested_by?(current_member) %>
+  <p>
+    <%= link_to post_interest_path(post), method: :delete do |f| %>
+      <i class="fas fa-thumbs-up"></i> <%= @post.interests.count %>
+    <% end %>
+  </p>
+<% else %>
+  <p>
+    <%= link_to post_interests_path(post), method: :post do |f| %>
+      <i class="far fa-thumbs-up"></i> <%= post.interests.count %>
+    <% end %>
+  </p>
+<% end %>
