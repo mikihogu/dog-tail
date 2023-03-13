@@ -8,14 +8,14 @@ class Public::InterestsController < ApplicationController
     @post = Post.find(params[:post_id])
     interest = current_member.interests.new(post_id:@post.id)
     interest.save
-    redirect_to request.referer
+    # redirect_to request.referer
   end
 
   def destroy
     @post = Post.find(params[:post_id])
     interest = current_member.interests.find_by(post_id:@post.id)
     interest.destroy
-    redirect_to request.referer
+    # redirect_to request.referer
   end
 
 end
