@@ -1,1 +1,13 @@
-<h2>気になる施設</h2>
+<div class="container my-3">
+  <div class="row">
+    <div class="col-md-8">
+      <h2 class="m-3 border-bottom"><i class="fas fa-dog"></i> 気になる施設一覧</h2>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <!--一覧-->
+    <%= render 'public/posts/index', posts: @interest_posts %>
+  </div>
+
+</div>

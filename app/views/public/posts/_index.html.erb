@@ -1,0 +1,32 @@
+<div class="row">
+  <% posts.each do |post| %>
+  <div class="card-deck">
+    <div class="col-3 mb-3">
+      <div class="card border-secondary bg-light" style="width: 13rem">
+        <div class="card-img-top">
+          <%= image_tag post.get_post_image, size: "250x200", class: 'img-fluid' %>
+        </div>
+        <div class="card-body">
+          <%= link_to post_path(post) do %>
+            <h6 class="card-title border-bottom"><b><%= post.name %></b></h6>
+          <% end %>
+          <small>
+            <p class="card-text">一言紹介：<%= post.introduction %></p>
+            <p class="card-text">所在地: <%= post.prefecture %></p>
+            <p class="card-text">
+              <div class="favorite-btn">
+                <%= render 'public/favorites/favorite_btn', post: post %>
+              </div>
+              <div class="interest-btn">
+                <%= render 'public/interests/interest_btn', post: post %>
+              </div>
+              <i class="far fa-comment-dots"></i> <%= post.comments.count %>
+            </p>
+            <p class="card-text">更新日: <%= post.updated_at %></p>
+          </small>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>
