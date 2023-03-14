@@ -50,7 +50,7 @@
 
 <div class="form-group row">
   <%= f.label :address, '施設住所', class: 'col-md-4' %>
-  <%= f.text_area :address, id: :address, autofocus: true, placeholder: '住所または施設名（入力していただくとMapが表示されます）', class: 'col-md-6  d-flex align-items-stretch', size: '30x2' %>
+  <%= f.text_area :address, id: :address, autofocus: true, placeholder: '施設名を入力していただくとMapと詳細住所が表示されます）', class: 'col-md-6  d-flex align-items-stretch', size: '30x2' %>
   <%= f.button 'Map更新', type: 'button', class: 'btn btn-sm btn-secondary', onclick: 'codeAddress()' %>
 </div>
 <div class="row">

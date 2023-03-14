@@ -35,54 +35,70 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-6 my-5 shadow-lg">
+    <div class="col-md-6 my-5 p-5 shadow-lg">
       <div class="row">
-        <div class="col my-3 text-center">
-          <%= image_tag @member.get_image, height: 200 %>
+        <div class="col mb-3 mx-auto">
+          <%= image_tag @member.get_image, height: 200, class: 'img-fluid' %>
         </div>
       </div>
       <% if @member.id == current_member.id %>
-      <div class="row">
-        <div class="col-md-4">
-          <p>名前：</p>
+        <div class="row">
+          <div class="col-md-4"><p>名前：</p></div>
+          <div class="col-md-8"><%= @member.name %></div>
         </div>
-        <div class="col-md-8">
-          <%= @member.name %>
-        </div>
-      </div>
       <% end %>
       <div class="row">
-        <div class="col-md-4">
-          <p>ニックネーム：</p>
-        </div>
-        <div class="col-md-8">
-          <%= @member.nickname %>
-        </div>
+        <div class="col-md-4"><p>ニックネーム：</p></div>
+        <div class="col-md-8"><%= @member.nickname %></div>
       </div>
       <div class="row">
-        <div class="col-md-4">
-          <p>好きな犬種：</p>
-        </div>
-        <div class="col-md-8">
-          <%= @member.dog %>
-        </div>
+        <div class="col-md-4"><p>好きな犬種：</p></div>
+        <div class="col-md-8"><%= @member.dog %></div>
       </div>
       <div class="row">
-        <div class="col-md-4">
-          <p>自己紹介文：</p>
-        </div>
-        <div class="col-md-8">
-          <%= @member.introduction %>
-        </div>
+        <div class="col-md-4"><p>自己紹介文：</p></div>
+        <div class="col-md-8"><%= @member.introduction %></div>
       </div>
     </div>
 
-    <div class="col-md-5 offset-1">
-      <% if @member.dog_images.attached? %>
-        <% @member.dog_images.each do |dimage| %>
-          <%= image_tag dimage, height: 150 %>
-        <% end %>
-      <% end %>
+
+    <div class="col-md-6 my-7 p-5">
+      <div class="swiper">
+        <div class="swiper-wrapper">
+          <% @member.dog_images.each do |dimage| %>
+            <div class="swiper-slide">
+              <%= image_tag dimage, size: '400x350', class: 'img-fluid' %>
+            </div>
+          <% end %>
+        </div>
+        <!-- ページネーションの要素 -->
+        <div class="swiper-pagination"></div>
+        <!-- ナビゲーションボタン （前、次） -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+      </div>
     </div>
+    <script>
+      const swiper = new Swiper('.swiper', {
+        //オプションの設定
+        loop: true, //最後までスライドしたら最初の画像に戻る
+        autoplay: {
+          delay: 3000, // 3秒ごとにスライドを自動で切り替える
+        },
+
+        //ページネーション表示の設定
+        pagination: {
+          el: '.swiper-pagination', //ページネーションの要素
+        },
+
+        //ナビゲーションボタン（矢印）表示の設定
+        navigation: {
+          nextEl: '.swiper-button-next', //「次へボタン」要素の指定
+          prevEl: '.swiper-button-prev', //「前へボタン」要素の指定
+        }
+      });
+    </script>
+
   </div>
+  <div class="row"></div>
 </div>

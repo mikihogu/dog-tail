@@ -94,7 +94,7 @@
           document.getElementById('post_latitude').value = ev.latLng.lat();
           document.getElementById('post_longitude').value = ev.latLng.lng();
 
-          // ドラッグでのピン移動で樹ぅ所を求めるコーディング
+          // ドラッグでのピン移動で住所を求めるコーディング
           let geocoder = new google.maps.Geocoder();
 
           geocoder.geocode({
@@ -110,7 +110,7 @@
 
         });
       } else {
-        alert('該当する結果がありませんでした：' + status);
+        alert('該当する詳細住所はありません：' + status);
       }
     });
   }

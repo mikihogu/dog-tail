@@ -21,7 +21,7 @@
           <%= f.label :image, '会員画像', class: 'col-md-3 offset-1' %>
           <div class="img-preview col-md-7">
             <%= f.file_field :image, accept: 'image/*', class: 'img_field d-none', onchange: "loadImage(this, 'member-img');" %>
-            <%= image_tag @member.get_image, height: 200, onClick: "$('.img_field').click()", class: "img_prev img-fluid" %>
+            <%= image_tag @member.get_image, height: 100, onClick: "$('.img_field').click()", class: "img_prev img-fluid" %>
             <p id="member-img"></p>
           </div>
         </div>
@@ -56,8 +56,6 @@
             </script>
           </div>
         </div>
-
-
         <div class="form-group row">
           <div class="col text-right">
             <%= f.submit "Update", class: 'btn btn-outline-info' %>
@@ -71,7 +69,7 @@
 <script>
   function loadImage(obj, elem)
   {
-  	document.getElementById(elem).innerHTML = '<small>プレビュー</small>';
+  	document.getElementById(elem).innerHTML = '<small>この画像に変更します</small>';
   	for (i = 0; i < obj.files.length; i++) {
   		var fileReader = new FileReader();
   		fileReader.onload = (function (e) {
