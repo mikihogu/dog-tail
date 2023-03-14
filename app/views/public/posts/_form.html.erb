@@ -17,13 +17,18 @@
 <div class="form-group row">
   <%= f.label :post_image, '施設画像', class: 'col-md-4' %>
   <% if current_page?(new_post_path) %>
-    <%= f.file_field :post_image, accept: 'image/*', class: 'img_field col-md-8' %>
-  <% else%>
+    <%= f.file_field :post_image, accept: 'image/*', class: 'img_field col-md-8', onchange: "loadImage(this, 'post-img');" %>
+  <% else %>
     <div class="img-preview col-md-8">
-      <%= f.file_field :post_image, accept: 'image/*', class: 'img_field', style: 'display: none' %>
+      <%= f.file_field :post_image, accept: 'image/*', class: 'img_field d-none', onchange: "loadImage(this, 'post-img');" %>
       <%= image_tag @post.get_post_image, height: 200, onClick: "$('.img_field').click()", class: "img_prev" %>
     </div>
   <% end %>
+  <div class="row">
+    <div class="offset-0 offset-md-4 col-md-8">
+      <p id="post-img"></p>
+    </div>
+  </div>
 </div>
 
 <div class="form-group row">
@@ -46,7 +51,7 @@
 <div class="form-group row">
   <%= f.label :address, '施設住所', class: 'col-md-4' %>
   <%= f.text_area :address, id: :address, autofocus: true, placeholder: '住所または施設名（入力していただくとMapが表示されます）', class: 'col-md-6  d-flex align-items-stretch', size: '30x2' %>
-  <%= f.submit 'Map更新', class: 'btn btn-sm btn-secondary',  onclick: 'codeAddress()' %>
+  <%= f.button 'Map更新', type: 'button', class: 'btn btn-sm btn-secondary', onclick: 'codeAddress()' %>
 </div>
 <div class="row">
   <%= f.label :latitude, '緯度', class: 'col-md-2 offset-1', style: 'display: none;' %>
@@ -56,3 +61,18 @@
   <%= f.hidden_field :latitude, id: 'post_latitude' %>
   <%= f.hidden_field :longitude, id: 'post_longitude' %>
 </div>
+
+
+<script>
+  function loadImage(obj, elem)
+  {
+  	document.getElementById(elem).innerHTML = '<small>プレビュー</small>';
+  	for (i = 0; i < obj.files.length; i++) {
+  		var fileReader = new FileReader();
+  		fileReader.onload = (function (e) {
+  			document.getElementById(elem).innerHTML += '<img class="img-fluid" src="' + e.target.result + '" style="margin: 5px 0;">';
+  		});
+  		fileReader.readAsDataURL(obj.files[i]);
+  	}
+  }
+</script>

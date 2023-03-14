@@ -4,7 +4,7 @@
       <h2 class="m-3 border-bottom"><i class="fas fa-dog"></i> 施設情報編集</h2>
       <%= form_with model: @post, html: {class: 'p-5 shadow-lg', autocomplete: 'off'} do |f| %>
         <%= render "public/shared/error_messages", resource: @post %>
-        
+
         <%= render 'form', f: f, tags: @tags %>
 
         <!--Map表示-->
@@ -22,5 +22,5 @@
   </div>
 </div>
 
-<--jsファイル読み込み-->
-<%= javascript_pack_tag 'preview' %>
+<!--jsファイル読み込み-->
+<%#= javascript_pack_tag 'preview' %>

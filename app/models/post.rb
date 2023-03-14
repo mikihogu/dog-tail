@@ -66,8 +66,13 @@ class Post < ApplicationRecord
   # コメント通知ここまで ↑
 
   # searchs/search
-  def self.looks(word)
-    Post.where("name LIKE?","%#{word}%")
+  # def self.looks(word)
+  #   Post.where("name LIKE?","%#{word}%")
+  # end
+
+  def self.search(keyword)
+    prefecture = prefectures.select{|k, v| k =~ /#{keyword}/ }
+    Post.where("name LIKE ? OR prefecture IS ?","%#{keyword}%", prefecture.values)
   end
 
   # enum利用

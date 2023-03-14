@@ -25,7 +25,7 @@
           </div>
           <div class="col-md-2">
             <% if @member.id == current_member.id %>
-              <%= link_to notifications_path do %>
+              <%= link_to notifications_path(filter: 'unchecked') do %>
                 <i class="fas fa-bell" style= "color:gray;"></i> <%= @member.passive_notifications.where(checked: false).count %>
               <% end %>
             <% end %>
