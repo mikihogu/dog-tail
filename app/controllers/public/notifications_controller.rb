@@ -1,12 +1,18 @@
 class Public::NotificationsController < ApplicationController
 
   def index
-    # @notifications = current_member.passive_notifications.page(params[:page]).per
-    @notifications = current_member.passive_notifications
+    if params[:filter] == "unchecked"
+      @notifications = current_member.passive_notifications.where(checked: false)
+    else
+      @notifications = current_member.passive_notifications
+    end
+  end
 
-    # @notifications.where(checked: false).each do |notification|
-      # notification.update(checked: true)
-    # end
+  def show
+    @notification = Notification.find(params[:id])
+    @comment = @notification.comment
+    @post = @notification.post
+    @notification.update(checked: true)
   end
 
 end

@@ -88,8 +88,8 @@
               <div class="col-md-3"><p>投稿者：</p></div>
               <div class="col-md-9">
                 <%= link_to member_path(@post.member) do %>
-                  <%= image_tag @post.member.get_image, height: 50 %>
-                  <%= @post.member.name %>
+                  <%= image_tag @post.member.get_image, size: '50x50' %>
+                  <%= @post.member.nickname %>
                 <% end %>
               </div>
             </div>
@@ -103,6 +103,6 @@
       </div>
 
     </div>
-  <div>
+  </div>
   <div class="row"></div>
-<div>
+</div>
