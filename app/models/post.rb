@@ -41,6 +41,7 @@ class Post < ApplicationRecord
     interests.exists?(member_id: member.id)
   end
 
+  # コメント通知機能 ↓
   # 投稿者にのみ通知を送る
   def create_notification_comment!(current_member, comment_id)
     save_notification_comment!(current_member, comment_id, member_id)
@@ -62,6 +63,12 @@ class Post < ApplicationRecord
     notification.save if notification.valid?
   end
 
+  # コメント通知ここまで ↑
+
+  # searchs/search
+  def self.looks(word)
+    Post.where("name LIKE?","%#{word}%")
+  end
 
   # enum利用
   enum prefecture:{

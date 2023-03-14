@@ -1,0 +1,52 @@
+<% if admin_signed_in? %>
+# 管理者の検索欄
+  <% if @range == "Post" %>
+    <div class="container my-5">
+      <div class="row">
+        <div class="col-10">
+          <h3><span class="bg-light bg-gradient">検索結果/投稿施設一覧</span></h3>
+        </div>
+        <div class="col-2 ml-auto">
+          <%= link_to "+", new_admin_post_path, class: "btn btn-lg rounded-pill shadow-sm" %>
+        </div>
+        <div>
+          <%= render 'public/posts/index', post: @posts %>
+        </div>
+      </div>
+    </div>
+  <% else %>
+    <div class="container my-5">
+      <div class="row">
+        <h4 class="mb-3 ml-5">検索結果/会員一覧</h4>
+      </div>
+
+        <% if customer.is_deleted == false %>
+          <strong class="text-success">有効</strong>
+        <% else %>
+          <strong class="test-muted">退会</strong>
+        <% end %>
+
+    </div>
+  <% end %>
+<% elsif member_signed_in? %>
+<!--会員の検索欄-->
+  <div class="container my-3">
+    <div class="row">
+      <div class="col-md-8">
+        <h2 class="m-3 border-bottom"><i class="fas fa-dog"></i> 検索結果<small>(全<%= @posts.count %>件)</small></h2>
+      </div>
+    </div>
+    <% if @posts.empty? %>
+      <div class="row">
+        <div class="col mt-5 text-center">
+          <h4>入力した検索ワードを含む施設が見つかりません</h4>
+        </div>
+      </div>
+    <% else %>
+      <div class="wrap">
+        <!--一覧-->
+        <%= render 'public/posts/index', posts: @posts %>
+      </div>
+    <% end %>
+  </div>
+<% end %>

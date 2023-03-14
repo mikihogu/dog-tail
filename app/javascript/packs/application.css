@@ -24,6 +24,47 @@ footer {
   flex-wrap: wrap;
 }
 
+/* 検索フォーム */
+
+.search-control{
+  color: #fff !important;
+  background-color: #ffffff78 !important;
+  border: #ffffff78 !important;
+  border-radius: 2rem !important;
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+
+.search-control::placeholder {
+  color: #ffffffc2 !important;
+  margin-left: 3rem;
+}
+
+.search-control:focus{
+  box-shadow: 0 0 0 0.2rem #f8f9fa38 !important;
+}
+
+.search-control:hover{
+  box-shadow: 0 0 0 0.2rem #f8f9fa38 !important;
+}
+
+.search-btn:hover{
+  box-shadow: 0 0 0 0.2rem #f8f9fa38 !important;
+}
+
+.search-btn{
+  color: #ffffffc2 !important;
+  background-color: #ffffff78 !important;
+  border-color: #ffffff00 !important;
+  border-left: 2px;
+  border-radius: 2rem !important;
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+}
+
+/* 検索フォームここまで */
+
+
 /* tab表示 */
 .wrap {
   width: 100%;
@@ -69,3 +110,5 @@ footer {
   /* border: 1px solid #000; */
   /* border-top: none; */
 }
+
+/* タブ表示ここまで */

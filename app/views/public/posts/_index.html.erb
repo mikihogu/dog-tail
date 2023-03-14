@@ -20,8 +20,7 @@
               <div class="interest-btn_<%= post.id %>">
                 <%= render 'public/interests/interest_btn', post: post %>
               </div>
-              <i class="far fa-comment-dots"></i> <%= post.comments.count %>
-            </p>
+              <div><i class="far fa-comment-dots"></i> <%= post.comments.count %></div>
             <p class="card-text">更新日: <%= post.updated_at %></p>
           </small>
         </div>
