@@ -6,8 +6,4 @@ class SearchesController < ApplicationController
     @posts = Post.looks(@word)
   end
 
-  # def post.search_for(word)
-  #   @post = Post.where("name LIKE?","%#{word}%")
-  # end
-
 end
