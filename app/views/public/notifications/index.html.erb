@@ -4,11 +4,13 @@
 
       <div class="card">
         <div class="card-header">
-          <h3 class="m-3"><i class="fas fa-dog"></i> "<%= current_member.nickname %>" さんへのコメント</h3>
+          <h3 class="m-3"><i class="fas fa-dog"></i> 
+            "<%= current_member.nickname %>" さんへのコメント 
+            <small>(未読は<%= @notifications.where(checked: false).count %>件です)</small>
+          </h3>
           <p class="text-right">
             <%= link_to "全部", notifications_path, class: "btn btn-sm btn-outline-success" %>
             <%= link_to "未読", notifications_path(filter: "unchecked"), class: "btn btn-sm btn-outline-success" %>
-            <small>(<%= @notifications.count %>件)</small>
           </p>
         </div>
         <div class="card-body">
