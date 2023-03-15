@@ -10,6 +10,11 @@
     </div>
   </div>
 
+  <%= form_with url: search_path, local: true, method: :get do |f| %>
+    <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :name %>
+    <%= f.submit "検索" %>
+  <% end %>
+
   <div class="wrap">
     <ul id="tab-menu">
       <li><%= link_to '全て', posts_path , class: 'active' %></li>

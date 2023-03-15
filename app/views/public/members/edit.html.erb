@@ -4,81 +4,11 @@
       <h2 class="m-3 border-bottom"><i class="fas fa-dog"></i> 会員情報編集</h2>
       <%= form_with model: @member, method: :patch, html: {class: 'p-5 shadow-lg', autocomplete: 'off'} do |f| %>
         <%= render "public/shared/error_messages", resource: @member %>
-
-        <div class="form-group row">
-          <%= f.label :name, '氏名', class: 'col-md-3 offset-1' %>
-          <%= f.text_field :name, autofocus: true, placeholder: '公開されません', class: 'col-md-7' %>
-        </div>
-        <div class="form-group row">
-          <%= f.label :nickname, 'ニックネーム', class: 'col-md-3 offset-1' %>
-          <%= f.text_field :nickname, autofocus: true, placeholder: 'サイト上で表示されます', class: 'col-md-7' %>
-        </div>
-        <div class="form-group row">
-          <%= f.label :email, 'メールアドレス', class: 'col-md-3 offset-1' %>
-          <%= f.email_field :email, autofocus: true, class: 'col-md-7' %>
-        </div>
-        <div class="form-group row">
-          <%= f.label :image, '会員画像', class: 'col-md-3 offset-1' %>
-          <div class="img-preview col-md-7">
-            <%= f.file_field :image, accept: 'image/*', class: 'img_field d-none', onchange: "loadImage(this, 'member-img');" %>
-            <%= image_tag @member.get_image, height: 100, onClick: "$('.img_field').click()", class: "img_prev img-fluid" %>
-            <p id="member-img"></p>
-          </div>
-        </div>
-        <div class="form-group row">
-          <%= f.label :dog, '好きな犬種', class: 'col-md-3 offset-1' %>
-          <%= f.text_field :dog, autofocus: true, placeholder: '複数OKです', class: 'col-md-7' %>
-        </div>
-        <div class="form-group row">
-          <%= f.label :introduction, '自己紹介文', class: 'col-md-3 offset-1' %>
-          <%= f.text_area :introduction, autofocus: true, class: 'col-md-7' %>
-        </div>
-        <div class="form-group row">
-          <%= f.label :dog_images, '犬の画像', class: 'col-md-3 offset-1' %>
-          <div class="img-preview col-md-7">
-            <% if @member.dog_images.attached? %>
-              <% @member.dog_images.each do |dimage| %>
-                <div style="display: flex; margin:5px 5px 5px 0;">
-                  <%= f.check_box :dog_images_ids, {multiple: true}, dimage.id, false %>
-                  <%= image_tag dimage, height: 100, onClick: "$('.img_field2').click()", class: "img_prev2" %>
-                </div>
-              <% end %>
-            <% end %>
-            <%= f.file_field :dog_images, accept: 'image/*', multiple: true, class: 'img_field2 d-none', onchange: "loadImage(this, 'dog-images');" %>
-            <button type="button" class="add-dog-images">画像を追加する</button>
-            <p id="dog-images"></p>
-            <script>
-              $(document).ready(function() {
-                $('.add-dog-images').on('click', function() {
-                  $('.img_field2').click();
-                });
-              });
-            </script>
-          </div>
-        </div>
-        <div class="form-group row">
-          <div class="col text-right">
-            <%= f.submit "Update", class: 'btn btn-outline-info' %>
-          </div>
-        </div>
+        <%= render "form", f: f, member: @member, submit_text: "Update" %>
       <% end %>
     </div>
   </div>
 </div>
-
-<script>
-  function loadImage(obj, elem)
-  {
-  	document.getElementById(elem).innerHTML = '<small>以下の画像に変更します</small>';
-  	for (i = 0; i < obj.files.length; i++) {
-  		var fileReader = new FileReader();
-  		fileReader.onload = (function (e) {
-  			document.getElementById(elem).innerHTML += '<img class="img-fluid" src="' + e.target.result + '" style="margin: 5px 0;">';
-  		});
-  		fileReader.readAsDataURL(obj.files[i]);
-  	}
-  }
-</script>
 
 <!--jsファイル読み込み-->
 <%#= javascript_pack_tag 'preview' %>
