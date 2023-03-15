@@ -21,5 +21,6 @@ module Doggies
 
     config.time_zone = 'Asia/Tokyo'
     # config.i18n.default_locale = :ja
+    config.action_view.field_error_proc = Proc.new { |html_tag, instance| html_tag }
   end
 end

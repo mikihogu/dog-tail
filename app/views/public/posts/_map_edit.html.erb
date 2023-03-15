@@ -1,10 +1,14 @@
-<div id='map'></div>
-<p>マーカーをドラック＆ドロップで位置の調整ができます。<p>
+<div class="row w-100">
+  <div class="offset-0 offset-md-4 col-md-8 w-100">
+    <small class="text-black-50">マーカーをドラック＆ドロップで位置の調整ができます。</small>
+    <div id="map"></div>
+  </div>
+</div>
 
 <style>
   #map {
     height: 300px;
-    width: 300px;
+    width: 100%;
   }
 </style>
 
@@ -12,14 +16,41 @@
   let map;
   let marker;
   let geocoder;
-  let aft;
 
   //初期マップの設定
   function initMap(){
     geocoder = new google.maps.Geocoder()
     map = new google.maps.Map(document.getElementById('map'), {
       center:  {lat: <%= post.latitude %>, lng: <%= post.longitude%>},  //東京
-      zoom: 15,
+      zoom: 14,
+    });
+
+    marker = new google.maps.Marker({
+      map: map,
+      position:  {lat: <%= post.latitude %>, lng: <%= post.longitude %>},
+      draggable: true	// ドラッグ可能にする
+    });
+
+    // マーカーのドロップ（ドラッグ終了）時のイベント
+    google.maps.event.addListener( marker, 'dragend', function(ev){
+      // イベントの引数evの、プロパティ.latLngが緯度経度
+      document.getElementById('post_latitude').value = ev.latLng.lat();
+      document.getElementById('post_longitude').value = ev.latLng.lng();
+
+      // ドラッグでのピン移動で樹ぅ所を求めるコーディング
+      let geocoder = new google.maps.Geocoder();
+
+      geocoder.geocode({
+        latLng: ev.latLng
+      }, function (results, status) {
+
+        if (results[0].geometry) {
+          $('#address').val(formattedAddress(results[0].formatted_address))
+        } else {
+          alert('該当する詳細住所はありません。検索時のアドレスでそのまま登録されます。')
+        }
+      });
+
     });
   }
 
@@ -37,9 +68,7 @@
     geocoder.geocode( { 'address': inputAddress}, function(results, status) {
       if (status == 'OK') {
         //マーカーが複数できないようにする
-        if (aft == true){
-            marker.setMap(null);
-        }
+        marker.setMap(null);
 
         //新しくマーカーを作成する
         map.setCenter(results[0].geometry.location);
@@ -49,9 +78,6 @@
           draggable: true	// ドラッグ可能にする
         });
 
-        //二度目以降か判断
-        aft = true
-
         //検索した時に緯度経度を入力する
         document.getElementById('latitude').value = results[0].geometry.location.lat();
         document.getElementById('longitude').value = results[0].geometry.location.lng();
@@ -60,16 +86,41 @@
         document.getElementById('post_latitude').value = results[0].geometry.location.lat();
         document.getElementById('post_longitude').value = results[0].geometry.location.lng();
 
+        $('#address').val(formattedAddress(results[0].formatted_address))
+
         // マーカーのドロップ（ドラッグ終了）時のイベント
         google.maps.event.addListener( marker, 'dragend', function(ev){
-            // イベントの引数evの、プロパティ.latLngが緯度経度
-            document.getElementById('latitude').value = ev.latLng.latitude();
-            document.getElementById('longitude').value = ev.latLng.longitude();
+          // イベントの引数evの、プロパティ.latLngが緯度経度
+          document.getElementById('post_latitude').value = ev.latLng.lat();
+          document.getElementById('post_longitude').value = ev.latLng.lng();
+
+          // ドラッグでのピン移動で住所を求めるコーディング
+          let geocoder = new google.maps.Geocoder();
+
+          geocoder.geocode({
+            latLng: ev.latLng
+          }, function (results, status) {
+
+            if (results[0].geometry) {
+              $('#address').val(formattedAddress(results[0].formatted_address))
+            } else {
+              alert('該当する詳細住所はありません。検索時のアドレスでそのまま登録されます。')
+            }
+          });
+
         });
       } else {
-        alert('該当する結果がありませんでした：' + status);
+        alert('該当する詳細住所はありません：' + status);
       }
     });
   }
+
+  function formattedAddress(address)
+  {
+    let splitAddress = address.split(' ')
+    splitAddress.shift(1)
+
+    return splitAddress.join(' ')
+  }
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY'] %>&callback=initMap" async defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?language=ja&key=<%= ENV['API_KEY'] %>&callback=initMap" async defer></script>
