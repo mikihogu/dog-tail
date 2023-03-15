@@ -1,19 +1,21 @@
 <div class="container my-3">
   <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-7">
       <h2 class="m-3 border-bottom"><i class="fas fa-dog"></i> 施設一覧</h2>
+      <%= link_to "+", new_post_path, class: "btn btn-lg rounded-pill border shadow-sm" %>
     </div>
-    <div class="col-md-2 mr-3">
-      <%= link_to new_post_path do %>
-        <i class="far fa-plus-square"></i>
-      <% end %>
+
+    <div class="col-md-5 p-3 border shadow-sm">
+      <div class="tag-search">
+        <%= form_with url: search_path, local: true, method: :get do |f| %>
+          <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :name %>
+          <%= button_tag type: "submit", class: "btn btn-light search-btn" do %>
+            <i class="fas fa-search"></i>
+          <% end %>
+        <% end %>
+      </div>
     </div>
   </div>
-
-  <%= form_with url: search_path, local: true, method: :get do |f| %>
-    <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :name %>
-    <%= f.submit "検索" %>
-  <% end %>
 
   <div class="wrap">
     <ul id="tab-menu">
