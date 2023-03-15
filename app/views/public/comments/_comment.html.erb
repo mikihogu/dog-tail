@@ -27,15 +27,17 @@
   </div>
 </div>
 
-<!--コメント作成-->
-<div class="card border-light row">
-  <div class="card-body">
-    <div class="card-title">コメントする</div>
-    <div class="card-text">
-      <%= form_with model: [post, comment], local: false do |f| %>
-        <%= f.text_area :comment, width: '80%', placeholder: 'コメント、追加情報', class: 'col-md-9' %>
-        <%= f.submit '送信', class: 'btn btn-sm btn-outline-secondary col-md-2' %>
-      <% end %>
+<!--コメント作成(会員側のみ表示)-->
+<% if current_page?(post_path) %>
+  <div class="card border-light row">
+    <div class="card-body">
+      <div class="card-title">コメントする</div>
+      <div class="card-text">
+        <%= form_with model: [post, comment], local: false do |f| %>
+          <%= f.text_area :comment, width: '80%', placeholder: 'コメント、追加情報', class: 'col-md-9' %>
+          <%= f.submit '送信', class: 'btn btn-sm btn-outline-secondary col-md-2' %>
+        <% end %>
+      </div>
     </div>
   </div>
-</div>
+<% end %>

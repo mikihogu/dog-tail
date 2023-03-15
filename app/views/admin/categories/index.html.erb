@@ -5,26 +5,17 @@
 
       <div class="align-center">
         <div class="row m-3"><h5>登録済み一覧</h5></div>
-        <div class="item-wrap row mb-5">
-          <% @categories.each do |category| %>
-            <div class="item shadow-sm col-md-4 p-3 my-3">
-              <%= category.name %>
-              <%= link_to '削除', admin_category_path(category.id), method: :delete, class: 'btn btn-sm btn-outline-danger', 'data-confirm' => 'このカテゴリーを削除します' %>
-            </div>
-          <% end %>
+        <div class="category-index">
+          <%= render 'category_index', categories: @categories %>
         </div>
       </div>
 
       <div class="row">
         <div class="col-md-11 mx-auto">
           <h5 class="m-3">追加登録</h5>
-          <%= form_with model: @category, method: :post, url: admin_categories_path, html: {class: 'p-5 shadow-lg'} do |f| %>
-            <div class="form-group">
-              <%= f.label :name, 'カテゴリー名', class: 'col-md-3' %>
-              <%= f.text_field :name, autofocus: true, class: 'col-md-5' %>
-              <%= f.submit '追加', class: 'btn btn-sm btn-outline-info col-md-2 offset-1' %>
-            </div>
-          <% end %>
+          <div class="category-form">
+            <%= render 'category_form', category: @category %>
+          </div>
         </div>
       </div>
     </div>

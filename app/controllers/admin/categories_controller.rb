@@ -2,11 +2,8 @@ class Admin::CategoriesController < ApplicationController
 
   def create
     @category = Category.new(category_params)
-    if @category.save
-      redirect_to request.referer
-    else
-      render :index
-    end
+    @categories = Category.all
+    @category.save
   end
 
   def index
@@ -15,12 +12,9 @@ class Admin::CategoriesController < ApplicationController
   end
 
   def destroy
+    @categories = Category.all
     @category = Category.find(params[:id])
-    if @category.destroy
-      redirect_to request.referer
-    else
-      render :index
-    end
+    @category.destroy
   end
 
   private
