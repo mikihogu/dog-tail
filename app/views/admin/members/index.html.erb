@@ -10,11 +10,11 @@
       <tr>
         <th>会員氏名</th>
         <th>ニックネーム</th>
+        <th>メールアドレス</th>
         <th>投稿数</th>
         <th><i class="fas fa-thumbs-up" style= "color:gray;"></i> 数</th>
         <th><i class="fas fa-star" style= "color:gray;"></i> 数</th>
         <th><i class="fas fa-comment-dots" style= "color:gray;"></i> 数</th>
-        <th><i class="fas fa-exclamation"></i> 数</th>
         <th>登録日</th>
         <th>状況</th>
       </tr>
@@ -28,11 +28,11 @@
               <%= member.nickname %>
             <% end %>
           </td>
+          <td><%= member.email %></td>
           <td><%= member.posts.count %></td>
           <td><%= member.favorites.count %></td>
           <td><%= member.interests.count %></td>
           <td><%= member.comments.count %></td>
-          <td></td>
           <td><%= member.created_at %></td>
           <td><%= member.is_deleted %></td>
         </tr>
