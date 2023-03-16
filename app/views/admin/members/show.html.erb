@@ -42,20 +42,47 @@
 
 
     <div class="col-md-6 my-7 pt-5 pl-5">
-      <div class="swiper">
-        <div class="swiper-wrapper">
-          <% @member.dog_images.each do |dimage| %>
-            <div class="swiper-slide">
-              <%= image_tag dimage, size: '500x400', class: 'img-fluid' %>
-            </div>
-          <% end %>
+      <div class="row">
+        <div class="swiper">
+          <div class="swiper-wrapper">
+            <% @member.dog_images.each do |dimage| %>
+              <div class="swiper-slide">
+                <%= image_tag dimage, size: '500x400', class: 'img-fluid' %>
+              </div>
+            <% end %>
+          </div>
+          <!-- ページネーションの要素 -->
+          <div class="swiper-pagination"></div>
+          <!-- ナビゲーションボタン （前、次） -->
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>
         </div>
-        <!-- ページネーションの要素 -->
-        <div class="swiper-pagination"></div>
-        <!-- ナビゲーションボタン （前、次） -->
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-button-next"></div>
       </div>
+    
+      <table class="table my-3">
+        <thead>
+          <tr>
+            <th>施設名称</th>
+            <th>カテゴリー</th>
+            <th>一言紹介文</th>
+            <th>投稿日</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @member.posts.each do |post| %>
+            <tr>
+              <td>
+                <%= link_to admin_post_path(post) do %>
+                  <%= post.name %>
+                <% end %>
+              </td>
+              <td><%= post.category.name %></td>
+              <td><%= post.introduction %></td>
+              <td><%= post.created_at %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
     </div>
 
     <script>
