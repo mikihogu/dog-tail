@@ -12,7 +12,13 @@ class Public::NotificationsController < ApplicationController
     @notification = Notification.find(params[:id])
     @comment = @notification.comment
     @post = @notification.post
-    @notification.update(checked: true)
+    @notification.update(checked: true) #詳細画面を開くと通知が既読になる
+  end
+
+  def recheck
+    @notification = Notification.find(params[:id])
+    @notification.update(checked: !@notification.checked)
+    redirect_to request.referer
   end
 
 end

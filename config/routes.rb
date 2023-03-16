@@ -32,7 +32,9 @@ Rails.application.routes.draw do
         end
       end
     end
-    resources :notifications, only: [:index, :show]
+    resources :notifications, only: [:index, :show] do
+      put :recheck, on: :member
+    end
   end
 
   namespace :admin do

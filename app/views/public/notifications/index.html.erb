@@ -19,7 +19,7 @@
             <% @notifications.each do |notification| %>
               <% if notification.visited_id == current_member.id %>
                 <div class="row align-bottom">
-                  <div class="col-md-9">
+                  <div class="col-md-8">
                     <%= link_to member_path(notification.comment.member) do %>
                       <%= image_tag notification.comment.member.get_image, size: '30x30' %> <%= notification.comment.member.nickname %>
                     <% end %>
@@ -35,7 +35,13 @@
                       <i class="far fa-comment-dots"></i>
                     <% end %>
                   </div>
+                  <div class="col-md-1">
+                    <%= link_to recheck_notification_path(notification), method: :put do %>
+                      <i class="fas fa-check" style="color: <%= notification.checked? ? 'gray' : 'red' %>;"></i>
+                    <% end %>
+                  </div>
                 </div>
+                    
                 <div class="row pl-5 border-bottom align-bottom">
                   『 <%= notification.comment.comment %> 』
                 </div>
