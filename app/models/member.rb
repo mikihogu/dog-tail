@@ -6,7 +6,6 @@ class Member < ApplicationRecord
 
   validates :name, presence: true
   validates :nickname, presence: true, uniqueness: true
-  validates :image, presence: true
   validates :dog, presence: true
   validates :introduction, presence: true
 
@@ -18,7 +17,7 @@ class Member < ApplicationRecord
   has_many :comment_reports, dependent: :destroy
   has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy
   has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
-  
+
 
   has_one_attached :image
   has_many_attached :dog_images
@@ -32,9 +31,11 @@ class Member < ApplicationRecord
   end
 
   def self.guest
-    find_or_create_by!(nickname: 'guestmember', email: 'guest@example.com') do |member|
+    find_or_create_by!(name: 'guestmember', email: 'guest@example.com') do |member|
       member.password = SecureRandom.urlsafe_base64
       member.nickname = "guestmember"
+      member.dog = "shiba"
+      member.introduction = "hello"
     end
   end
 

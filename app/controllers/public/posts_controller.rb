@@ -27,12 +27,17 @@ class Public::PostsController < ApplicationController
     @posts = Post.all.order(created_at: :desc)
     if params[:category]
       @category = Category.find_by(name: params[:category])
-      @posts = @category.posts.order(created_at: :desc)
     end
 
     # 並べ替え
-    if params[:category]
-      @category = Category.find_by(name: params[:category])
+
+    if params[:latest] && params[:category]
+      @posts = @category.posts.latest
+    elsif params[:old] && params[:category]
+      @posts = @category.posts.old
+    elsif params[:favorite] && params[:category]
+      @posts = @category.posts.most_favorited
+    elsif params[:category]
       @posts = @category.posts.order(created_at: :desc)
     elsif params[:latest]
       @posts = Post.latest
