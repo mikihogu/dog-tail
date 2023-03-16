@@ -2,6 +2,14 @@ class Public::InterestsController < ApplicationController
   def index
     interests = Interest.where(member_id: current_member.id).pluck(:post_id)
     @interest_posts = Post.find(interests)
+    @categories = Category.all
+    @posts = Post.all # 空のオブジェクト生成
+    # byebug
+    if params[:category]
+      # byebug
+      @category = Category.find_by(name: params[:category])
+      @interest_posts = @category.posts
+    end
   end
 
   def create

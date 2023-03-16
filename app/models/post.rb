@@ -16,14 +16,22 @@ class Post < ApplicationRecord
   has_many :post_tags, dependent: :destroy
   has_many :tags, through: :post_tags
   has_many :favorites, dependent: :destroy
+  has_many :favorited_members, through: :favorites, source: :member
   has_many :interests, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :notifications, dependent: :destroy
   has_one_attached :post_image
   has_one_attached :image
 
+  # Map用
   geocoded_by :address
   after_validation :geocode, if: :address_changed?
+
+  # 並べ替え
+  scope :latest, -> { order(updated_at: :desc) }
+  scope :old, -> { order(created_at: :asc) }
+  scope :most_favorited, -> { includes(:favorited_members)
+    .sort_by { |x| x.favorited_members.includes(:favorites).size }.reverse }
 
   def get_post_image
     (post_image.attached?) ? post_image : 'no-image.jpeg'
@@ -65,7 +73,7 @@ class Post < ApplicationRecord
 
   # コメント通知ここまで ↑
 
-
+  # キーワード検索用
   def self.search(keyword)
     prefecture = prefectures.select{|k, v| k =~ /#{keyword}/ }
     Post.where("name LIKE ? OR prefecture IS ?","%#{keyword}%", prefecture.values)

@@ -27,8 +27,11 @@ class Public::PostsController < ApplicationController
     @posts = Post.all.order(created_at: :desc)
     if params[:category]
       @category = Category.find_by(name: params[:category])
-      @posts = @category.posts.order(created_at: :desc)
     end
+
+    # 並べ替え
+    @posts = params[:category] ? @category.posts : Post.all #三項演算子
+    @posts = @posts.send(params[:condition]) if params[:condition]
   end
 
   def show

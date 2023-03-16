@@ -15,6 +15,6 @@ class Admin::MembersController < ApplicationController
 
   private
   def member_params
-    params.require(:member).permit(:name, :nickname, :password, :email, :image, :dog, :introduction, dog_images: [])
+    params.require(:member).permit(:name, :nickname, :password, :email, :image, :dog, :introduction, :is_deleted, dog_images: [])
   end
 end
