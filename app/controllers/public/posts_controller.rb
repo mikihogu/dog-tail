@@ -30,25 +30,8 @@ class Public::PostsController < ApplicationController
     end
 
     # 並べ替え
-
-    if params[:latest] && params[:category]
-      @posts = @category.posts.latest
-    elsif params[:old] && params[:category]
-      @posts = @category.posts.old
-    elsif params[:favorite] && params[:category]
-      @posts = @category.posts.most_favorited
-    elsif params[:category]
-      @posts = @category.posts.order(created_at: :desc)
-    elsif params[:latest]
-      @posts = Post.latest
-    elsif params[:old]
-      @posts = Post.old
-    elsif params[:favorite]
-      @posts = Post.most_favorited
-    else
-      @posts = Post.latest
-    end
-
+    @posts = params[:category] ? @category.posts : Post.all #三項演算子
+    @posts = @posts.send(params[:condition]) if params[:condition]
   end
 
   def show

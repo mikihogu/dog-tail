@@ -4,16 +4,9 @@
       <h2 class="m-3 border-bottom"><i class="fas fa-dog"></i> 施設一覧</h2>
       <%= link_to "+", new_post_path, class: "btn btn-lg rounded-pill border shadow-sm" %>
 
-      <% if @category %>
-        <%= link_to '最新順(更新日)', posts_path(latest: "true", category: @category.name) %>
-        <%= link_to '古い順(投稿日)', posts_path(old: "true", category: @category.name) %>
-        <%= link_to 'おすすめ順', posts_path(favorite: "true", category: @category.name) %>
-      <% else %>
-        <%= link_to '最新順(更新日)', posts_path(latest: "true") %>
-        <%= link_to '古い順(投稿日)', posts_path(old: "true") %>
-        <%= link_to 'おすすめ順', posts_path(favorite: "true") %>
-      <% end %>
-
+      <%= link_to '最新順(更新日)', posts_path(condition: :latest, category: @category&.name) %>
+      <%= link_to '古い順(投稿日)', posts_path(condition: :old, category: @category&.name) %>
+      <%= link_to 'おすすめ順', posts_path(condition: :most_favorited, category: @category&.name) %>
     </div>
 
     <div class="col-md-5 p-3 border shadow-sm">

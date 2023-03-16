@@ -32,6 +32,19 @@
         <h2 class="m-3 border-bottom"><i class="fas fa-dog"></i> 検索結果<small>(全<%= @posts.length %>件)</small></h2>
       </div>
     </div>
+    <!--tab表示-->
+    <div class="wrap">
+      <ul id="tab-menu">
+        <li><%= link_to '全て', search_path(word: @word), class: 'active' %></li>
+        <!--タブに表示されたカテゴリー名に紐づく投稿を一覧表示-->
+        <% @categories.each do |category| %>
+          <li><%= link_to category.name, search_path(category: category.name, word: @word), class: ('active' if category == @category) %></li>
+        <% end %>
+      </ul>
+    </div>
+    <%= link_to '最新順(更新日)', search_path(condition: :latest, category: @category&.name, word: @word) %>
+    <%= link_to '古い順(投稿日)', search_path(condition: :old, category: @category&.name, word: @word) %>
+    <%= link_to 'おすすめ順', search_path(condition: :most_favorited, category: @category&.name, word: @word) %>
     <% if @posts.empty? %>
       <div class="row">
         <div class="col mt-5 text-center">
