@@ -9,6 +9,11 @@ Rails.application.routes.draw do
     sessions: "public/sessions"
   }
 
+  # ゲストログイン
+  devise_scope :member do
+    post 'members/guest_sign_in', to: 'public/sessions#guest_sign_in'
+  end
+
   scope module: :public do
     root to: "homes#top"
     get "/about" => "homes#about"
@@ -39,6 +44,7 @@ Rails.application.routes.draw do
   end
 
   get "search" => "searches#search"
+
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

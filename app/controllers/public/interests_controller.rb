@@ -2,6 +2,7 @@ class Public::InterestsController < ApplicationController
   def index
     interests = Interest.where(member_id: current_member.id).pluck(:post_id)
     @interest_posts = Post.find(interests)
+    @categories = Category.all
   end
 
   def create

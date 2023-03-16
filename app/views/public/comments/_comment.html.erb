@@ -17,7 +17,7 @@
         <div class="col-md-3"><small><%= comment.created_at.strftime('%Y/%m/%d') %></small></div>
         <div class="col-md-1">
           <% if comment.member == current_member %>
-            <%= link_to post_comment_path(post, comment), method: :delete, remote: true, style: 'color: gray;', 'data-confirm'=>'このコメントを削除します' do %>
+            <%= link_to post_comment_path(post, comment), url: post_comment_path(comment), method: :delete, remote: true, style: 'color: gray;', 'data-confirm'=>'このコメントを削除します' do %>
               <i class="fas fa-trash-alt"></i>
             <% end %>
           <% end %>
@@ -28,12 +28,12 @@
 </div>
 
 <!--コメント作成(会員側のみ表示)-->
-<% if current_page?(post_path) %>
+<% unless request.path.match(/\/admin(\/)?/) %>
   <div class="card border-light row">
     <div class="card-body">
       <div class="card-title">コメントする</div>
       <div class="card-text">
-        <%= form_with model: [post, comment], local: false do |f| %>
+        <%= form_with model: [post, comment], url: post_comments_path(post), local: false do |f| %>
           <%= f.text_area :comment, width: '80%', placeholder: 'コメント、追加情報', class: 'col-md-9' %>
           <%= f.submit '送信', class: 'btn btn-sm btn-outline-secondary col-md-2' %>
         <% end %>
