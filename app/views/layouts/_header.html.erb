@@ -101,7 +101,7 @@
     <div>
       <% if request.path.match(/\/admin(\/)?/) && admin_signed_in? %>
         <%= render 'layouts/admin_search' %>
-      <% else %>
+      <% elsif member_signed_in? %>
         <%= render 'layouts/search' %>
       <% end %>
     </div>

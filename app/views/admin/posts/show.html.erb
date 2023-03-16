@@ -3,23 +3,12 @@
     <div class="col-md-9">
       <h2 class="m-3"><i class="fas fa-dog"></i>施設詳細</h2>
     </div>
+    <!--削除ボタン-->
     <div>
-    <% if @post.member.id == current_member.id %>
-      <!--編集ボタン-->
-      <%= link_to edit_post_path(@post), class: 'col-md-1' do %>
-        <i class="fas fa-edit"></i>
-      <% end %>
-
-      <!--削除ボタン-->
-      <%= link_to post_path(@post), method: :delete, 'data-confirm'=>'この投稿を削除します', class: 'col-md-1' do %>
+      <%= link_to admin_post_path(@post), method: :delete, 'data-confirm'=>'管理者がこの投稿を削除します', class: 'col-md-1' do %>
         <i class="fas fa-trash-alt"></i>
       <% end %>
-    <% end %>
     </div>
-    <!--通報ボタン-->
-    <%= link_to new_post_post_reports_path(@post.id), class: 'col-md-1' do %>
-      <i class="fas fa-exclamation"></i>
-    <% end %>
   </div>
 
   <div class="row mt-3">
@@ -32,27 +21,24 @@
       <div>
         <%= image_tag @post.get_post_image, height: 200, class: 'image-fluid img-thumbnail' %>
       </div>
-      <div class="row align-right">
-        <div class="col-md-3 favorite-btn_<%= @post.id %>">
-          <%= render 'public/favorites/favorite_btn', post: @post %>
-        </div>
-        <div class="col-md-3 interest-btn_<%= @post.id %>">
-          <%= render 'public/interests/interest_btn', post: @post %>
-        </div>
+      <div class="row m-3">
+        <i class="fas fa-thumbs-up" style="color:gray;"></i>おすすめ <%= @post.favorites.count %>
+      </div>
+      <div class="row m-3">
+        <i class="fas fa-star" style="color:gray;"></i>ブックマーク <%= @post.interests.count %>
       </div>
 
-
       <!--Map表示-->
-      <div class="row">
+      <div class="row m-3">
         <div id='map'></div>
-        <%= render 'map_show', post: @post %>
+        <%= render 'public/posts/map_show', post: @post %>
       </div>
     </div>
 
-    <div class="col-md-7 offset-1">
+    <div class="col-md-7 offset-0 offset-md-1">
       <!--投稿施設詳細-->
       <%= render 'public/posts/place_info', post: @post %>
-
+      
       <!--コメント-->
       <div class="comment p-3 my-3">
         <%= render 'public/comments/comment', post: @post, comment: @comment %>

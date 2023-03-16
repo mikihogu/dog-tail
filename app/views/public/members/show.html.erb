@@ -16,7 +16,7 @@
             <i class="fas fa-thumbs-up" style= "color:gray;"></i> <%= @member.favorites.count %>
           </div>
           <div class="col-md-2">
-            <%= link_to post_interests_path(current_member), class:"a-header" do %>
+            <%= link_to post_interests_path(current_member) do %>
               <i class="fas fa-star" style= "color:gray;"></i> <%= @member.interests.count %>
             <% end %>
           </div>

@@ -29,17 +29,17 @@
     </div>
   <% end %>
 <% elsif member_signed_in? %>
-<!--会員の検索欄-->
+<!--会員の検索結果-->
   <div class="container my-3">
     <div class="row">
       <div class="col-md-8">
-        <h2 class="m-3 border-bottom"><i class="fas fa-dog"></i> 検索結果<small>(全<%= @posts.count %>件)</small></h2>
+        <h2 class="m-3 border-bottom"><i class="fas fa-dog"></i> 検索結果<small>(全<%= @posts.length %>件)</small></h2>
       </div>
     </div>
     <% if @posts.empty? %>
       <div class="row">
         <div class="col mt-5 text-center">
-          <h4>入力した検索ワードを含む施設が見つかりません</h4>
+          <h4>該当する施設が見つかりません</h4>
         </div>
       </div>
     <% else %>

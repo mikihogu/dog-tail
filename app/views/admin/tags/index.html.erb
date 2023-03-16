@@ -5,25 +5,17 @@
 
       <div class="align-center">
         <div class="row m-3"><h5>登録済み一覧</h5></div>
-        <div class="item-wrap row mb-5">
-          <% @tags.each do |tag| %>
-            <div class="item shadow-sm col-md-4 p-3 my-3">
-              <%= tag.name %>
-              <%= link_to '削除', admin_tag_path(tag.id), method: :delete, class: 'btn btn-sm btn-outline-danger', 'data-confirm' => 'このタグを削除します' %>
-            </div>
-          <% end %>
+        <div class="tag-index">
+          <%= render 'tag_index', tags: @tags %>
         </div>
       </div>
+      
       <div class="row">
         <div class="col-md-11 mx-auto">
           <h5 class="m-3">追加登録</h5>
-          <%= form_with model: @tag, method: :post, url: admin_tags_path, html: {class: 'p-5 shadow-lg'} do |f| %>
-            <div class="form-group">
-              <%= f.label :name, 'タグ名', class: 'col-md-2' %>
-              <%= f.text_field :name, autofocus: true, autocomplete: 'off', class: 'col-md-6' %>
-              <%= f.submit '追加', class: 'btn btn-sm btn-outline-info col-md-2 offset-1' %>
+            <div class="tag-form">
+              <%= render 'tag_form', tag: @tag %>
             </div>
-          <% end %>
         </div>
       </div>
     </div>

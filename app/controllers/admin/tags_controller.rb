@@ -1,11 +1,8 @@
 class Admin::TagsController < ApplicationController
   def create
     @tag = Tag.new(tag_params)
-    if @tag.save
-      redirect_to request.referer
-    else
-      render :index
-    end
+    @tags = Tag.all
+    @tag.save
   end
 
   def index
@@ -14,12 +11,9 @@ class Admin::TagsController < ApplicationController
   end
 
   def destroy
+    @tags = Tag.all
     @tag = Tag.find(params[:id])
-    if @tag.destroy
-      redirect_to request.referer
-    else
-      render :index
-    end
+    @tag.destroy
   end
 
   private
