@@ -13,6 +13,15 @@ class Admin::PostsController < ApplicationController
     @comments = @post.comments
   end
 
+  def destroy
+    @post = Post.find(params[:id])
+    if @post.destroy
+      redirect_to :index
+    else
+      redirect_to request.referer
+    end
+  end
+
   private
   def post_params
     params.require(:post).permit(
