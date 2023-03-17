@@ -1,24 +1,53 @@
 
 header {
-  background-color: #F1A661 !important;
+  background-color: rgba(241, 166, 97, 0.9) !important;
+  color: #755050 !important;
 }
 
 footer {
-  background-color: #F1A661  !important;
+  background-color: rgba(241, 166, 97, 0.5)  !important;
 }
 
+body{
+  color: #202429 !important;
+  background-color: #fdfdfdf9  !important;
+}
+
+/*リンクの色*/
+.link{
+  text-decoration: none !important;
+  color: #2C3333;
+}
+.link:hover {
+  text-decoration: none !important;
+  color: #2C3333;
+}
+
+
+/*headerリンク hover*/
+.a-header{
+  transition: 0.2s;
+  text-decoration: none !important;
+}
+.a-header:hover {
+    text-decoration: none !important;
+    /* font-size: 17px;; */
+    background-color: rgba(230, 230, 230, 0.3);
+    color: #755050 !important;
+    border-radius: 40%;
+}
+
+
+/* 会員Topページ */
 .top-image {
   position: relative;
 }
 .top-action {
   position: absolute;
-  /* top: 0; */
-  /* left: 0; */
 }
 .top-action p:hover {
   background: rgba(255, 255, 255, 0.3)
 }
-
 .item-wrap {
   display: flex;
   flex-wrap: wrap;
@@ -76,10 +105,6 @@ footer {
 
 
 /* 画像スワイプ表示 */
-/*.swiper {*/
-/*  width: 400px;*/
-/*  height: 300px;*/
-/*}*/
 
 :root {
   --swiper-navigation-color: #333;
@@ -89,49 +114,70 @@ footer {
 
 
 /* tab表示 */
-.wrap {
+.wrapper {
   width: 100%;
-  max-width: 800px;
   margin: 0 auto;
 }
 
-#tab-menu {
+/*tabの形状*/
+.tab-menu {
   display: flex;
+  margin: 0;
 }
 
-#tab-menu li {
+.tab-menu li {
   list-style-type: none;
   width: 25%;
 }
 
-#tab-menu li a {
-  color: #fff;
+.tab-menu li a {
+  color: #2e1212;
   text-decoration: none;
   display: block;
-  margin: 0 2px;
-  padding: 20px;
+  margin: 0 5px;
+  padding: 10px 10px;
   text-align: center;
-  background: #ddd;
-  /* border: 1px solid #000; */
-  /* border-bottom: none; */
+  background: #fcfcfc;
+  border: 1px solid #000;
+  border-bottom: none;
 }
 
-#tab-menu .active {
-  background: #fff;
-  color: #000;
+/*liにactiveクラスがついた時=タブが選択されている時の形状*/
+.tab-menu li.active a {
+  background: #F9F5EB;
+  color: #2e1212;
 }
 
-#tab-contents {
+/*エリアの表示非表示と形状*/
+.tab-contents {
   display: flex;
-  flex-wrap: wrap;
+  justify-content: center;
 }
 
-#tab-contents .tab {
+.tab-area {
+	display: none;/*はじめは非表示*/
+	opacity: 0;/*透過0*/
+	background: #F9F5EB;
+	padding:50px 20px;
   width: 100%;
-  padding: 30px;
-  background: #f9f9f1;
-  /* border: 1px solid #000; */
-  /* border-top: none; */
+  /* max-width: 800px; */
+}
+
+/*areaにis-activeというクラスがついた時=選択されているareaの形状*/
+.tab-area.is-active {
+    display: block;/*選択されたら表示*/
+    animation-name: displayAnime;/*ふわっと表示させるためのアニメーション*/
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes displayAnime{
+from {
+  opacity: 0;
+}
+to {
+  opacity: 1;
+}
 }
 
 /* タブ表示ここまで */

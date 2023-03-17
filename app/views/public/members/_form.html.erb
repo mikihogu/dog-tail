@@ -6,7 +6,7 @@
   <%= f.label :nickname, 'ニックネーム', class: 'col-md-3 offset-1' %>
   <%= f.text_field :nickname, autofocus: true, placeholder: 'サイト上で表示されます', class: 'col-md-7' %>
 </div>
-# パスワードは編集画面には不要
+<!--パスワードは編集画面には不要-->
 <% if current_page?(new_member_registration_path) %>
   <div class="form-group row">
     <%= f.label :password, 'パスワード', class: 'col-md-3 offset-1' %>

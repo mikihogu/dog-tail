@@ -33,8 +33,14 @@
           <td><%= member.favorites.count %></td>
           <td><%= member.interests.count %></td>
           <td><%= member.comments.count %></td>
-          <td><%= member.created_at %></td>
-          <td><%= member.is_deleted %></td>
+          <td><%= l member.created_at %></td>
+          <td>
+            <% if member.is_deleted == false %>
+              <p>会員</p>
+            <% else %>
+              <p>退会</p>
+            <% end %>
+          </td>
         </tr>
       <% end %>
     </tbody>

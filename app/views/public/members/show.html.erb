@@ -8,25 +8,25 @@
       <div class="row">
         <% if @member.id == current_member.id %>
           <div class="col-md-3">
-            <%= link_to edit_member_path do %>
+            <%= link_to edit_member_path, class: 'link' do %>
               <i class="fas fa-edit"></i>
             <% end %>
           </div>
           <div class="col-md-2">
-            <i class="fas fa-thumbs-up" style= "color:gray;"></i> <%= @member.favorites.count %>
+            <i class="fas fa-thumbs-up" style= "color:#2C3333;"></i> <%= @member.favorites.count %>
           </div>
           <div class="col-md-2">
-            <%= link_to post_interests_path(current_member) do %>
-              <i class="fas fa-star" style= "color:gray;"></i> <%= @member.interests.count %>
+            <%= link_to post_interests_path(current_member), class: 'link' do %>
+              <i class="fas fa-star" style= "color:#2C3333;"></i> <%= @member.interests.count %>
             <% end %>
           </div>
           <div class="col-md-2">
-            <i class="fas fa-comment-dots" style= "color:gray;"></i> <%= @member.comments.count %>
+            <i class="fas fa-comment-dots" style= "color:#2C3333;"></i> <%= @member.comments.count %>
           </div>
           <div class="col-md-2">
             <% if @member.id == current_member.id %>
-              <%= link_to notifications_path(filter: 'unchecked') do %>
-                <i class="fas fa-bell" style= "color:gray;"></i> <%= @member.passive_notifications.where(checked: false).count %>
+              <%= link_to notifications_path(filter: 'unchecked'), class: 'link' do %>
+                <i class="fas fa-bell" style= "color:#2C3333;"></i> <%= @member.passive_notifications.where(checked: false).count %>
               <% end %>
             <% end %>
           </div>
@@ -57,7 +57,7 @@
       </div>
       <div class="row">
         <div class="col-md-4"><p>自己紹介文：</p></div>
-        <div class="col-md-8"><%= @member.introduction %></div>
+        <div class="col-md-8"><%= safe_join(@member.introduction.split("\n"),tag(:br)) %></div>
       </div>
     </div>
 

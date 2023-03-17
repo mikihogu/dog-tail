@@ -33,7 +33,7 @@ class Member < ApplicationRecord
   def self.guest
     find_or_create_by!(name: 'guestmember', email: 'guest@example.com') do |member|
       member.password = SecureRandom.urlsafe_base64
-      member.nickname = "guestmember"
+      member.nickname = "ゲストユーザー"
       member.dog = "shiba"
       member.introduction = "hello"
     end

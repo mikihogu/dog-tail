@@ -21,7 +21,8 @@
                 <%= render 'public/interests/interest_btn', post: post %>
               </div>
               <div><i class="far fa-comment-dots"></i> <%= post.comments.count %></div>
-            <p class="card-text">更新日: <%= post.updated_at %></p>
+            <p class="card-text">投稿者: <%= post.member.nickname %></p>
+            <p class="card-text">更新日: <%= l post.updated_at %></p>
           </small>
         </div>
       </div>

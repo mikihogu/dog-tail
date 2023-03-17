@@ -7,59 +7,66 @@
     <div class="col-md-6 p-3">
       <%= form_with model: @member, url: admin_member_path(@member.id), method: :patch, local: true  do |f| %>
         <%= f.radio_button :is_deleted, :false %>
-        <%= f.label :is_deleted, "有効", value: "false", class: "mr-3" %>
+        <%= f.label :is_deleted, "会員", value: "false", class: "mr-3" %>
         <%= f.radio_button :is_deleted, :true %>
-        <%= f.label :is_deleted, "退会", value: "true" %>
+        <%= f.label :is_deleted, "退会", value: "true", class: "mr-3" %>
         <%= f.submit '変更' %>
       <% end %>
 
     </div>
   </div>
   <div class="row">
-    <div class="col-md-6 my-5 p-5 shadow-lg">
+    <div class="col-md-5 p-5">
+      <!--会員情報-->
       <div class="row">
-        <div class="col mb-3 mx-auto">
-          <%= image_tag @member.get_image, height: 200, class: 'img-fluid' %>
+        <div class="col-md-12 my-5 p-5 shadow-lg">
+          <div class="row">
+            <div class="col-md-12 mb-3 mx-auto">
+              <%= image_tag @member.get_image, height: 100, class: 'img-fluid' %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4"><p>名前：</p></div>
+            <div class="col-md-8"><%= @member.name %></div>
+          </div>
+          <div class="row">
+            <div class="col-md-4"><p>ニックネーム：</p></div>
+            <div class="col-md-8"><%= @member.nickname %></div>
+          </div>
+          <div class="row">
+            <div class="col-md-4"><p>好きな犬種：</p></div>
+            <div class="col-md-8"><%= @member.dog %></div>
+          </div>
+          <div class="row">
+            <div class="col-md-4"><p>自己紹介文：</p></div>
+            <div class="col-md-8"><%= @member.introduction %></div>
+          </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-md-4"><p>名前：</p></div>
-        <div class="col-md-8"><%= @member.name %></div>
-      </div>
-      <div class="row">
-        <div class="col-md-4"><p>ニックネーム：</p></div>
-        <div class="col-md-8"><%= @member.nickname %></div>
-      </div>
-      <div class="row">
-        <div class="col-md-4"><p>好きな犬種：</p></div>
-        <div class="col-md-8"><%= @member.dog %></div>
-      </div>
-      <div class="row">
-        <div class="col-md-4"><p>自己紹介文：</p></div>
-        <div class="col-md-8"><%= @member.introduction %></div>
       </div>
     </div>
 
-
-    <div class="col-md-6 my-7 pt-5 pl-5">
+    <div class="col-md-7 my-7 pt-5">
+      <!--画像Swiper-->
       <div class="row">
-        <div class="swiper">
-          <div class="swiper-wrapper">
-            <% @member.dog_images.each do |dimage| %>
-              <div class="swiper-slide">
-                <%= image_tag dimage, size: '500x400', class: 'img-fluid' %>
-              </div>
-            <% end %>
+        <div class="col-md-8 my-3 mx-auto">
+          <div class="swiper">
+            <div class="swiper-wrapper">
+              <% @member.dog_images.each do |dimage| %>
+                <div class="swiper-slide">
+                  <%= image_tag dimage, size: '300x200', class: 'img-fluid' %>
+                </div>
+              <% end %>
+            </div>
+            <!-- ページネーションの要素 -->
+            <div class="swiper-pagination"></div>
+            <!-- ナビゲーションボタン （前、次） -->
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
           </div>
-          <!-- ページネーションの要素 -->
-          <div class="swiper-pagination"></div>
-          <!-- ナビゲーションボタン （前、次） -->
-          <div class="swiper-button-prev"></div>
-          <div class="swiper-button-next"></div>
         </div>
       </div>
-    
-      <table class="table my-3">
+      <!--投稿内容-->
+      <table class="table my-3 border">
         <thead>
           <tr>
             <th>施設名称</th>
@@ -78,7 +85,7 @@
               </td>
               <td><%= post.category.name %></td>
               <td><%= post.introduction %></td>
-              <td><%= post.created_at %></td>
+              <td><%= l post.created_at %></td>
             </tr>
           <% end %>
         </tbody>
@@ -92,12 +99,10 @@
         autoplay: {
           delay: 2000, // 2秒ごとにスライドを自動で切り替える
         },
-
         //ページネーション表示の設定
         pagination: {
           el: '.swiper-pagination', //ページネーションの要素
         },
-
         //ナビゲーションボタン（矢印）表示の設定
         navigation: {
           nextEl: '.swiper-button-next', //「次へボタン」要素の指定
