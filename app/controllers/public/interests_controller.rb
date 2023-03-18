@@ -8,7 +8,7 @@ class Public::InterestsController < ApplicationController
     if params[:category]
       # byebug
       @category = Category.find_by(name: params[:category])
-      @interest_posts = @category.posts
+      @interest_posts = @category.posts.where(id: interests)
     end
   end
 

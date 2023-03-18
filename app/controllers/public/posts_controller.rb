@@ -24,14 +24,15 @@ class Public::PostsController < ApplicationController
 
   def index
     @categories = Category.all
-    @posts = Post.all.order(created_at: :desc)
+
     if params[:category]
       @category = Category.find_by(name: params[:category])
     end
 
-    # 並べ替え
+    # カテゴリー別or全件
     @posts = params[:category] ? @category.posts : Post.all #三項演算子
-    @posts = @posts.send(params[:condition]) if params[:condition]
+    # 並べ替え
+    @posts = params[:condition] ? @posts.send(params[:condition]) : @posts.order(created_at: :desc)
   end
 
   def show

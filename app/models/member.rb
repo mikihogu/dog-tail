@@ -27,7 +27,7 @@ class Member < ApplicationRecord
   end
 
   def get_dog_images
-    (dog_images.attached?) ? dog_images : 'dog-no-image.jpeg'
+    (dog_images.attached?) ? dog_images : ['dog-no-image.jpeg']
   end
 
   def self.guest

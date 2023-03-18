@@ -23,6 +23,7 @@
               <div><i class="far fa-comment-dots"></i> <%= post.comments.count %></div>
             <p class="card-text">投稿者: <%= post.member.nickname %></p>
             <p class="card-text">更新日: <%= l post.updated_at %></p>
+            <p class="card-text">投稿日: <%= l post.created_at %></p>
           </small>
         </div>
       </div>

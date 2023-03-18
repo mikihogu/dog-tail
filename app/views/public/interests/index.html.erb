@@ -9,26 +9,30 @@
   </div>
   <!--tab表示-->
   <div class="wrapper">
+
     <ul class="tab-menu">
-      <li><%= link_to '全て', post_interests_path , class: 'active' %></li>
+      <li class="<%= 'active' unless @category %>"><%= link_to '全て', post_interests_path %></li>
       <!--タブに表示されたカテゴリー名に紐づく投稿を一覧表示-->
       <% @categories.each do |category| %>
-        <li><%= link_to category.name, post_interests_path(category: category.name), class: ('active' if category == @category) %></li>
+        <li class="<%= 'active' if category == @category %>"><%= link_to category.name, post_interests_path(category: category.name) %></li>
       <% end %>
     </ul>
 
-
-    <% if @interest_posts.empty? %>
-      <div class="row">
-        <div class="col mt-5 text-center">
-          <h4>ブックマークした施設はありません</h4>
-        </div>
+    <div class="tab-contents">
+      <div class="tab-area is-active">
+        <% if @interest_posts.empty? %>
+          <div class="row">
+            <div class="col mt-5 text-center">
+              <h4>ブックマークした施設はありません</h4>
+            </div>
+          </div>
+        <% else %>
+          <div>
+            <!--一覧-->
+            <%= render 'public/posts/index', posts: @interest_posts %>
+          </div>
+        <% end %>
       </div>
-    <% else %>
-      <div>
-        <!--一覧-->
-        <%= render 'public/posts/index', posts: @interest_posts %>
-      </div>
-    <% end %>
+    </div>
   </div>
 </div>

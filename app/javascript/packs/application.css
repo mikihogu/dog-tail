@@ -182,7 +182,7 @@ a::after {
 	background: #F9F5EB;
 	padding:50px 20px;
   width: 100%;
-  /* max-width: 800px; */
+   /*max-width: 800px;*/
 }
 
 /*areaにis-activeというクラスがついた時=選択されているareaの形状*/

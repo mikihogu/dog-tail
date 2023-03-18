@@ -12,7 +12,7 @@
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
 
-        <% if request.path.match(/\/admin(\/)?/) && admin_signed_in?%>
+        <% if admin_signed_in? %>
           <li>
             <%= link_to admin_posts_path, class:"a" do %>
               <div class="nav-link a-header">施設一覧</div>
@@ -99,7 +99,7 @@
       </div>
     </div>
     <div>
-      <% if request.path.match(/\/admin(\/)?/) && admin_signed_in? %>
+      <% if admin_signed_in? %>
         <%= render 'layouts/admin_search' %>
       <% elsif member_signed_in? %>
         <%= render 'layouts/search' %>
