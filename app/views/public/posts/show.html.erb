@@ -6,12 +6,12 @@
     <div>
     <% if @post.member.id == current_member.id %>
       <!--編集ボタン-->
-      <%= link_to edit_post_path(@post), class: 'col-md-1' do %>
+      <%= link_to edit_post_path(@post), class: 'link col-md-1' do %>
         <i class="fas fa-edit"></i>
       <% end %>
 
       <!--削除ボタン-->
-      <%= link_to post_path(@post), method: :delete, 'data-confirm'=>'この投稿を削除します', class: 'col-md-1' do %>
+      <%= link_to post_path(@post), method: :delete, 'data-confirm'=>'この投稿を削除します', class: 'link col-md-1' do %>
         <i class="fas fa-trash-alt"></i>
       <% end %>
     <% end %>

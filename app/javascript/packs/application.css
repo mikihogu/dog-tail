@@ -78,7 +78,7 @@ a::after {
 /* 検索フォーム */
 
 .search-control{
-  color: #fff !important;
+  color: #c34444 !important;
   background-color: #ffffff78 !important;
   border: #ffffff78 !important;
   border-radius: 2rem !important;
@@ -160,8 +160,8 @@ a::after {
   padding: 10px 10px;
   text-align: center;
   background: #fcfcfc;
-  border: 1px solid #000;
-  border-bottom: none;
+  /* border: 1px solid #000; */
+  /* border-bottom: none; */
 }
 
 /*liにactiveクラスがついた時=タブが選択されている時の形状*/

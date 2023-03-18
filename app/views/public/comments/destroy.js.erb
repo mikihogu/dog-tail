@@ -1,2 +1,3 @@
 $ (".comment").html("<%= j(render 'public/comments/comment', post: @post, comment: @comment) %>");
 $ (".comments-count_<%= @post.id %>").html("この施設に関するコメント <i class=\"far fa-comment-dots\"></i> <%= @post.comments.count %>件");
+$ ("#comment_text_area").val("");
