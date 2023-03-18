@@ -27,13 +27,13 @@ class Member < ApplicationRecord
   end
 
   def get_dog_images
-    (dog_images.attached?) ? dog_images : 'dog-no-image.jpeg'
+    (dog_images.attached?) ? dog_images : ['dog-no-image.jpeg']
   end
 
   def self.guest
     find_or_create_by!(name: 'guestmember', email: 'guest@example.com') do |member|
       member.password = SecureRandom.urlsafe_base64
-      member.nickname = "guestmember"
+      member.nickname = "ゲストユーザー"
       member.dog = "shiba"
       member.introduction = "hello"
     end

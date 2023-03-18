@@ -25,7 +25,7 @@
             </div>
             <div class="row">
               <div class="col-md-3"><p>詳細：</p></div>
-              <div class="col-md-9"><%= @post.information %></div>
+              <div class="col-md-9"><%= safe_join(@post.information.split("\n"),tag(:br)) %></div>
             </div>
             <div class="row">
               <div class="col-md-3"><p>タグ：</p></div>
@@ -37,11 +37,11 @@
             </div>
             <div class="row">
               <div class="col-md-3"><p>投稿日：</p></div>
-              <div class="col-md-9"><%= @post.created_at %></div>
+              <div class="col-md-9"><%= l @post.created_at, format: :time %></div>
             </div>
             <div class="row">
               <div class="col-md-3"><p>更新日：</p></div>
-              <div class="col-md-9"><%= @post.updated_at %></div>
+              <div class="col-md-9"><%= l @post.updated_at, format: :time %></div>
             </div>
           </div>
         </div>
@@ -54,7 +54,7 @@
             <div class="card-header">
               必要あれば施設情報の更新をお願いします
               <!--編集ボタン-->
-              <%= link_to edit_post_path(@post), class: 'col-md-1' do %>
+              <%= link_to edit_post_path(@post), class: ' link col-md-1' do %>
                 <i class="fas fa-edit"></i>
               <% end %>
             </div>
@@ -64,8 +64,8 @@
                   <%= image_tag @comment.member.get_image, size: '30x30' %>
                   <%= @comment.member.nickname %>
                 </div>
-                <div class="col-md-7"><%= @comment.comment %></div>
-                <div class="col-md-2"><small><%= @comment.created_at.strftime('%Y/%m/%d') %></small></div>
+                <div class="col-md-7"><%= safe_join(@comment.comment.split("\n"),tag(:br)) %></div>
+                <div class="col-md-2"><small><%= l @comment.created_at %></small></div>
               </div>
             </div>
           </div>

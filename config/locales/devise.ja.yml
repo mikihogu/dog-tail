@@ -1,0 +1,64 @@
+ja:
+  activerecord:
+    attributes:
+      member:
+        name: 「氏名」
+        nickname: 「ニックネーム」
+        dog: 「好きな犬種」
+        introduction: 「自己紹介文」
+        email: 「Eメール」
+        encrypted_password: 「暗号化パスワード」
+        password: 「パスワード」
+        created_at: 登録日
+        updated_at: 更新日
+      post:
+        name: 「施設名称」
+        introduction: 「一言紹介」
+        information: 「施設詳細」
+        post_image: 「施設画像」
+        category: 「施設カテゴリー」
+        prefecture: 「施設所在地」
+        address: 「施設住所」
+        tags: 「タグ」1つ以上
+
+    models:
+      member: 会員情報
+      post: 投稿
+  devise:
+    failure:
+      already_authenticated: すでにログインしています。
+      invalid: "%{authentication_keys}またはパスワードが違います。"
+      unauthenticated: アカウント登録もしくはログインしてください。
+    registrations:
+      destroyed: アカウントを削除しました。またのご利用をお待ちしております。
+      edit:
+        are_you_sure: 本当によろしいですか?
+        cancel_my_account: アカウント削除
+        update: 更新
+      new:
+        sign_up: アカウント登録
+        signed_up: アカウント登録が完了しました。
+        updated: アカウント情報を変更しました。
+      member:
+        signed_up: アカウントが作成されました
+    sessions:
+      already_signed_out: 既にログアウト済みです。
+      new:
+        sign_in: ログイン
+        signed_in: ログインしました。
+        signed_out: ログアウトしました。
+        already_signed_out: 既にログアウト済みです。
+      member:
+        signed_in: ログインしました
+        signed_out: ログアウトしました
+      admin:
+        signed_in: 管理者ページにログインしました
+        signed_out: 管理者ページからログアウトしました
+  errors:
+    messages:
+      already_confirmed: は既に登録済みです。ログインしてください。
+      not_found: は見つかりませんでした。
+      not_saved:
+        one: エラーが発生したため %{resource} は保存されませんでした。
+        other: "%{count} 件のエラーが発生したため %{resource} は保存されませんでした。"
+  

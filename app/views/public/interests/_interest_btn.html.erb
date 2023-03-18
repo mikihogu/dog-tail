@@ -1,12 +1,12 @@
 <% if post.interested_by?(current_member) %>
   <p>
-    <%= link_to post_interests_path(post), method: :delete, remote: true, style: "color:gray" do |f| %>
+    <%= link_to post_interests_path(post), method: :delete, remote: true, class:"link" do |f| %>
       <i class="fas fa-star"></i> <%= post.interests.count %>
     <% end %>
   </p>
 <% else %>
   <p>
-    <%= link_to post_interests_path(post), method: :post, remote: true, style: "color:gray" do |f| %>
+    <%= link_to post_interests_path(post), method: :post, remote: true, class:"link" do |f| %>
       <i class="far fa-star"></i> <%= post.interests.count %>
     <% end %>
   </p>

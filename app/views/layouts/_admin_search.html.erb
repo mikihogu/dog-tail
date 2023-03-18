@@ -1,9 +1,6 @@
 <div class="search_form">
   <%= form_with url: search_path, local: true, method: :get do |f| %>
     <div class="input-group">
-      <% if admin_signed_in? %>
-        <div class="admin-search search-control d-flex align-items-stretch"><%= f.select :range, options_for_select([['Post'], ['Member']]) %></div>
-      <% end %>
       <%= f.text_field :word, class: "form-control search-control d-flex align-items-stretch", placeholder: " Search... ", autocomplete: "off", value: params[:word] %>
       <%= button_tag type: "submit", class: "btn btn-light search-btn" do %>
         <i class="fas fa-search"></i>

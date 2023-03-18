@@ -6,15 +6,16 @@
     </P>
   </div>
   <div class="card-body">
+    <div class="card-text">
     <% post.comments.each do |comment| %>
-      <div class="row border-bottom align-items-center">
+      <div class="row border-bottom py-1 align-items-center">
         <div class="col-md-1">
           <%= link_to member_path(comment.member) do %>
             <%= image_tag comment.member.get_image, size: '30x30' %>
           <% end %>
         </div>
-        <div class="col-md-7 px-2"><%= comment.comment %></div>
-        <div class="col-md-3"><small><%= comment.created_at.strftime('%Y/%m/%d') %></small></div>
+        <div class="col-md-7 px-2"><%= safe_join(comment.comment.split("\n"),tag(:br)) %></div>
+        <div class="col-md-3"><small><%= l comment.created_at %></small></div>
         <div class="col-md-1">
           <% if comment.member == current_member %>
             <%= link_to post_comment_path(post, comment), method: :delete, remote: true, style: 'color: gray;', 'data-confirm'=>'このコメントを削除します' do %>
@@ -24,6 +25,7 @@
         </div>
       </div>
     <% end %>
+    </div>
   </div>
 </div>
 
@@ -34,7 +36,7 @@
       <div class="card-title">コメントする</div>
       <div class="card-text">
         <%= form_with model: comment, url: post_comments_path(post), local: false do |f| %>
-          <%= f.text_area :comment, width: '80%', placeholder: 'コメント、追加情報', class: 'col-md-9' %>
+          <%= f.text_area :comment, width: '80%', placeholder: 'コメント、追加情報', class: 'col-md-9', id: "comment_text_area" %>
           <%= f.submit '送信', class: 'btn btn-sm btn-outline-secondary col-md-2' %>
         <% end %>
       </div>
