@@ -9,32 +9,54 @@ footer {
 }
 
 body{
-  color: #202429 !important;
+  color: #1a1b1c !important;
   background-color: #fdfdfdf9  !important;
-}
-
-/*リンクの色*/
-.link{
-  text-decoration: none !important;
-  color: #2C3333;
-}
-.link:hover {
-  text-decoration: none !important;
-  color: #2C3333;
 }
 
 
 /*headerリンク hover*/
 .a-header{
-  transition: 0.2s;
+  transition: .2s;
   text-decoration: none !important;
 }
 .a-header:hover {
     text-decoration: none !important;
-    /* font-size: 17px;; */
     background-color: rgba(230, 230, 230, 0.3);
-    color: #755050 !important;
-    border-radius: 40%;
+    border-radius: 50%;
+}
+
+/*class .a 下線*/
+.a{
+  text-decoration: none !important;
+  position: relative;
+  display: inline-block;
+  color: #755050 !important;
+  transition: .4s;
+}
+a::after {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  content: '';
+  width: 0;
+  height: 2px;
+  background-color: #755050;
+  transition: .4s;
+  transform: translateX(-50%);
+}
+.a:hover::after {
+  width: 100%;
+}
+
+/*class .link*/
+.link{
+  text-decoration: none !important;
+  transition: color 0.3s;
+  color: #1a1b1c;
+}
+.link:hover {
+  text-decoration: none !important;
+  color: #2f68a5;
 }
 
 

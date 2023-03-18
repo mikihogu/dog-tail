@@ -7,7 +7,7 @@
           <%= image_tag post.get_post_image, size: "250x200", class: 'img-fluid' %>
         </div>
         <div class="card-body">
-          <%= link_to post_path(post) do %>
+          <%= link_to post_path(post), class: 'link' do %>
             <h6 class="card-title border-bottom"><b><%= post.name %></b></h6>
           <% end %>
           <small>
