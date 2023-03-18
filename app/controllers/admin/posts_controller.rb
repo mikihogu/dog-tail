@@ -6,6 +6,11 @@ class Admin::PostsController < ApplicationController
       @category = Category.find_by(name: params[:category])
       @posts = @category.posts.order(created_at: :desc)
     end
+    
+    # 会員ごとの投稿一覧表示のため
+    if params[:member_id]
+      @posts = Post.where(member_id: params[:member_id])
+    end
   end
   
   def show

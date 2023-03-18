@@ -3,11 +3,11 @@
 
   <div class="container my-3">
     <div class="row">
-      <div class="col-md-8">
+      <div class="col-md-8 mb-3">
         <h2 class="m-3 border-bottom"><i class="fas fa-dog"></i> "<%= @word %>" 検索結果<small>(全<%= @posts.length %>件)</small></h2>
       </div>
     </div>
-  
+
     <table class="table">
       <thead>
         <tr>
@@ -51,11 +51,11 @@
         <% end %>
       </tbody>
     </table>
-  
+
     <div>
       <%= render 'public/posts/map_index', posts: @posts %>
     </div>
-  
+
   </div>
 
 

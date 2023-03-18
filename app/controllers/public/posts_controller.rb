@@ -17,7 +17,7 @@ class Public::PostsController < ApplicationController
     if @post.save
       redirect_to post_path(@post), notice: "この施設情報を投稿しました"
     else
-      flash.now[:alert] = 'There was something wrong.'
+      flash.now[:alert] = '投稿に失敗しました'
       render :new
     end
   end
@@ -25,14 +25,15 @@ class Public::PostsController < ApplicationController
   def index
     @categories = Category.all
 
+    # タブ表示(カテゴリー別or全件)
     if params[:category]
       @category = Category.find_by(name: params[:category])
+      @posts = @category.posts.page(params[:page])
+    else
+      @posts = Post.all.page(params[:page])
     end
-
-    # カテゴリー別or全件
-    @posts = params[:category] ? @category.posts : Post.all #三項演算子
-    # 並べ替え
-    @posts = params[:condition] ? @posts.send(params[:condition]) : @posts.order(created_at: :desc)
+    # 並べ替え  #三項演算子
+    @posts = params[:condition] ? @posts.send(params[:condition]) : @posts.order(created_at: :desc).page(params[:page])
   end
 
   def show

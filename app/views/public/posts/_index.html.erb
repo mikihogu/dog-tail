@@ -1,31 +1,35 @@
 <div class="row">
   <% posts.each do |post| %>
-  <div class="card-deck">
-    <div class="col-3 mb-3">
-      <div class="card border-secondary bg-light" style="width: 13rem">
-        <div class="card-img-top">
-          <%= image_tag post.get_post_image, size: "250x200", class: 'img-fluid' %>
-        </div>
-        <div class="card-body">
-          <%= link_to post_path(post), class: 'link' do %>
-            <h6 class="card-title border-bottom"><b><%= post.name %></b></h6>
-          <% end %>
-          <small>
-            <p class="card-text">一言紹介：<%= post.introduction %></p>
-            <p class="card-text">所在地: <%= post.prefecture %></p>
-            <p class="card-text">
-              <div class="favorite-btn_<%= post.id %>">
-                <%= render 'public/favorites/favorite_btn', post: post %>
-              </div>
-              <div class="interest-btn_<%= post.id %>">
-                <%= render 'public/interests/interest_btn', post: post %>
-              </div>
-              <div><i class="far fa-comment-dots"></i> <%= post.comments.count %></div>
-            <p class="card-text">投稿者: <%= post.member.nickname %></p>
-            <p class="card-text">更新日: <%= l post.updated_at %></p>
-            <p class="card-text">投稿日: <%= l post.created_at %></p>
-          </small>
-        </div>
+  <div class="card-deck mx-1 my-2">
+    <div class="card border-secondary bg-light" style="width: 10rem">
+      <div class="card-img-top">
+        <%= image_tag post.get_post_image, class: 'img-fluid' %>
+      </div>
+      <div class="card-body">
+        <%= link_to post_path(post), class: 'link' do %>
+          <h6 class="card-title border-bottom"><b><%= post.name %></b></h6>
+        <% end %>
+        <small>
+          <div class="card-text">一言紹介：<br><%= post.introduction.truncate(20) %></div>
+        </small>
+      </div>
+      <div class="card-footer bg-light">
+        <small>
+          <div class="card-text">所在地: <%= post.prefecture %></div>
+          <div class="card-btn-area card-text">
+            <div class="card-btn favorite-btn_<%= post.id %>">
+              <%= render 'public/favorites/favorite_btn', post: post %>
+            </div>
+            <div class="card-btn interest-btn_<%= post.id %>">
+              <%= render 'public/interests/interest_btn', post: post %>
+            </div>
+            <div class="card-btn">
+              <i class="far fa-comment-dots"></i> <%= post.comments.count %>
+            </div>
+          </div>
+          <div class="card-text">投稿者: <%= post.member.nickname %></div>
+          <div class="card-text">更新日: <%= l post.updated_at %></div>
+        </small>
       </div>
     </div>
   </div>

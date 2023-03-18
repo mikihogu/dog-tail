@@ -5,7 +5,7 @@
     </div>
     <!--削除ボタン-->
     <div>
-      <%= link_to admin_post_path(@post), method: :delete, 'data-confirm'=>'管理者がこの投稿を削除します', class: 'col-md-1' do %>
+      <%= link_to admin_post_path(@post), method: :delete, 'data-confirm'=>'管理者がこの投稿を削除します', class: 'link col-md-1' do %>
         <i class="fas fa-trash-alt"></i>
       <% end %>
     </div>
@@ -38,7 +38,7 @@
     <div class="col-md-7 offset-0 offset-md-1">
       <!--投稿施設詳細-->
       <%= render 'public/posts/place_info', post: @post %>
-      
+
       <!--コメント-->
       <div class="comment p-3 my-3">
         <%= render 'public/comments/comment', post: @post, comment: @comment %>

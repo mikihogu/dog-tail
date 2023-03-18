@@ -2,7 +2,7 @@ class SearchesController < ApplicationController
   # before_action :authenticate_member!
 
   def search
-    @posts = Post.all 
+    @posts = Post.all
     @categories = Category.all
     if params[:category]
       @category = Category.find_by(name: params[:category])
