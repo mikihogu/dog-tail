@@ -1,0 +1,21 @@
+<div class="container my-3">
+  <div class="row">
+    <div class="col-md-10 text-center mx-auto mb-3">
+      <h2 class="border-bottom">
+        <i class="fas fa-dog"></i>
+        We can go anywhere "with Doggies"<br>
+        Let's see doggie friendly places
+        <i class="fas fa-paw"></i>
+      </h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-10 mx-auto">
+      <h2 class="m-3"><i class="fas fa-dog"></i> 新規会員登録</h2>
+      <%= form_with model: @member, url: member_registration_path, html: {class: 'p-5 shadow-lg', autocomplete: 'off'} do |f| %>
+        <%= render "public/shared/error_messages", resource: resource %>
+        <%= render "public/members/form", f: f, member: resource, submit_text: "会員登録" %>
+      <% end %>
+    </div>
+  </div>
+</div>

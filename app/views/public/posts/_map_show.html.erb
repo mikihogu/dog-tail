@@ -1,0 +1,26 @@
+<style>
+  #map {
+    height: 200px;
+    width: 300px;
+  }
+</style>
+
+<script>
+  // 初期マップの設定
+  let map
+  let marker
+  function initMap(){
+    geocoder = new google.maps.Geocoder()
+
+    map = new google.maps.Map(document.getElementById('map'), {
+      center:  {lat: <%= post.latitude %>, lng: <%= post.longitude%>},
+      zoom: 15,
+    });
+
+    marker = new google.maps.Marker({
+      map: map,
+      position:  {lat: <%= post.latitude %>, lng: <%= post.longitude %>}
+    });
+  }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?language=ja&key=<%= ENV['API_KEY'] %>&callback=initMap" async defer></script>

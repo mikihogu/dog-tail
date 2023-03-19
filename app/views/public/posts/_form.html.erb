@@ -1,0 +1,78 @@
+<div class="form-group row">
+  <%= f.label :name, '施設名称', class: 'col-md-4' %>
+  <%= f.text_field :name, autofocus: true, class: 'col-md-8' %>
+</div>
+
+<div class="form-group row">
+  <%= f.label :introduction, '一言紹介', class: 'col-md-4' %>
+  <%= f.text_field :introduction, autofocus: true, class: 'col-md-8' %>
+</div>
+
+<div class="form-group row">
+  <%= f.label :information, '施設詳細', class: 'col-md-4' %>
+  <%= f.text_area :information, autofocus: true, placeholder: '施設の情報、おすすめポイント 等', class: 'col-md-8', size: '30x5' %>
+</div>
+
+<!--編集画面はプレビュー表示-->
+<div class="form-group row">
+  <%= f.label :post_image, '施設画像', class: 'col-md-4' %>
+  <% if current_page?(new_post_path) %>
+    <%= f.file_field :post_image, accept: 'image/*', class: 'img_field col-md-8', onchange: "loadImage(this, 'post-img');" %>
+  <% else %>
+    <div class="img-preview col-md-8">
+      <%= f.file_field :post_image, accept: 'image/*', class: 'img_field d-none', onchange: "loadImage(this, 'post-img');" %>
+      <%= image_tag @post.get_post_image, height: 200, onClick: "$('.img_field').click()", class: "img_prev" %>
+    </div>
+  <% end %>
+  <div class="row">
+    <div class="offset-0 offset-md-4 col-md-8">
+      <p id="post-img"></p>
+    </div>
+  </div>
+</div>
+
+<div class="form-group row">
+  <%= f.label :category, '施設カテゴリー', class: 'col-md-4' %>
+  <%= f.collection_select :category_id, @categories, :id, :name, include_blank: '選択してください', class: 'form-control col-md-8' %>
+</div>
+
+<div class="form-group row">
+  <%= f.label :tag_ids, 'タグ', class: 'col-md-4' %>
+  <div class="col-md-8 flex-wrap">
+    <%= f.collection_check_boxes :tag_ids, tags, :id, :name %>
+  </div>
+</div>
+
+<div class="form-group row">
+  <%= f.label :prefecture, '施設所在地', class: 'col-md-4' %>
+  <%= f.select :prefecture, Post.prefectures.keys, include_blank: '選択してください', class: 'col-md-8' %>
+</div>
+
+<div class="form-group row">
+  <%= f.label :address, '施設住所', class: 'col-md-4' %>
+  <%= f.text_area :address, id: :address, autofocus: true, placeholder: '施設名を入力していただくとMapと詳細住所が表示されます）', class: 'col-md-6  d-flex align-items-stretch', size: '30x2' %>
+  <%= f.button 'Map更新', type: 'button', class: 'btn btn-sm btn-secondary', onclick: 'codeAddress()' %>
+</div>
+<div class="row">
+  <%= f.label :latitude, '緯度', class: 'col-md-2 offset-1', style: 'display: none;' %>
+  <%= f.text_field :latitude, id: :latitude, class: 'col-md-3', style: 'display: none;' %>
+  <%= f.label :longitude, '経度', class: 'col-md-2 offset-1', style: 'display: none;' %>
+  <%= f.text_field :longitude, id: :longitude, class: 'col-md-3', style: 'display: none;' %>
+  <%= f.hidden_field :latitude, id: 'post_latitude' %>
+  <%= f.hidden_field :longitude, id: 'post_longitude' %>
+</div>
+
+
+<script>
+  function loadImage(obj, elem)
+  {
+  	document.getElementById(elem).innerHTML = '<small>プレビュー</small>';
+  	for (i = 0; i < obj.files.length; i++) {
+  		var fileReader = new FileReader();
+  		fileReader.onload = (function (e) {
+  			document.getElementById(elem).innerHTML += '<img class="img-fluid" src="' + e.target.result + '" style="margin: 5px 0;">';
+  		});
+  		fileReader.readAsDataURL(obj.files[i]);
+  	}
+  }
+</script>

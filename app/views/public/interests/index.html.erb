@@ -1,0 +1,43 @@
+<div class="container my-3">
+  <div class="row">
+    <div class="col-md-8 mb-3">
+      <h2 class="m-3 border-bottom"><i class="fas fa-dog"></i> 気になる施設一覧</h2>
+      <%= link_to '最新順(更新日)', post_interests_path(condition: :latest, category: @category&.name), class: 'btn btn-sm btn-outline-secondary rounded-pill' %>
+      <%= link_to '古い順(投稿日)', post_interests_path(condition: :old, category: @category&.name), class: 'btn btn-sm btn-outline-secondary rounded-pill' %>
+      <%= link_to 'おすすめ順', post_interests_path(condition: :most_favorited, category: @category&.name), class: 'btn btn-sm btn-outline-secondary rounded-pill' %>
+    </div>
+  </div>
+  <!--tab表示-->
+  <div class="wrapper">
+    <ul class="tab-menu">
+      <li class="<%= 'active' unless @category %>"><%= link_to '全て', post_interests_path %></li>
+      <!--タブに表示されたカテゴリー名に紐づく投稿を一覧表示-->
+      <% @categories.each do |category| %>
+        <li class="<%= 'active' if category == @category %>"><%= link_to category.name, post_interests_path(category: category.name) %></li>
+      <% end %>
+    </ul>
+
+    <div class="tab-contents">
+      <div class="tab-area is-active">
+        <% if @interest_posts.empty? %>
+          <div class="row">
+            <div class="col-md-10 mt-5 text-center">
+              <h4>ブックマークした施設はありません</h4>
+            </div>
+          </div>
+        <% else %>
+          <div class="row">
+            <!--一覧-->
+            <div class="col-md-9">
+              <%= render 'public/posts/index', posts: @interest_posts %>
+            </div>
+            <!--Map-->
+            <div class="col-md-3">
+              <%= render 'public/posts/map_index', posts: @interest_posts %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,256 @@
+
+header {
+  background-color: rgba(241, 166, 97, 1.0) !important;
+  color: #755050 !important;
+}
+
+footer {
+  background-color: rgba(241, 166, 97, 1.0)  !important;
+}
+
+main {
+  margin-bottom: 80px;
+}
+
+body {
+  color: #1a1b1c !important;
+  background-color: #fdfdfdf9  !important;
+}
+
+
+/*headerリンク hover*/
+.a-header{
+  transition: .2s;
+  text-decoration: none !important;
+}
+.a-header:hover {
+    text-decoration: none !important;
+    background-color: rgba(230, 230, 230, 0.3);
+    border-radius: 50%;
+}
+
+/*class .a 下線*/
+.a{
+  text-decoration: none !important;
+  position: relative;
+  display: inline-block;
+  color: #755050 !important;
+  transition: .4s;
+}
+.a::after {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  content: '';
+  width: 0;
+  height: 2px;
+  background-color: #755050;
+  transition: .4s;
+  transform: translateX(-50%);
+}
+.a:hover::after {
+  width: 100%;
+}
+
+/*class .link*/
+.link{
+  text-decoration: none !important;
+  transition: color 0.3s;
+  color: #1a1b1c;
+}
+.link:hover {
+  text-decoration: none !important;
+  color: #2f68a5;
+  font-weight: bolder;
+}
+
+
+/* 会員Topページ */
+.top-image {
+  position: relative;
+}
+.top-action {
+  position: absolute;
+}
+.top-action p:hover {
+  background: rgba(255, 255, 255, 0.3)
+}
+.item-wrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* 検索フォーム */
+
+.search-control{
+  color: #c34444 !important;
+  background-color: #ffffff78 !important;
+  border: #ffffff78 !important;
+  border-radius: 2rem !important;
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+
+.search-control::placeholder {
+  color: #c34444 !important;
+  margin-left: 3rem;
+}
+
+.search-control:focus{
+  box-shadow: 0 0 0 0.2rem #f8f9fa38 !important;
+}
+
+.search-control:hover{
+  box-shadow: 0 0 0 0.2rem #f8f9fa38 !important;
+}
+
+.search-btn:hover{
+  box-shadow: 0 0 0 0.2rem #f8f9fa38 !important;
+}
+
+.search-btn{
+  color: #c34444 !important;
+  background-color: #ffffff78 !important;
+  border-color: #ffffff00 !important;
+  border-left: 2px;
+  border-radius: 2rem !important;
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+}
+
+.admin-search > select{
+  background-color: #ffffff78 !important;
+  color: #c34444 ;
+  border:1px #c34444;
+  margin-right: 2px;
+  margin-left: 2px;
+  border-radius: 1rem !important;
+  padding-left: 10px;
+}
+
+/* 検索フォームここまで */
+
+
+/* 画像スワイプ表示 */
+
+:root {
+  --swiper-navigation-color: #333;
+  --swiper-pagination-color: #333;
+}
+
+
+
+/* tab表示 */
+.wrapper {
+  width: 100%;
+  margin: 0 auto;
+}
+
+/*tabの形状*/
+.tab-menu {
+  display: flex;
+  margin: 0;
+}
+
+.tab-menu li {
+  list-style-type: none;
+  width: 25%;
+}
+
+.tab-menu li a {
+  color: #2e1212;
+  text-decoration: none;
+  display: block;
+  margin: 0 5px;
+  padding: 10px 10px;
+  text-align: center;
+  background: #fcfcfc;
+  /* border: 1px solid #000; */
+  /* border-bottom: none; */
+}
+
+/*liにactiveクラスがついた時=タブが選択されている時の形状*/
+.tab-menu li.active a {
+  background: #F9F5EB;
+  color: #2e1212;
+}
+
+/*エリアの表示非表示と形状*/
+.tab-contents {
+  display: flex;
+  justify-content: center;
+}
+
+.tab-area {
+	display: none;/*はじめは非表示*/
+	opacity: 0;/*透過0*/
+	background: #F9F5EB;
+	padding: 50px 20px;
+  width: 100%;
+   /*max-width: 800px;*/
+}
+
+/*areaにis-activeというクラスがついた時=選択されているareaの形状*/
+.tab-area.is-active {
+    display: block;/*選択されたら表示*/
+    animation-name: displayAnime;/*ふわっと表示させるためのアニメーション*/
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+}
+
+
+@keyframes displayAnime{
+from {
+  opacity: 0;
+}
+to {
+  opacity: 1;
+}
+}
+
+/* タブ表示ここまで */
+
+/*投稿一覧card*/
+.card-img-top {
+  width: 100%;
+  height: 100px;
+  overflow: hidden;
+}
+
+.card-text {
+  margin: 5px 0;
+}
+
+.card-btn-area {
+  display: flex;
+}
+
+.card-btn {
+  margin-right: 10px;
+}
+
+
+/*ページネーションデザイン修正*/
+.pagination {
+  border: none;
+  align-items: center;
+}
+
+.pagination>.active>a {
+    background-color: #d05c62 !important;
+    border-color: #d05c62 !important;
+  }
+
+.page-link:hover {
+    color: #a84b4f !important;
+}
+
+.page-item.active .page-link {
+    color: #fff !important;
+}
+
+.page-item .page-link {
+    border-radius: 0.4rem;
+    color: #696969 !important;
+}
+

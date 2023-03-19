@@ -1,0 +1,23 @@
+<div class="container my-3">
+  <div class="row">
+    <div class="col-md-8 mx-auto">
+      <h2 class="m-3 border-bottom"><i class="fas fa-dog"></i> 施設検索タグ</h2>
+
+      <div class="align-center">
+        <div class="row m-3"><h5>登録済み一覧</h5></div>
+        <div class="tag-index">
+          <%= render 'tag_index', tags: @tags %>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-md-11 mx-auto">
+          <h5 class="m-3">追加登録</h5>
+            <div class="tag-form">
+              <%= render 'tag_form', tag: @tag %>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
