@@ -3,7 +3,13 @@ class Public::MembersController < ApplicationController
 
   def show
     @member = Member.find(params[:id])
-    @posts = @member.posts
+    # @posts = @member.posts.limit(3)
+    if params[:show_all]
+      @posts = @member.posts
+      # @posts = @member.posts.page(params[:page]).per(10)
+    else
+      @posts = @member.posts.limit(5)
+    end
   end
 
   def edit
