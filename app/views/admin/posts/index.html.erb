@@ -1,16 +1,17 @@
 <div class="container my-3">
   <div class="row">
     <div class="col-md-8">
-      <h2 class="m-3 border-bottom"><i class="fas fa-dog"></i> 施設一覧</h2>
+      <h2 class="m-3 border-bottom"><i class="fas fa-dog"></i> 投稿一覧</h2>
     </div>
   </div>
 
-  <table class="table">
+  <table class="table table-hover">
     <thead>
       <tr>
         <th>投稿者</th>
         <th>施設名称</th>
         <th>所在地</th>
+        <th>カテゴリー</th>
         <th>一言紹介文</th>
         <th></th>
         <th>更新日</th>
@@ -31,12 +32,12 @@
             <% end %>
           </td>
           <td><%= post.prefecture %></td>
-          <td><%= post.introduction %></td>
+          <td><%= post.category.name %></td>
+          <td><%= post.introduction.truncate(15) %></td>
           <td>
-            <span><i class="fas fa-thumbs-up" style= "color:gray;"></i> <%= post.favorites.count %></span>
-            <span><i class="fas fa-star" style= "color:gray;"></i> <%= post.interests.count %></span>
-            <span><i class="fas fa-comment-dots" style= "color:gray;"></i> <%= post.comments.count %></span>
-            <span><i class="fas fa-exclamation"></i> </span>
+            <span class="mx-1"><i class="far fa-thumbs-up"></i> <%= post.favorites.count %></span>
+            <span class="mx-1"><i class="far fa-star"></i> <%= post.interests.count %></span>
+            <span class="mx-1"><i class="far fa-comment-dots"></i> <%= post.comments.count %></span>
           </td>
           <td><%= l post.updated_at %></td>
           <td><%= l post.created_at %></td>

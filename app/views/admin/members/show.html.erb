@@ -53,7 +53,7 @@
             <div class="swiper-wrapper">
               <% @member.dog_images.each do |dimage| %>
                 <div class="swiper-slide">
-                  <%= image_tag dimage, height: '200', width: auto, class: 'img-fluid' %>
+                  <%= image_tag dimage, height: '200', class: 'img-fluid' %>
                 </div>
               <% end %>
             </div>
@@ -67,6 +67,7 @@
       </div>
       <!--投稿内容-->
       <table class="table my-3 border">
+        <%= link_to "投稿一覧", admin_posts_path(member_id: @member.id), class: 'btn btn-sm btn-outline-secondary rounded-pill' %>
         <thead>
           <tr>
             <th>施設名称</th>

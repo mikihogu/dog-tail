@@ -1,4 +1,5 @@
 class Public::NotificationsController < ApplicationController
+  before_action :authenticate_member!
 
   def index
     if params[:filter] == "unchecked"

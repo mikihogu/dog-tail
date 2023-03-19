@@ -2,7 +2,7 @@
 
 <style>
 #map {
-  height: 250px;
+  height: 300px;
   width: auto;
 }
 </style>
@@ -11,9 +11,9 @@
 <script>
   function initMap() {
 
-    <!--初期表示位置-->
+    // 初期表示位置
     let latlng = new google.maps.LatLng(37.5, 137.5);
-    <!--デザイン-->
+    // デザイン
     let styles = [
       {
         stylers: [
@@ -31,7 +31,7 @@
     let transitLayer = new google.maps.TransitLayer();
     transitLayer.setMap(map);
 
-    <!--複数マーカー ここから-->
+    // 複数マーカー ここから
     <% posts.each do |post|%>
       ( function() {
         let markerLatLng = { lat: <%= post.latitude %>, lng: <%= post.longitude %> }; // 緯度経度のデータ作成
@@ -49,7 +49,7 @@
         });
       })();
     <% end %>
-    <!--複数マーカー ここまで-->
+    // 複数マーカー ここまで
   }
 </script>
 

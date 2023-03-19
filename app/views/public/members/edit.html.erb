@@ -4,7 +4,7 @@
       <h2 class="m-3 border-bottom"><i class="fas fa-dog"></i> 会員情報編集</h2>
       <%= form_with model: @member, method: :patch, html: {class: 'p-5 shadow-lg', autocomplete: 'off'} do |f| %>
         <%= render "public/shared/error_messages", resource: @member %>
-        <%= render "form", f: f, member: @member, submit_text: "Update" %>
+        <%= render "form", f: f, member: @member, submit_text: "更新" %>
       <% end %>
     </div>
   </div>
