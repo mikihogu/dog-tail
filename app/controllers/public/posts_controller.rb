@@ -1,4 +1,6 @@
 class Public::PostsController < ApplicationController
+  before_action :authenticate_member!, except: [:index]
+
   def new
     @post = Post.new
     @posts = Post.all
@@ -33,7 +35,7 @@ class Public::PostsController < ApplicationController
       @posts = Post.all.page(params[:page])
     end
     # 並べ替え  #三項演算子
-    @posts = params[:condition] ? @posts.send(params[:condition]) : @posts.order(created_at: :desc).page(params[:page])
+    @posts = params[:condition] ? @posts.send(params[:condition]) : @posts.order(created_at: :desc)
   end
 
   def show

@@ -36,9 +36,9 @@
         <!--一覧-->
           <div class="col-md-9">
             <%= render 'index', posts: @posts %>
-            <%= paginate @posts %>
+            <%#= paginate @posts %>
           </div>
-  
+        <!--Map-->
           <div class="col-md-3">
             <%= render 'map_index', posts: @posts %>
           </div>

@@ -1,5 +1,5 @@
 class SearchesController < ApplicationController
-  # before_action :authenticate_member!
+  before_action :authenticate_member!
 
   def search
     @posts = Post.all
