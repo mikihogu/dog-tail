@@ -27,6 +27,10 @@ class SearchesController < ApplicationController
 
     tag_ids = params[:tag_ids]&.select(&:present?)
     if tag_ids.present?
+      @word = "タグ: "
+      tag_ids.each do |id|
+        @word = @word + ' ' + Tag.find(id).name if id != ""
+      end
       @posts = @posts.joins(:post_tags).where(post_tags: {tag_id: tag_ids}).group("posts.id").having("count(*) = #{tag_ids.length}")
     end
     @posts = @posts.send(params[:condition]) if params[:condition]

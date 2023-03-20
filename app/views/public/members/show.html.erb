@@ -155,10 +155,11 @@
         投稿一覧（全<%= @member.posts.count %>件）
         <%= link_to "全て見る", member_path(@member.id, show_all: true), class: 'btn btn-sm btn-outline-secondary rounded-pill' %>
         <%= link_to "表示を減らす", member_path(@member.id), class: 'btn btn-sm btn-outline-secondary rounded-pill' %>
+        <%= link_to "+", new_post_path, class: "btn btn-sm rounded-pill border shadow-sm" %>
       </h5>
 
       <%= render 'public/posts/index', posts: @posts %>
-      <%#= paginate @posts %>
+      <%= paginate @posts %>
     </div>
   </div>
   <!--Top-pageリンク-->
