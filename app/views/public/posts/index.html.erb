@@ -9,11 +9,12 @@
       <%= link_to 'おすすめ順', posts_path(condition: :most_favorited, category: @category&.name), class: 'btn btn-sm btn-outline-secondary rounded-pill' %>
     </div>
 
+    <!--Tag検索-->
     <div class="col-md-5 my-3 p-3 border shadow-sm">
       <div class="tag-search">
         <%= form_with url: search_path, local: true, method: :get do |f| %>
           <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :name %>
-          <%= button_tag type: "submit", class: "btn btn-light search-btn" do %>
+          <%= button_tag type: "submit", class: "border rounded-pill shadow-sm search-btn" do %>
             <i class="fas fa-search"></i>
           <% end %>
         <% end %>
@@ -36,11 +37,13 @@
         <!--一覧-->
           <div class="col-md-9">
             <%= render 'index', posts: @posts %>
-            <%= paginate @posts %>
           </div>
 
           <div class="col-md-3">
-            <%= render 'map_index', posts: @posts %>
+              <%= render 'map_index', posts: @posts %>
+            <div class="row mt-5">
+              <%= paginate @posts %>
+            </div>
           </div>
         </div>
       </div>

@@ -10,7 +10,7 @@ class Public::MembersController < ApplicationController
       @posts = @member.posts.limit(3)
     end
     # ブックマーク施設表示
-    interests = Interest.where(member_id: current_member.id).pluck(:post_id)
+    interests = Interest.where(member_id: @member.id).pluck(:post_id)
     @interest_posts = Post.where(id: interests).limit(5)
   end
 
@@ -22,7 +22,7 @@ class Public::MembersController < ApplicationController
     @member = current_member
     if params[:member][:dog_images_ids]
       params[:member][:dog_images_ids].each do |dimage_id|
-        dimage = member.dog_images.find(dimage_id)
+        dimage = @member.dog_images.find(dimage_id)
         dimage.purge
       end
     end
