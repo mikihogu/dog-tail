@@ -1,11 +1,11 @@
 
 header {
-  background-color: rgba(241, 166, 97, 1.0) !important;
+  background-color: #fcc28b !important;
   color: #755050 !important;
 }
 
 footer {
-  background-color: rgba(241, 166, 97, 1.0)  !important;
+  background-color: #fcc28b  !important;
 }
 
 main {
@@ -14,7 +14,8 @@ main {
 
 body {
   color: #1a1b1c !important;
-  background-color: #fdfdfdf9  !important;
+  background-color: #fdfdfd  !important;
+  /*background-image: url("../images/hoge.jpg");*/
 }
 
 
@@ -134,8 +135,8 @@ body {
 /* 画像スワイプ表示 */
 
 :root {
-  --swiper-navigation-color: #333;
-  --swiper-pagination-color: #333;
+  --swiper-navigation-color: transparent;
+  --swiper-pagination-color: transparent;
 }
 
 

@@ -47,6 +47,7 @@
                 </div>
               <% end %>
             <% end %>
+            <%= paginate @notifications %>
           <!--通知が存在しない場合-->
           <% else %>
             <p>現在、未読のコメントはありません</p>

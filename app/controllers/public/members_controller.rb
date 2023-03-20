@@ -3,13 +3,15 @@ class Public::MembersController < ApplicationController
 
   def show
     @member = Member.find(params[:id])
-    # @posts = @member.posts.limit(3)
     if params[:show_all]
       @posts = @member.posts
-      # @posts = @member.posts.page(params[:page]).per(10)
+      # @posts = @member.posts.page(params[:page]).per(4)
     else
-      @posts = @member.posts.limit(5)
+      @posts = @member.posts.limit(3)
     end
+    # ブックマーク施設表示
+    interests = Interest.where(member_id: current_member.id).pluck(:post_id)
+    @interest_posts = Post.where(id: interests).limit(5)
   end
 
   def edit
