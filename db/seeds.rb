@@ -10,3 +10,24 @@ Admin.create!(
   email: 'dog@dog',
   password: 'thedoggies'
 )
+
+(1..10).each do |n|
+  Member.create!(email: "user#{n}@dog",
+                 password: "password#{n}",
+                 nickname: "user#{n}",
+                 name: "username#{n}",
+                 dog: "papillon",
+                 introduction: "hello")
+end
+
+categories =  %w(ドッグラン 公園 カフェ 病院 他)
+
+categories.each do |category|
+  Category.create!(name: category)
+end
+
+tags = %w(ドッグラン 公園 カフェ 病院 ホテル 預かり所 大型犬OK 中型犬 小型犬 ワクチン接種証明 マナーパンツ必須 店内OK)
+
+tags.each do |tag|
+  Tag.create!(name: tag)
+end
