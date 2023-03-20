@@ -34,11 +34,11 @@ class Post < ApplicationRecord
     .sort_by { |x| x.favorited_members.includes(:favorites).size }.reverse }
 
   def get_post_image
-    (post_image.attached?) ? post_image : 'no-image.jpeg'
+    (post_image.attached?) ? post_image : 'no-image.jpg'
   end
 
   def get_image
-    (image.attached?) ? image : 'no-image.jpeg'
+    (image.attached?) ? image : 'no-image.jpg'
   end
 
   def favorited_by?(member)
