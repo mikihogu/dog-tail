@@ -3,13 +3,15 @@ class Public::MembersController < ApplicationController
 
   def show
     @member = Member.find(params[:id])
-    # @posts = @member.posts.limit(3)
     if params[:show_all]
       @posts = @member.posts
-      # @posts = @member.posts.page(params[:page]).per(10)
+      # @posts = @member.posts.page(params[:page]).per(4)
     else
-      @posts = @member.posts.limit(5)
+      @posts = @member.posts.limit(3)
     end
+    # ブックマーク施設表示
+    interests = Interest.where(member_id: @member.id).pluck(:post_id)
+    @interest_posts = Post.where(id: interests).limit(5)
   end
 
   def edit
@@ -20,7 +22,7 @@ class Public::MembersController < ApplicationController
     @member = current_member
     if params[:member][:dog_images_ids]
       params[:member][:dog_images_ids].each do |dimage_id|
-        dimage = member.dog_images.find(dimage_id)
+        dimage = @member.dog_images.find(dimage_id)
         dimage.purge
       end
     end

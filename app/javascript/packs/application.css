@@ -1,11 +1,11 @@
 
 header {
-  background-color: rgba(241, 166, 97, 1.0) !important;
+  background-color: #fcc28b !important;
   color: #755050 !important;
 }
 
 footer {
-  background-color: rgba(241, 166, 97, 1.0)  !important;
+  background-color: #fcc28b  !important;
 }
 
 main {
@@ -14,7 +14,8 @@ main {
 
 body {
   color: #1a1b1c !important;
-  background-color: #fdfdfdf9  !important;
+  background-color: #fdfdfd  !important;
+  /*background-image: url("../images/hoge.jpg");*/
 }
 
 
@@ -34,7 +35,7 @@ body {
   text-decoration: none !important;
   position: relative;
   display: inline-block;
-  color: #755050 !important;
+  color: #755050;
   transition: .4s;
 }
 .a::after {
@@ -44,7 +45,7 @@ body {
   content: '';
   width: 0;
   height: 2px;
-  background-color: #755050;
+  background-color: #1a1b1c;
   transition: .4s;
   transform: translateX(-50%);
 }
@@ -118,15 +119,15 @@ body {
   border-bottom-left-radius: 0 !important;
 }
 
-.admin-search > select{
-  background-color: #ffffff78 !important;
-  color: #c34444 ;
-  border:1px #c34444;
-  margin-right: 2px;
-  margin-left: 2px;
-  border-radius: 1rem !important;
-  padding-left: 10px;
-}
+/*.admin-search > select{*/
+/*  background-color: #ffffff78 !important;*/
+/*  color: #c34444 ;*/
+/*  border:1px #c34444;*/
+/*  margin-right: 2px;*/
+/*  margin-left: 2px;*/
+/*  border-radius: 1rem !important;*/
+/*  padding-left: 10px;*/
+/*}*/
 
 /* 検索フォームここまで */
 
@@ -134,8 +135,8 @@ body {
 /* 画像スワイプ表示 */
 
 :root {
-  --swiper-navigation-color: #333;
-  --swiper-pagination-color: #333;
+  --swiper-navigation-color: transparent;
+  --swiper-pagination-color: transparent;
 }
 
 
@@ -167,6 +168,10 @@ body {
   background: #fcfcfc;
   /* border: 1px solid #000; */
   /* border-bottom: none; */
+}
+
+.tab-menu li a:hover {
+  font-weight: bolder;
 }
 
 /*liにactiveクラスがついた時=タブが選択されている時の形状*/
@@ -254,3 +259,65 @@ to {
     color: #696969 !important;
 }
 
+/*page-topリンクの形状*/
+#page-top a{
+	display: flex;
+	justify-content:center;
+	align-items:center;
+	background:#fcc28b;
+	border-radius: 5px;
+	width: 60px;
+	height: 60px;
+	color: #755050;
+	text-align: center;
+	text-transform: uppercase; 
+	text-decoration: none;
+	font-size:0.6rem;
+	transition:all 0.3s;
+}
+
+#page-top a:hover{
+	background: #777;
+}
+
+/*リンクを右下に固定*/
+#page-top {
+	position: fixed;
+	right: 20px;
+	bottom:100px;
+	z-index: 2;
+    /*はじめは非表示*/
+	opacity: 0;
+	transform: translateX(100px);
+}
+
+/*　左の動き　*/
+#page-top.LeftMove{
+	animation: LeftAnime 0.5s forwards;
+}
+
+@keyframes LeftAnime{
+  from {
+    opacity: 0;
+	transform: translateX(100px);
+  }
+  to {
+    opacity: 1;
+	transform: translateX(0);
+  }
+}
+
+/*　右の動き　*/
+#page-top.RightMove{
+	animation: RightAnime 0.5s forwards;
+}
+@keyframes RightAnime{
+  from {
+  	opacity: 1;
+	transform: translateX(0);
+  }
+  to {
+  	opacity: 1;
+	transform: translateX(100px);
+  }
+}

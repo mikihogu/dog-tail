@@ -23,11 +23,11 @@ class Member < ApplicationRecord
   has_many_attached :dog_images
 
   def get_image
-    (image.attached?) ? image : 'no-image.jpeg'
+    (image.attached?) ? image : 'no-image.jpg'
   end
 
   def get_dog_images
-    (dog_images.attached?) ? dog_images : ['dog-no-image.jpeg']
+    (dog_images.attached?) ? dog_images : ['dog-no-image.jpg']
   end
 
   def self.guest

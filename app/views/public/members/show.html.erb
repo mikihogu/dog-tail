@@ -1,7 +1,10 @@
 <div class="container my-3">
   <div class="row">
     <div class="col-md-6 text-center border-bottom">
-      <h2 class="m-3"><i class="fas fa-dog"></i> "<%= @member.nickname %>" さんのページ</h2>
+      <h2 class="m-3">
+        <%= image_tag @member.get_image, style: 'border-radius: 50%', size: '50x50' %>
+        "<%= @member.nickname %>" さんのページ
+      </h2>
     </div>
 
     <div class="col-md-6 p-3">
@@ -38,8 +41,8 @@
   <div class="row">
     <div class="col-md-6 my-5 p-5 shadow-lg">
       <div class="row">
-        <div class="col mb-3 mx-auto">
-          <%= image_tag @member.get_image, height: 200, class: 'img-fluid' %>
+        <div class="col-md-10 mb-3 mx-auto">
+          <%= image_tag @member.get_image, height: '150', class: 'img-fluid img-thumbnail' %>
         </div>
       </div>
       <% if @member.id == current_member.id %>
@@ -63,14 +66,14 @@
     </div>
 
     <!--画像Swiper-->
-    <div class="col-md-6 my-7 pt-5 pl-5">
+    <div class="col-md-6 pt-5">
       <div class="row">
-        <div class="col">
+        <div class="col-md-8 my-7 mx-auto">
           <div class="swiper">
             <div class="swiper-wrapper">
               <% @member.get_dog_images.each do |dimage| %>
                 <div class="swiper-slide">
-                  <%= image_tag dimage, height: '300', class: 'img-fluid' %>
+                  <%= image_tag dimage, height: '200', class: 'img-fluid' %>
                 </div>
               <% end %>
             </div>
@@ -82,65 +85,83 @@
           </div>
         </div>
       </div>
+
+      <!--Swiper js-->
+      <script>
+        const swiper = new Swiper('.swiper', {
+          //オプションの設定
+          loop: true, //最後までスライドしたら最初の画像に戻る
+          autoplay: {
+            delay: 2000, // 2秒ごとにスライドを自動で切り替える
+          },
+
+          //ページネーション表示の設定
+          pagination: {
+            el: '.swiper-pagination', //ページネーションの要素
+          },
+
+          //ナビゲーションボタン（矢印）表示の設定
+          navigation: {
+            nextEl: '.swiper-button-next', //「次へボタン」要素の指定
+            prevEl: '.swiper-button-prev', //「前へボタン」要素の指定
+          }
+        });
+      </script>
+
+      <% if @member.id == current_member.id %>
+        <div class="row">
+          <div class="col-md-11 mt-3 mx-auto">
+            <h5>
+              <i class="fas fa-star"></i>ブックマーク（全<%= @member.interests.count %>件）
+              <%= link_to "全て見る", post_interests_path(current_member), class: 'btn btn-sm btn-outline-secondary rounded-pill' %>
+            </h5>
+            <table class="table table-hover border">
+              <thead>
+                <tr>
+                  <th>施設名称</th>
+                  <th>所在地</th>
+                  <th>カテゴリー</th>
+                </tr>
+              </thead>
+              <tbody>
+              <% if @interest_posts.empty? %>
+                <tr>
+                  <td>ブックマークした施設はありません</td>
+                </tr>
+              <% else %>
+                <% @interest_posts.each do |post| %>
+                  <tr>
+                    <td>
+                      <%= link_to post_path(post), class: 'link' do %>
+                        <%= post.name %>
+                      <% end %>
+                    </td>
+                    <td><%= post.prefecture %></td>
+                    <td><%= post.category.name %></td>
+                  </tr>
+                <% end %>
+              <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      <% end %>
     </div>
-
-    <!--Swiper js-->
-    <script>
-      const swiper = new Swiper('.swiper', {
-        //オプションの設定
-        loop: true, //最後までスライドしたら最初の画像に戻る
-        autoplay: {
-          delay: 2000, // 2秒ごとにスライドを自動で切り替える
-        },
-
-        //ページネーション表示の設定
-        pagination: {
-          el: '.swiper-pagination', //ページネーションの要素
-        },
-
-        //ナビゲーションボタン（矢印）表示の設定
-        navigation: {
-          nextEl: '.swiper-button-next', //「次へボタン」要素の指定
-          prevEl: '.swiper-button-prev', //「前へボタン」要素の指定
-        }
-      });
-    </script>
   </div>
   <!--投稿一覧-->
   <div class="row">
-    <h5>投稿一覧（全<%= @member.posts.count %>件）</h5>
-    <%= link_to "全件表示", member_path(@member.id, show_all: true), class: 'btn btn-sm btn-outline-secondary rounded-pill' %>
-    <%= link_to "表示を減らす", member_path(@member.id), class: 'btn btn-sm btn-outline-secondary rounded-pill' %>
-    <table class="table table-hover my-3 border">
-      <thead>
-        <tr>
-          <th>施設名称</th>
-          <th>所在地</th>
-          <th>カテゴリー</th>
-          <th>タグ</th>
-          <th>一言紹介文</th>
-          <th>更新日</th>
-          <th>投稿日</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @posts.each do |post| %>
-          <tr>
-            <td>
-              <%= link_to post_path(post), class: 'link' do %>
-                <%= post.name %>
-              <% end %>
-            </td>
-            <td><%= post.prefecture %></td>
-            <td><%= post.category.name %></td>
-            <td><%= post.tags.pluck(:name).join(' / ') %></td>
-            <td><%= post.introduction.truncate(15) %></td>
-            <td><%= l post.updated_at %></td>
-            <td><%= l post.created_at %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-     <%#= paginate @posts %>
+    <div class="col-md-11 mx-auto">
+      <h5>
+        投稿一覧（全<%= @member.posts.count %>件）
+        <%= link_to "全て見る", member_path(@member.id, show_all: true), class: 'btn btn-sm btn-outline-secondary rounded-pill' %>
+        <%= link_to "表示を減らす", member_path(@member.id), class: 'btn btn-sm btn-outline-secondary rounded-pill' %>
+      </h5>
+
+      <%= render 'public/posts/index', posts: @posts %>
+      <%#= paginate @posts %>
+    </div>
   </div>
+  <!--Top-pageリンク-->
+  <p id="page-top"><a href="#">Page Top</a></p>
 </div>
+<%= javascript_pack_tag 'pagetop' %>
