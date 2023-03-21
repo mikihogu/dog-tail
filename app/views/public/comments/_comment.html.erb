@@ -17,7 +17,7 @@
         <div class="col-md-7 px-2"><%= safe_join(comment.comment.split("\n"),tag(:br)) %></div>
         <div class="col-md-3"><small><%= l comment.created_at %></small></div>
         <div class="col-md-1">
-          <% if comment.member == current_member %>
+          <% if (comment.member == current_member) || (request.path.match(/\/admin(\/)?/)) %>
             <%= link_to post_comment_path(post, comment), method: :delete, remote: true, class: 'link', 'data-confirm'=>'このコメントを削除します' do %>
               <i class="fas fa-trash-alt"></i>
             <% end %>

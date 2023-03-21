@@ -3,8 +3,8 @@
 
   <div class="container my-3">
     <div class="row">
-      <div class="col-md-8 mb-3">
-        <h2 class="m-3 border-bottom"><i class="fas fa-dog"></i> "<%= @word %>" 検索結果<small>(全<%= @posts.length %>件)</small></h2>
+      <div class="col mb-3">
+        <h2 class="title m-3"><i class="fas fa-search"></i> "<%= @word %>" 検索結果<small>(全<%= @posts.length %>件)</small></h2>
       </div>
     </div>
 
@@ -39,10 +39,9 @@
               <td><%= post.prefecture %></td>
               <td><%= post.introduction %></td>
               <td>
-                <span><i class="fas fa-thumbs-up" style= "color:gray;"></i> <%= post.favorites.count %></span>
-                <span><i class="fas fa-star" style= "color:gray;"></i> <%= post.interests.count %></span>
-                <span><i class="fas fa-comment-dots" style= "color:gray;"></i> <%= post.comments.count %></span>
-                <span><i class="fas fa-exclamation"></i> </span>
+                <span><i class="fas fa-star"></i> <%= post.favorites.count %></span>
+                <span><i class="fas fa-paw"></i> <%= post.interests.count %></span>
+                <span><i class="fas fa-comment-dots"></i> <%= post.comments.count %></span>
               </td>
               <td><%= l post.updated_at %></td>
               <td><%= l post.created_at %></td>
@@ -63,8 +62,8 @@
 <!--会員側の検索結果-->
   <div class="container my-3">
     <div class="row">
-      <div class="col-md-11 mb-3">
-        <h2 class="m-3 border-bottom"><i class="fas fa-dog"></i> "<%= @word %>" 検索結果<small>(全<%= @posts.length %>件)</small></h2>
+      <div class="col mb-3">
+        <h2 class="title m-3"><i class="fas fa-search"></i> "<%= @word %>" 検索結果<small>(全<%= @posts.length %>件)</small></h2>
         <%= link_to '最新順(更新日)', search_path(condition: :latest, category: @category&.name, word: @word), class: 'btn btn-sm btn-outline-secondary rounded-pill' %>
         <%= link_to '古い順(投稿日)', search_path(condition: :old, category: @category&.name, word: @word), class: 'btn btn-sm btn-outline-secondary rounded-pill' %>
         <%= link_to 'おすすめ順', search_path(condition: :most_favorited, category: @category&.name, word: @word), class: 'btn btn-sm btn-outline-secondary rounded-pill' %>
@@ -97,6 +96,9 @@
               <!--Map-->
               <div class="col-md-3">
                 <%= render 'public/posts/map_index', posts: @posts %>
+                <div class="row mt-5">
+                  <%= paginate @posts %>
+                </div>
               </div>
             </div>
           <% end %>

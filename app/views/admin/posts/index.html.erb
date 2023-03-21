@@ -1,7 +1,7 @@
 <div class="container my-3">
   <div class="row">
-    <div class="col-md-8">
-      <h2 class="m-3 border-bottom"><i class="fas fa-dog"></i> 投稿一覧</h2>
+    <div class="col-md-12">
+      <h2 class="title m-3"><i class="fas fa-dog"></i> 投稿一覧</h2>
     </div>
   </div>
 
@@ -47,12 +47,13 @@
           <% end %>
         </tbody>
       </table>
-      <%= paginate @posts %>
+      <div class="row justify-content-center mt-3">
+        <%= paginate @posts %>
+      </div>
     </div>
     <div class="col-md-2">
       <div>
         <%= render 'public/posts/map_index', posts: @posts %>
-        <%= paginate @posts %>
       </div>
     </div>
   </div>

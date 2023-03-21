@@ -1,15 +1,17 @@
 class Admin::PostsController < ApplicationController
+  before_action :authenticate_admin!
+  
   def index
     @categories = Category.all
-    @posts = Post.all.order(created_at: :desc).page(params[:page])
+    @posts = Post.all.order(created_at: :desc).page(params[:page]).per(10)
     if params[:category]
       @category = Category.find_by(name: params[:category])
-      @posts = @category.posts.order(created_at: :desc).page(params[:page])
+      @posts = @category.posts.order(created_at: :desc).page(params[:page]).per(10)
     end
     
     # 会員ごとの投稿一覧表示のため
     if params[:member_id]
-      @posts = Post.where(member_id: params[:member_id]).page(params[:page])
+      @posts = Post.where(member_id: params[:member_id]).page(params[:page]).per(10)
     end
   end
   

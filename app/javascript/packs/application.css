@@ -14,7 +14,7 @@ main {
 
 body {
   color: #1a1b1c !important;
-  background-color: #fdfdfd  !important;
+  background-color: #f9f9f9  !important;
   /*background-image: url("../images/hoge.jpg");*/
 }
 
@@ -81,6 +81,47 @@ body {
   flex-wrap: wrap;
 }
 
+/*top,about*/
+.headline {
+  font-family: 'Courgette', cursive;
+  background: none;
+  border: 1px solid #f3cbd0;
+  margin: 10px;
+  padding: 20px;
+  position: relative;
+  /*文字に影*/
+  font-size: xx-large;
+  font-weight: bold;
+  text-shadow: 0 0 10px gray;
+}
+.headline:after {
+  background: none;
+  border: 2px solid #f3cbd0;
+  content: '';
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  width: 100%;
+  height: 100%;
+}
+
+/*title*/
+.title {
+  border-bottom: solid 3px #C4DFAA;
+  position: relative;
+}
+
+.title:after {
+  position: absolute;
+  content: " ";
+  display: block;
+  border-bottom: solid 3px #1C6758;
+  bottom: -3px;
+  width: 10%;
+}
+
+
+
 /* 検索フォーム */
 
 .search-control{
@@ -119,26 +160,26 @@ body {
   border-bottom-left-radius: 0 !important;
 }
 
-/*.admin-search > select{*/
-/*  background-color: #ffffff78 !important;*/
-/*  color: #c34444 ;*/
-/*  border:1px #c34444;*/
-/*  margin-right: 2px;*/
-/*  margin-left: 2px;*/
-/*  border-radius: 1rem !important;*/
-/*  padding-left: 10px;*/
-/*}*/
-
 /* 検索フォームここまで */
 
 
 /* 画像スワイプ表示 */
-
 :root {
   --swiper-navigation-color: transparent;
   --swiper-pagination-color: transparent;
 }
 
+/*imgプレビュー*/
+.preview {
+  width: 200px;
+  max-height: 250px;
+  margin: 5px 5px 0 0;
+}
+/*マイページswipeサイズ*/
+.dogimages_size {
+  width: auto;
+  max-height: 250px;
+}
 
 
 /* tab表示 */
@@ -166,8 +207,6 @@ body {
   padding: 10px 10px;
   text-align: center;
   background: #fcfcfc;
-  /* border: 1px solid #000; */
-  /* border-bottom: none; */
 }
 
 .tab-menu li a:hover {
@@ -212,7 +251,6 @@ to {
   opacity: 1;
 }
 }
-
 /* タブ表示ここまで */
 
 /*投稿一覧card*/
@@ -220,6 +258,11 @@ to {
   width: 100%;
   height: 100px;
   overflow: hidden;
+}
+
+.card-image {
+  max-width: 100%;
+  height: 11vh;
 }
 
 .card-text {
@@ -236,28 +279,30 @@ to {
 
 
 /*ページネーションデザイン修正*/
-.pagination {
-  border: none;
-  align-items: center;
-}
+
+
+/*.pagination>a {*/
+/*  border: none;*/
+/*}*/
 
 .pagination>.active>a {
-    background-color: #d05c62 !important;
+    background-color: #fcc28b !important;
     border-color: #d05c62 !important;
+    border-radius: 10%;
   }
 
-.page-link:hover {
+.pagination>a:hover {
     color: #a84b4f !important;
-}
-
-.page-item.active .page-link {
-    color: #fff !important;
+    border-color: #d05c62 !important;
+    border-radius: 10%;
 }
 
 .page-item .page-link {
-    border-radius: 0.4rem;
+    border-radius: 10%;
     color: #696969 !important;
 }
+
+
 
 /*page-topリンクの形状*/
 #page-top a{
@@ -270,7 +315,7 @@ to {
 	height: 60px;
 	color: #755050;
 	text-align: center;
-	text-transform: uppercase; 
+	text-transform: uppercase;
 	text-decoration: none;
 	font-size:0.6rem;
 	transition:all 0.3s;
@@ -321,3 +366,4 @@ to {
 	transform: translateX(100px);
   }
 }
+

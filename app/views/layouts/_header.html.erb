@@ -49,34 +49,34 @@
         <% elsif member_signed_in? %>
           <li>
             <%= link_to about_path, class:"a" do %>
-              <div class="nav-link a-header"><i class="fas fa-dog"></i> About</div>
+              <div class="nav-link a-header"><i class="fas fa-dog"></i><small> このサイトについて</small></div>
             <% end %>
           </li>
           <li>
             <%= link_to member_path(current_member), class:"a" do %>
-              <div class="nav-link a-header"><i class="fas fa-user"></i> マイページ</div>
+              <div class="nav-link a-header"><i class="fas fa-user"></i><small> マイページ</small></div>
             <% end %>
           </li>
           <li>
-            <%= link_to posts_path, class:"a" do %>
-              <div class="nav-link a-header"><i class="fas fa-map-marked-alt"></i> 施設一覧</div>
+            <%= link_to posts_path, class:"a", data: { 'turbolinks': false } do %>
+              <div class="nav-link a-header"><i class="fas fa-map-marked-alt"></i><small> 投稿一覧</small></div>
             <% end %>
           </li>
           <li>
             <%= link_to post_interests_path(current_member), class:"a" do %>
-              <div class="nav-link a-header"><i class="fas fa-star"></i> 一覧</div>
+              <div class="nav-link a-header"><i class="fas fa-paw"></i><small> ブックマーク一覧</small></div>
             <% end %>
           </li>
           <li>
             <%= link_to destroy_member_session_path, method: :delete, class:"a" do %>
-              <div class="nav-link a-header"><i class="fas fa-sign-out-alt"></i> ログアウト</div>
+              <div class="nav-link a-header"><i class="fas fa-sign-out-alt"></i><small> ログアウト</small></div>
             <% end %>
           </li>
 
         <% else %>
           <li>
             <%= link_to about_path, class:"a" do %>
-              <div class="nav-link a-header"><i class="fas fa-dog"></i> About</div>
+              <div class="nav-link a-header"><i class="fas fa-dog"></i><small> このサイトについて</small></div>
             <% end %>
           </li>
           <li>
