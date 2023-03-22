@@ -2,13 +2,21 @@ class Admin::MembersController < ApplicationController
   before_action :authenticate_admin!
   
   def index
-    @members = Member.all.page(params[:page]).per(10)
+    # @members = Member.all.order(created_at: :desc).page(params[:page]).per(10)
+    if params[:status]
+      @members = Member.status.page(params[:page]).per(10)
+    elsif params[:old]
+      @members = Member.old.page(params[:page]).per(10)
+    elsif params[:latest]
+      @members = Member.latest.page(params[:page]).per(10)
+    else
+      @members = Member.all.order(created_at: :desc).page(params[:page]).per(10)
+    end
   end
 
   def show
     @member = Member.find(params[:id])
     @posts = @member.posts.limit(5)
-
   end
 
   def update

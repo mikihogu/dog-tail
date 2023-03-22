@@ -6,17 +6,26 @@
 
       <%= link_to '最新順(更新日)', posts_path(condition: :latest, category: @category&.name), class: 'btn btn-sm btn-outline-secondary rounded-pill' %>
       <%= link_to '古い順(投稿日)', posts_path(condition: :old, category: @category&.name), class: 'btn btn-sm btn-outline-secondary rounded-pill' %>
-      <%= link_to 'おすすめ順', posts_path(condition: :most_favorited, category: @category&.name), class: 'btn btn-sm btn-outline-secondary rounded-pill' %>
+      <%= link_to posts_path(condition: :most_favorited, category: @category&.name), class: 'btn btn-sm btn-outline-secondary rounded-pill' do %>
+        <i class="fas fa-star"></i>おすすめ順
+      <% end %>
     </div>
 
     <!--Tag検索-->
     <div class="col-md-5 my-3 p-3 border shadow-sm">
       <div class="tag-search">
         <%= form_with url: search_path, local: true, method: :get do |f| %>
-          <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :name %>
-          <%= button_tag type: "submit", class: "border rounded-pill shadow-sm search-btn" do %>
-            <i class="fas fa-search"></i>
-          <% end %>
+          <div class="d-flex flex-row flex-wrap">
+            <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :name do |b| %>
+              <div class="mx-1">
+                <%= b.check_box %>
+                <%= b.label %>
+              </div>
+            <% end %>
+            <%= button_tag type: "submit", class: "border rounded-pill shadow-sm search-btn" do %>
+              <i class="fas fa-search"></i>
+            <% end %>
+          </div>
         <% end %>
       </div>
     </div>
@@ -46,7 +55,10 @@
             <%= render 'map_index', posts: @posts %>
           </div>
         </div>
+        <!--Top-pageリンク-->
+        <p id="page-top"><a href="#">Page Top</a></p>
       </div>
     </div>
   </div>
-</div>
+</div
+<%= javascript_pack_tag 'pagetop' %>

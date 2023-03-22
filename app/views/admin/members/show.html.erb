@@ -7,7 +7,7 @@
       </h2>
     </div>
 
-    <div class="col-md-6 p-3">
+    <div class="col-md-3 mx-auto pt-3">
       <%= form_with model: @member, url: admin_member_path(@member.id), method: :patch, local: true  do |f| %>
         <%= f.radio_button :is_deleted, :false %>
         <%= f.label :is_deleted, "会員", value: "false", class: "mr-3" %>
@@ -16,31 +16,16 @@
         <%= f.submit '変更' %>
       <% end %>
     </div>
+    <div class="col-md-3 mx-auto pt-3">
+      <span class="mx-3"><i class="fas fa-star"></i> <%= @member.favorites.count %></span>
+      <span class="mx-3"><i class="fas fa-paw"></i> <%= @member.interests.count %></span>
+      <span class="mx-3"><i class="far fa-comment-dots"></i> <%= @member.comments.count %></span>
+    </div>
   </div>
   <div class="row">
     <div class="col-md-6 my-5 p-5 shadow-lg">
       <!--会員情報-->
-      <div class="row">
-        <div class="col-md-10 mb-3 mx-auto">
-          <%= image_tag @member.get_image, class: 'img-fluid img-thumbnail' %>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-4"><p>名前：</p></div>
-        <div class="col-md-8"><%= @member.name %></div>
-      </div>
-      <div class="row">
-        <div class="col-md-4"><p>ニックネーム：</p></div>
-        <div class="col-md-8"><%= @member.nickname %></div>
-      </div>
-      <div class="row">
-        <div class="col-md-4"><p>好きな犬種：</p></div>
-        <div class="col-md-8"><%= @member.dog %></div>
-      </div>
-      <div class="row">
-        <div class="col-md-4"><p>自己紹介文：</p></div>
-        <div class="col-md-8"><%= safe_join(@member.introduction.split("\n"),tag(:br)) %></div>
-      </div>
+      <%= render 'public/members/member_info', member: @member %>
     </div>
 
     <div class="col-md-6 pt-5">
@@ -50,7 +35,7 @@
       <!--投稿内容-->
       <h5 class="mt-3">
         投稿一覧（全<%= @member.posts.count %>件）
-        <%= link_to "投稿一覧", admin_posts_path(member_id: @member.id), class: 'btn btn-sm btn-outline-secondary rounded-pill' %>
+        <%= link_to "全部見る", admin_posts_path(member_id: @member.id), class: 'btn btn-sm btn-outline-secondary rounded-pill' %>
       </h5>
       <table class="table my-3 border">
         <thead>
@@ -62,7 +47,7 @@
           </tr>
         </thead>
         <tbody>
-          <% @member.posts.each do |post| %>
+          <% @posts.each do |post| %>
             <tr>
               <td>
                 <%= link_to admin_post_path(post), class: 'link' do %>

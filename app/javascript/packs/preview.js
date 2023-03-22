@@ -1,4 +1,4 @@
-$(function() {
+// $(function() {
 
    // 画像1枚プレビュー
   // function readURL(input, img_preview) {
@@ -41,6 +41,7 @@ $(function() {
   // 		fileReader.readAsDataURL(obj.files[i]);
   // 	}
   // }
+  
 
-});
+// });
 

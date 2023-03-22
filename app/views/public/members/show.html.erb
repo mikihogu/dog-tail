@@ -1,38 +1,38 @@
 <div class="container my-3">
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-8">
       <h2 class="title m-3">
         <%= image_tag @member.get_image, style: 'border-radius: 50%', size: '50x50' %>
         "<%= @member.nickname %>" さんのページ
       </h2>
     </div>
 
-    <div class="col-md-6 p-3">
+    <div class="col-md-4 p-3">
       <div class="row">
         <% if @member.id == current_member.id %>
-          <div class="col-md-3">
+          <span class="mx-5">
             <%= link_to edit_member_path, class: 'link' do %>
               <i class="fas fa-edit"></i>
             <% end %>
-          </div>
-          <div class="col-md-2">
+          </span>
+          <span class="mx-3">
             <i class="fas fa-star"></i> <%= @member.favorites.count %>
-          </div>
-          <div class="col-md-2">
+          </span>
+          <span class="mx-3">
             <%= link_to post_interests_path(current_member), class: 'link' do %>
               <i class="fas fa-paw"></i> <%= @member.interests.count %>
             <% end %>
-          </div>
-          <div class="col-md-2">
+          </span>
+          <span class="mx-3">
             <i class="fas fa-comment-dots"></i> <%= @member.comments.count %>
-          </div>
-          <div class="col-md-2">
+          </span>
+          <span class="mx-3">
             <% if @member.id == current_member.id %>
               <%= link_to notifications_path(filter: 'unchecked'), class: 'link' do %>
                 <i class="fas fa-bell"></i> <%= @member.passive_notifications.where(checked: false).count %>
               <% end %>
             <% end %>
-          </div>
+          </span>
         <% end %>
       </div>
     </div>
@@ -41,29 +41,7 @@
   <div class="row">
     <div class="col-md-6 my-5 p-5 shadow-lg">
       <!--会員情報-->
-      <div class="row">
-        <div class="col-md-10 mb-3 mx-auto">
-          <%= image_tag @member.get_image, class: 'img-fluid img-thumbnail' %>
-        </div>
-      </div>
-      <% if @member.id == current_member.id %>
-        <div class="row">
-          <div class="col-md-4"><p>名前：</p></div>
-          <div class="col-md-8"><%= @member.name %></div>
-        </div>
-      <% end %>
-      <div class="row">
-        <div class="col-md-4"><p>ニックネーム：</p></div>
-        <div class="col-md-8"><%= @member.nickname %></div>
-      </div>
-      <div class="row">
-        <div class="col-md-4"><p>好きな犬種：</p></div>
-        <div class="col-md-8"><%= @member.dog %></div>
-      </div>
-      <div class="row">
-        <div class="col-md-4"><p>自己紹介文：</p></div>
-        <div class="col-md-8"><%= safe_join(@member.introduction.split("\n"),tag(:br)) %></div>
-      </div>
+      <%= render 'member_info', member: @member %>
     </div>
 
     <div class="col-md-6 pt-5">
@@ -75,7 +53,7 @@
         <div class="row">
           <div class="col-md-11 mt-3 mx-auto">
             <h5>
-              <i class="fas fa-paw"></i>ブックマーク（全<%= @member.interests.count %>件）
+              <i class="fas fa-paw"></i>ブックマークした施設（全<%= @member.interests.count %>件）
               <%= link_to "全て見る", post_interests_path(current_member), class: 'btn btn-sm btn-outline-secondary rounded-pill' %>
             </h5>
             <table class="table table-hover border">

@@ -4,7 +4,7 @@
       <div class="swiper-wrapper">
         <% member.get_dog_images.each do |dimage| %>
           <div class="swiper-slide">
-            <%= image_tag dimage, class: 'dogimages_size' %>
+            <%= image_tag dimage, class: 'img-fluid swipe-img' %>
           </div>
         <% end %>
       </div>

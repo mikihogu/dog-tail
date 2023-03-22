@@ -11,7 +11,7 @@ class Public::MembersController < ApplicationController
     end
     # ブックマーク施設表示
     interests = Interest.where(member_id: @member.id).pluck(:post_id)
-    @interest_posts = Post.where(id: interests).limit(5)
+    @interest_posts = Post.where(id: interests).limit(4)
   end
 
   def edit

@@ -3,7 +3,7 @@
   <div class="card-deck mx-1 my-2">
     <div class="card border-secondary bg-light" style="width: 10rem">
       <div class="card-img-top">
-        <%= image_tag post.get_post_image, class: 'card-image' %>
+        <%= image_tag post.get_post_image, height: '120', width: '100%' %>
       </div>
       <div class="card-body">
         <%= link_to post_path(post), class: 'link' do %>

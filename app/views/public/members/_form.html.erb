@@ -43,19 +43,19 @@
 <div class="form-group row">
   <%= f.label :dog_images, '犬の画像', class: 'col-md-3 offset-0 offset-md-1' %>
   <div class="img-preview col-md-7">
-    <div class="d-flex">
+    <!--複数プレビュー表示-->
+    <div class="d-flex flex-row flex-wrap">
       <% if member.dog_images.attached? %>
         <% member.dog_images.each do |dimage| %>
           <div style="margin: 5px 5px 5px 0;">
-            <%#= f.check_box :dog_images_ids, {multiple: true}, dimage.id, false %>
             <%= image_tag dimage, height: '100', onClick: "$('.img_field2').click()", class: "img_prev2" %>
           </div>
         <% end %>
       <% end %>
     </div>
     <%= f.file_field :dog_images, accept: 'image/*', multiple: true, class: 'img_field2 d-none', onchange: "loadImage(this, 'dog-images');" %>
-    <button type="button" class="add-dog-images">画像を選ぶ</button>
-    <p id="dog-images"></p>
+    <button type="button" class="add-dog-images">ファイルから画像を選ぶ</button>
+    <div id="dog-images"></div>
     <!--画像をクリックして編集-->
     <script>
       $(document).ready(function() {
@@ -65,6 +65,7 @@
       });
     </script>
   </div>
+
 </div>
 
 <div class="form-group row">
@@ -77,7 +78,7 @@
 <script>
   function loadImage(obj, elem)
   {
-  	document.getElementById(elem).innerHTML = '<div><small>以下の画像を登録します</small></div>';
+  	document.getElementById(elem).innerHTML = '<div><small>↓ 以下の画像を登録します ↓</small></div>';
   	for (i = 0; i < obj.files.length; i++) {
   		var fileReader = new FileReader();
   		fileReader.onload = (function (e) {
@@ -86,4 +87,6 @@
   		fileReader.readAsDataURL(obj.files[i]);
   	}
   }
+  
+  
 </script>

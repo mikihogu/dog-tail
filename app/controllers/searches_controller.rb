@@ -1,12 +1,13 @@
 class SearchesController < ApplicationController
-  before_action :authenticate_member!
+  # before_action :authenticate_admin!
+  # before_action :authenticate_member!
 
   def search
     @posts = Post.all.page(params[:page]).per(12)
     @categories = Category.all
     if params[:category]
       @category = Category.find_by(name: params[:category])
-      @posts = @category.posts
+      @posts = @category.posts.page(params[:page]).per(12)
     end
     @word = params[:word]
     if params[:word].present?
@@ -33,7 +34,11 @@ class SearchesController < ApplicationController
       end
       @posts = @posts.joins(:post_tags).where(post_tags: {tag_id: tag_ids}).group("posts.id").having("count(*) = #{tag_ids.length}")
     end
+    
     @posts = @posts.send(params[:condition]) if params[:condition]
+    if params[:condition] == "most_favorited"
+      @posts = Kaminari.paginate_array(@posts).page(params[:page]).per(8)
+    end
   end
 
 end
