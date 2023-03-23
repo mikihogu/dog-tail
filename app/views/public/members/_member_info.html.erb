@@ -21,3 +21,7 @@
   <div class="col-md-4 col-sm-4 offset-0 offset-md-1">自己紹介文：</div>
   <div class="col-md-7 col-sm-7"><%= safe_join(member.introduction.split("\n"),tag(:br)) %></div>
 </div>
+<div class="row my-3">
+  <div class="col-md-4 col-sm-4 offset-0 offset-md-1">登録日：</div>
+  <div class="col-md-7 col-sm-7"><%= l member.created_at %></div>
+</div>

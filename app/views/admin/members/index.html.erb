@@ -9,6 +9,7 @@
       <%= link_to '更新順(会員/退会)', admin_members_path(status: "true"), class: 'btn btn-sm btn-outline-secondary rounded-pill' %>
       <%= link_to '古い順(登録日)', admin_members_path(old: "true"), class: 'btn btn-sm btn-outline-secondary rounded-pill' %>
       <%= link_to '最新順(登録日)', admin_members_path(latest: "true"), class: 'btn btn-sm btn-outline-secondary rounded-pill' %>
+      <%= link_to 'ニックネーム順', admin_members_path(nickname: "true"), class: 'btn btn-sm btn-outline-secondary rounded-pill' %>
     </div>
   </div>
 

@@ -15,34 +15,34 @@
         <% if admin_signed_in? %>
           <li>
             <%= link_to admin_posts_path, class:"a" do %>
-              <div class="nav-link a-header">施設一覧</div>
+              <div class="nav-link a-header"><small>施設一覧</small></div>
             <% end %>
           </li>
           <li>
             <%= link_to admin_members_path, class:"a" do %>
-              <div class="nav-link a-header">会員一覧</div>
+              <div class="nav-link a-header"><small>会員一覧</small></div>
             <% end %>
           </li>
           <li>
             <%= link_to admin_tags_path, class:"a" do %>
-              <div class="nav-link a-header">タグ一覧</div>
+              <div class="nav-link a-header"><small>タグ一覧</small></div>
             <% end %>
           </li>
           <li>
             <%= link_to admin_categories_path, class:"a" do %>
-              <div class="nav-link a-header">カテゴリー一覧</div>
+              <div class="nav-link a-header"><small>カテゴリー一覧</small></div>
             <% end %>
           </li>
           <li>
             <%= link_to destroy_admin_session_path, method: :delete, class:"a" do %>
-              <div class="nav-link a-header">ログアウト</div>
+              <div class="nav-link a-header"><small>ログアウト</small></div>
             <% end %>
         </li>
 
         <% elsif request.path.match(/\/admin(\/)?/) %>
           <li>
             <%= link_to new_admin_session_path, class:"a" do %>
-              <div class="nav-link a-header">ログイン</div>
+              <div class="nav-link a-header"><small>ログイン</small></div>
             <% end %>
           </li>
 
@@ -59,7 +59,7 @@
           </li>
           <li>
             <%= link_to posts_path, class:"a", data: { 'turbolinks': false } do %>
-              <div class="nav-link a-header"><i class="fas fa-map-marked-alt"></i><small> 投稿一覧</small></div>
+              <div class="nav-link a-header"><i class="fas fa-map-marked-alt"></i><small> 施設一覧</small></div>
             <% end %>
           </li>
           <li>
@@ -81,19 +81,19 @@
           </li>
           <li>
             <%= link_to posts_path, class:"a" do %>
-              <div class="nav-link a-header"><i class="fas fa-map-marked-alt"></i><small> 投稿施設一覧</small></div>
+              <div class="nav-link a-header"><i class="fas fa-map-marked-alt"></i><small> 施設一覧</small></div>
             <% end %>
           </li>
-          <!--<li>-->
-          <!--  <%#= link_to new_member_registration_path, class:"a" do %>-->
-          <!--    <div class="nav-link a-header"><i class="fas fa-user"></i> 新規登録</div>-->
-          <!--  <%# end %>-->
-          <!--</li>-->
-          <!--<li>-->
-          <!--  <%#= link_to new_member_session_path, class:"a" do %>-->
-          <!--    <div class="nav-link a-header"><i class="fas fa-sign-in-alt"></i> ログイン</div>-->
-          <!--  <%# end %>-->
-          <!--</li>-->
+          <li>
+            <%= link_to new_member_registration_path, class:"a" do %>
+              <div class="nav-link a-header"><i class="fas fa-user"></i><small> 新規登録</small></div>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to new_member_session_path, class:"a" do %>
+              <div class="nav-link a-header"><i class="fas fa-sign-in-alt"></i><small> ログイン</small></div>
+            <% end %>
+          </li>
         <% end %>
         </ul>
       </div>

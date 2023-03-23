@@ -31,9 +31,10 @@ class Member < ApplicationRecord
   end
 
   # 並べ替え
-  scope :status, -> { order(is_deleted: :desc) }
+  scope :status, -> { order(is_deleted: :desc, updated_at: :desc) }
   scope :old, -> { order(created_at: :asc) }
   scope :latest, -> { order(created_at: :desc) }
+  scope :nickname, -> { order(nickname: :asc) }
 
   # ゲストユーザー
   def self.guest

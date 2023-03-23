@@ -1,20 +1,25 @@
 class Admin::PostsController < ApplicationController
   before_action :authenticate_admin!
-  
+
   def index
-    @categories = Category.all
-    @posts = Post.all.order(created_at: :desc).page(params[:page]).per(10)
-    if params[:category]
-      @category = Category.find_by(name: params[:category])
-      @posts = @category.posts.order(created_at: :desc).page(params[:page]).per(10)
+    # 並べ替え
+    if params[:old]
+      @posts = Post.old.page(params[:page]).per(10)
+    elsif params[:latest]
+      @posts = Post.latest.page(params[:page]).per(10)
+    elsif params[:most_favorited]
+      posts = Post.most_favorited
+      @posts = Kaminari.paginate_array(posts).page(params[:page]).per(10)
+    else
+      @posts = Post.all.order(created_at: :desc).page(params[:page]).per(10)
     end
-    
+
     # 会員ごとの投稿一覧表示のため
     if params[:member_id]
       @posts = Post.where(member_id: params[:member_id]).page(params[:page]).per(10)
     end
   end
-  
+
   def show
     @post = Post.find(params[:id])
     @comments = @post.comments
@@ -23,7 +28,7 @@ class Admin::PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     if @post.destroy
-      redirect_to :index
+      redirect_to admin_posts_path, notice: "投稿1件を削除しました"
     else
       redirect_to request.referer
     end

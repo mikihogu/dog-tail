@@ -1,8 +1,8 @@
 class Post < ApplicationRecord
 
   validates :name, presence: true
-  validates :introduction, presence: true
-  validates :information, presence: true
+  validates :introduction, presence: true, length: { maximum: 10 }
+  validates :information, presence: true, length: { maximum: 200 }
   validates :post_image, presence: true
   validates :category, presence: true
   validates :tags, presence: true

@@ -31,7 +31,7 @@ body {
     border-radius: 50%;
 }
 
-/*class .a 下線*/
+/*class .a ヘッダーで下線出す*/
 .a{
   text-decoration: none !important;
   position: relative;
@@ -75,7 +75,7 @@ body {
   position: absolute;
 }
 .top-action p:hover {
-  background: rgba(255, 255, 255, 0.3)
+  background: rgba(252, 194, 139, 0.3)
 }
 .item-wrap {
   display: flex;
@@ -293,11 +293,6 @@ to {
 
 
 /*ページネーションデザイン修正*/
-
-
-/*.pagination>a {*/
-/*  border: none;*/
-/*}*/
 
 .pagination>.active>a {
     background-color: #fcc28b !important;
