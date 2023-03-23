@@ -3,12 +3,15 @@ class SearchesController < ApplicationController
   # before_action :authenticate_member!
 
   def search
-    @posts = Post.all.page(params[:page]).per(12)
+    @posts = Post.all.page(params[:page]).per(3)
+    # カテゴリー別タブ表示
     @categories = Category.all
     if params[:category]
       @category = Category.find_by(name: params[:category])
-      @posts = @category.posts.page(params[:page]).per(12)
+      @posts_count = @category.posts
+      @posts = @category.posts.page(params[:page]).per(3)
     end
+    # キーワード検索結果
     @word = params[:word]
     if params[:word].present?
       # splitで正規表現を使ってキーワードを空白(全角・半角・連続)分割する
@@ -26,19 +29,26 @@ class SearchesController < ApplicationController
       end
     end
 
-    tag_ids = params[:tag_ids]&.select(&:present?)
-    if tag_ids.present?
-      @word = "タグ: "
-      tag_ids.each do |id|
-        @word = @word + ' ' + Tag.find(id).name if id != ""
+    @tag_ids = params[:tag_ids]&.select(&:present?)
+    if @tag_ids.present?
+      @tag_word = "タグ: "
+      @tag_ids.each do |id|
+        @tag_word = @tag_word + ' ' + Tag.find(id).name if id != ""
       end
-      @posts = @posts.joins(:post_tags).where(post_tags: {tag_id: tag_ids}).group("posts.id").having("count(*) = #{tag_ids.length}")
+      @posts_count = @posts.joins(:post_tags).where(post_tags: {tag_id: @tag_ids}).group("posts.id").having("count(*) = #{@tag_ids.length}")
+      @posts = @posts.joins(:post_tags).where(post_tags: {tag_id: @tag_ids}).group("posts.id").having("count(*) = #{@tag_ids.length}").page(params[:page]).per(3)
     end
     
-    @posts = @posts.send(params[:condition]) if params[:condition]
+    # 並べ替え  #三項演算子
+    @posts = params[:condition] ? @posts.send(params[:condition]) : @posts.order(created_at: :desc)
     if params[:condition] == "most_favorited"
-      @posts = Kaminari.paginate_array(@posts).page(params[:page]).per(8)
+      @posts = Kaminari.paginate_array(@posts).page(params[:page]).per(3)
     end
+    
+    # @posts = @posts.send(params[:condition]) if params[:condition]
+    # if params[:condition] == "most_favorited"
+    #   @posts = Kaminari.paginate_array(@posts).page(params[:page]).per(3)
+    # end
   end
 
 end

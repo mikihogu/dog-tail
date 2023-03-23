@@ -32,13 +32,13 @@
             <!--一覧-->
             <div class="col-md-9">
               <%= render 'public/posts/index', posts: @interest_posts %>
+              <div class="row justify-content-center mt-3">
+                <%= paginate @interest_posts %>
+              </div>
             </div>
             <!--Map-->
             <div class="col-md-3">
               <%= render 'public/posts/map_index', posts: @interest_posts %>
-              <div class="row justify-content-center mt-3">
-                <%= paginate @interest_posts %>
-              </div>
             </div>
           </div>
         <% end %>

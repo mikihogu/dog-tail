@@ -34,7 +34,7 @@ class Public::PostsController < ApplicationController
     else
       @posts = Post.all.page(params[:page]).per(8)
     end
-   
+
     # 並べ替え  #三項演算子
     @posts = params[:condition] ? @posts.send(params[:condition]) : @posts.order(created_at: :desc).page(params[:page]).per(8)
     if params[:condition] == "most_favorited"

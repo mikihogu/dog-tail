@@ -1,9 +1,9 @@
 class Post < ApplicationRecord
 
   validates :name, presence: true
-  validates :introduction, presence: true, length: { maximum: 10 }
+  validates :introduction, presence: true
   validates :information, presence: true, length: { maximum: 200 }
-  validates :post_image, presence: true
+  # validates :post_image, presence: true
   validates :category, presence: true
   validates :tags, presence: true
   validates :prefecture, presence: true
@@ -12,7 +12,7 @@ class Post < ApplicationRecord
   # validates :longitude, presence: true
 
   belongs_to :member
-  belongs_to :category
+  belongs_to :category, optional: true #上記バリデーションのメッセージを統一するため
   has_many :post_tags, dependent: :destroy
   has_many :tags, through: :post_tags
   has_many :favorites, dependent: :destroy
