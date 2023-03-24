@@ -10,36 +10,33 @@
 
 <div class="form-group row">
   <%= f.label :information, '施設詳細', class: 'col-md-4' %>
-  <%= f.text_area :information, autofocus: true, placeholder: '施設の情報、おすすめポイント 等', class: 'col-md-8', size: '30x5' %>
+  <%= f.text_area :information, autofocus: true, placeholder: '施設の情報、おすすめポイント 等（200文字以内）', class: 'col-md-8', size: '30x5' %>
 </div>
 
-<!--編集画面はプレビュー表示-->
+<!--プレビュー表示-->
 <div class="form-group row">
   <%= f.label :post_image, '施設画像', class: 'col-md-4' %>
-  <% if current_page?(new_post_path) %>
-    <%= f.file_field :post_image, accept: 'image/*', class: 'img_field col-md-8', onchange: "loadImage(this, 'post-img');" %>
-  <% else %>
-    <div class="img-preview col-md-8">
-      <%= f.file_field :post_image, accept: 'image/*', class: 'img_field d-none', onchange: "loadImage(this, 'post-img');" %>
-      <%= image_tag @post.get_post_image, height: 200, onClick: "$('.img_field').click()", class: "img_prev" %>
-    </div>
-  <% end %>
-  <div class="row">
-    <div class="offset-0 offset-md-4 col-md-8">
-      <p id="post-img"></p>
-    </div>
+  <div class="img-preview col-md-8">
+    <%= f.file_field :post_image, accept: 'image/*', class: 'img_field d-none', onchange: "loadImage(this, 'post-img');" %>
+    <%= image_tag post.get_post_image, width: '200', onClick: "$('.img_field').click()", class: "img_prev img-fluid" %>
+    <p id="post-img"></p>
   </div>
 </div>
 
 <div class="form-group row">
   <%= f.label :category, '施設カテゴリー', class: 'col-md-4' %>
-  <%= f.collection_select :category_id, @categories, :id, :name, include_blank: '選択してください', class: 'form-control col-md-8' %>
+  <%= f.collection_select :category_id, categories, :id, :name, include_blank: '選択してください', class: 'form-control col-md-8' %>
 </div>
 
 <div class="form-group row">
   <%= f.label :tag_ids, 'タグ', class: 'col-md-4' %>
-  <div class="col-md-8 flex-wrap">
-    <%= f.collection_check_boxes :tag_ids, tags, :id, :name %>
+  <div class="col-md-8 border d-flex flex-row flex-wrap">
+    <%= f.collection_check_boxes :tag_ids, tags, :id, :name do |b| %>
+      <div class="mx-2 mt-1">
+        <%= b.check_box %>
+        <%= b.label %>
+      </div>
+    <% end %>
   </div>
 </div>
 
@@ -62,15 +59,15 @@
   <%= f.hidden_field :longitude, id: 'post_longitude' %>
 </div>
 
-
+<!--画像プレビュー表示-->
 <script>
   function loadImage(obj, elem)
   {
-  	document.getElementById(elem).innerHTML = '<small>プレビュー</small>';
+  	document.getElementById(elem).innerHTML = '<div><small>↓ 以下の画像を登録します ↓</small></div>';
   	for (i = 0; i < obj.files.length; i++) {
   		var fileReader = new FileReader();
   		fileReader.onload = (function (e) {
-  			document.getElementById(elem).innerHTML += '<img class="img-fluid" src="' + e.target.result + '" style="margin: 5px 0;">';
+  			document.getElementById(elem).innerHTML += '<img class="img-fluid preview" src="' + e.target.result + '">';
   		});
   		fileReader.readAsDataURL(obj.files[i]);
   	}

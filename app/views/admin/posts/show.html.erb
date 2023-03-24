@@ -1,12 +1,12 @@
 <div class="container my-3">
-  <div class="row border-bottom">
+  <div class="row">
     <div class="col-md-9">
-      <h2 class="m-3"><i class="fas fa-dog"></i>施設詳細</h2>
+      <h2 class="title m-3"><i class="fas fa-dog"></i>施設詳細</h2>
     </div>
     <!--削除ボタン-->
     <div>
       <%= link_to admin_post_path(@post), method: :delete, 'data-confirm'=>'管理者がこの投稿を削除します', class: 'link col-md-1' do %>
-        <i class="fas fa-trash-alt"></i>
+        <i class="fas fa-trash-alt"></i>（この投稿を完全に削除する）
       <% end %>
     </div>
   </div>
@@ -22,16 +22,18 @@
         <%= image_tag @post.get_post_image, height: 200, class: 'image-fluid img-thumbnail' %>
       </div>
       <div class="row m-3">
-        <i class="fas fa-thumbs-up" style="color:gray;"></i>おすすめ <%= @post.favorites.count %>
+        <i class="fas fa-star"></i> おすすめ <%= @post.favorites.count %>
       </div>
       <div class="row m-3">
-        <i class="fas fa-star" style="color:gray;"></i>ブックマーク <%= @post.interests.count %>
+        <i class="fas fa-paw"></i> ブックマーク <%= @post.interests.count %>
       </div>
 
       <!--Map表示-->
       <div class="row m-3">
-        <div id='map'></div>
-        <%= render 'public/posts/map_show', post: @post %>
+        <div class="col-md-12 mt-3">
+          <div id='map'></div>
+          <%= render 'public/posts/map_show', post: @post %>
+        </div>
       </div>
     </div>
 

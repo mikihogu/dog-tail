@@ -58,14 +58,6 @@ ActiveRecord::Schema.define(version: 2023_03_16_144830) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "comment_reports", force: :cascade do |t|
-    t.integer "comment_id", null: false
-    t.integer "member_id", null: false
-    t.text "reason", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "comments", force: :cascade do |t|
     t.integer "member_id", null: false
     t.integer "post_id", null: false
@@ -114,14 +106,6 @@ ActiveRecord::Schema.define(version: 2023_03_16_144830) do
     t.integer "visitor_id", null: false
     t.integer "visited_id", null: false
     t.boolean "recheck", default: false, null: false
-  end
-
-  create_table "post_reports", force: :cascade do |t|
-    t.integer "comment_id", null: false
-    t.integer "member_id", null: false
-    t.text "reason", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "post_tags", force: :cascade do |t|

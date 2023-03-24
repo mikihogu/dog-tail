@@ -1,25 +1,38 @@
 <div class="container my-3">
   <div class="row">
     <div class="col-md-7">
-      <h2 class="m-3 border-bottom"><i class="fas fa-dog"></i> 施設一覧</h2>
+      <h2 class="title m-3"><i class="fas fa-map-marked-alt"></i> 施設一覧</h2>
       <%= link_to "+", new_post_path, class: "btn btn-lg rounded-pill border shadow-sm" %>
 
       <%= link_to '最新順(更新日)', posts_path(condition: :latest, category: @category&.name), class: 'btn btn-sm btn-outline-secondary rounded-pill' %>
       <%= link_to '古い順(投稿日)', posts_path(condition: :old, category: @category&.name), class: 'btn btn-sm btn-outline-secondary rounded-pill' %>
-      <%= link_to 'おすすめ順', posts_path(condition: :most_favorited, category: @category&.name), class: 'btn btn-sm btn-outline-secondary rounded-pill' %>
+      <% if member_signed_in? %>
+        <%= link_to posts_path(condition: :most_favorited, category: @category&.name), class: 'btn btn-sm btn-outline-secondary rounded-pill' do %>
+          <i class="fas fa-star"></i>おすすめ順
+        <% end %>
+      <% end %>
     </div>
 
     <!--Tag検索-->
-    <div class="col-md-5 my-3 p-3 border shadow-sm">
-      <div class="tag-search">
-        <%= form_with url: search_path, local: true, method: :get do |f| %>
-          <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :name %>
-          <%= button_tag type: "submit", class: "border rounded-pill shadow-sm search-btn" do %>
-            <i class="fas fa-search"></i>
+    <% if member_signed_in? %>
+      <div class="col-md-5 my-3 p-3 border shadow-sm">
+        <div class="tag-search">
+          <%= form_with url: search_path, local: true, method: :get do |f| %>
+            <div class="d-flex flex-row flex-wrap">
+              <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :name do |b| %>
+                <div class="mx-1">
+                  <%= b.check_box %>
+                  <%= b.label %>
+                </div>
+              <% end %>
+              <%= button_tag type: "submit", class: "border rounded-pill shadow-sm search-btn" do %>
+                <i class="fas fa-search"></i>
+              <% end %>
+            </div>
           <% end %>
-        <% end %>
+        </div>
       </div>
-    </div>
+    <% end %>
   </div>
   <!--tab表示-->
   <div class="wrapper">
@@ -37,16 +50,19 @@
         <!--一覧-->
           <div class="col-md-9">
             <%= render 'index', posts: @posts %>
-          </div>
-
-          <div class="col-md-3">
-              <%= render 'map_index', posts: @posts %>
-            <div class="row mt-5">
+            <div class="row justify-content-center mt-3">
               <%= paginate @posts %>
             </div>
           </div>
+
+          <div class="col-md-3">
+            <%= render 'map_index', posts: @posts %>
+          </div>
         </div>
+        <!--Top-pageリンク-->
+        <p id="page-top"><a href="#">Page Top</a></p>
       </div>
     </div>
   </div>
-</div>
+</div
+<%= javascript_pack_tag 'pagetop' %>

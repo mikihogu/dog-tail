@@ -1,7 +1,7 @@
 <div class="container my-3">
-  <div class="row border-bottom">
+  <div class="row">
     <div class="col-md-9">
-      <h2 class="m-3"><i class="fas fa-dog"></i>施設詳細</h2>
+      <h2 class="title m-3"><i class="fas fa-dog"></i> 施設詳細</h2>
     </div>
     <div>
     <% if @post.member.id == current_member.id %>
@@ -29,11 +29,11 @@
       <div>
         <%= image_tag @post.get_post_image, height: 200, class: 'image-fluid img-thumbnail' %>
       </div>
-      <div class="row align-right">
-        <div class="col-md-3 favorite-btn_<%= @post.id %>">
+      <div class="row">
+        <div class="col-md-5 favorite-btn_<%= @post.id %>">
           <%= render 'public/favorites/favorite_btn', post: @post %>
         </div>
-        <div class="col-md-3 interest-btn_<%= @post.id %>">
+        <div class="col-md-5 interest-btn_<%= @post.id %>">
           <%= render 'public/interests/interest_btn', post: @post %>
         </div>
       </div>
@@ -41,12 +41,14 @@
 
       <!--Map表示-->
       <div class="row">
-        <div id='map'></div>
-        <%= render 'map_show', post: @post %>
+        <div class="col-md-12 my-5">
+          <div id='map'></div>
+          <%= render 'map_show', post: @post %>
+        </div>
       </div>
     </div>
 
-    <div class="col-md-7 offset-1">
+    <div class="col-md-7 offset-md-1 offset-0">
       <!--投稿施設詳細-->
       <%= render 'public/posts/place_info', post: @post %>
 

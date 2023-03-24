@@ -1,13 +1,13 @@
 <div class="container my-3">
   <div class="row">
-    <div class="col-md-6 text-center border-bottom">
-      <h2 class="m-3">
+    <div class="col-md-6">
+      <h2 class="title m-3">
         <%= image_tag @member.get_image, style: 'border-radius: 50%', size: '50x50' %>
         "<%= @member.nickname %>" さんのページ
       </h2>
     </div>
 
-    <div class="col-md-6 p-3">
+    <div class="col-md-3 mx-auto pt-3">
       <%= form_with model: @member, url: admin_member_path(@member.id), method: :patch, local: true  do |f| %>
         <%= f.radio_button :is_deleted, :false %>
         <%= f.label :is_deleted, "会員", value: "false", class: "mr-3" %>
@@ -15,62 +15,29 @@
         <%= f.label :is_deleted, "退会", value: "true", class: "mr-3" %>
         <%= f.submit '変更' %>
       <% end %>
-
+    </div>
+    <div class="col-md-3 mx-auto pt-3">
+      <span class="mx-3"><i class="fas fa-star"></i> <%= @member.favorites.count %></span>
+      <span class="mx-3"><i class="fas fa-paw"></i> <%= @member.interests.count %></span>
+      <span class="mx-3"><i class="far fa-comment-dots"></i> <%= @member.comments.count %></span>
     </div>
   </div>
   <div class="row">
-    <div class="col-md-5 p-5">
+    <div class="col-md-6 my-5 p-5 shadow-lg">
       <!--会員情報-->
-      <div class="row">
-        <div class="col-md-12 my-5 p-5 shadow-lg">
-          <div class="row">
-            <div class="col-md-12 mb-3 mx-auto">
-              <%= image_tag @member.get_image, height: 100, class: 'img-fluid' %>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-4"><p>名前：</p></div>
-            <div class="col-md-8"><%= @member.name %></div>
-          </div>
-          <div class="row">
-            <div class="col-md-4"><p>ニックネーム：</p></div>
-            <div class="col-md-8"><%= @member.nickname %></div>
-          </div>
-          <div class="row">
-            <div class="col-md-4"><p>好きな犬種：</p></div>
-            <div class="col-md-8"><%= @member.dog %></div>
-          </div>
-          <div class="row">
-            <div class="col-md-4"><p>自己紹介文：</p></div>
-            <div class="col-md-8"><%= safe_join(@member.introduction.split("\n"),tag(:br)) %></div>
-          </div>
-        </div>
-      </div>
+      <%= render 'public/members/member_info', member: @member %>
     </div>
 
-    <div class="col-md-7 my-7 pt-5">
+    <div class="col-md-6 pt-5">
       <!--画像Swiper-->
-      <div class="row">
-        <div class="col-md-8 my-3 mx-auto">
-          <div class="swiper">
-            <div class="swiper-wrapper">
-              <% @member.dog_images.each do |dimage| %>
-                <div class="swiper-slide">
-                  <%= image_tag dimage, height: '200', class: 'img-fluid' %>
-                </div>
-              <% end %>
-            </div>
-            <!-- ページネーションの要素 -->
-            <div class="swiper-pagination"></div>
-            <!-- ナビゲーションボタン （前、次） -->
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-button-next"></div>
-          </div>
-        </div>
-      </div>
+      <%= render 'public/members/image_swipe', member: @member %>
+
       <!--投稿内容-->
+      <h5 class="mt-3">
+        投稿一覧（全<%= @member.posts.count %>件）
+        <%= link_to "全部見る", admin_posts_path(member_id: @member.id), class: 'btn btn-sm btn-outline-secondary rounded-pill' %>
+      </h5>
       <table class="table my-3 border">
-        <%= link_to "投稿一覧", admin_posts_path(member_id: @member.id), class: 'btn btn-sm btn-outline-secondary rounded-pill' %>
         <thead>
           <tr>
             <th>施設名称</th>
@@ -80,7 +47,7 @@
           </tr>
         </thead>
         <tbody>
-          <% @member.posts.each do |post| %>
+          <% @posts.each do |post| %>
             <tr>
               <td>
                 <%= link_to admin_post_path(post), class: 'link' do %>
@@ -95,26 +62,5 @@
         </tbody>
       </table>
     </div>
-
-    <script>
-      const swiper = new Swiper('.swiper', {
-        //オプションの設定
-        loop: true, //最後までスライドしたら最初の画像に戻る
-        autoplay: {
-          delay: 2000, // 2秒ごとにスライドを自動で切り替える
-        },
-        //ページネーション表示の設定
-        pagination: {
-          el: '.swiper-pagination', //ページネーションの要素
-        },
-        //ナビゲーションボタン（矢印）表示の設定
-        navigation: {
-          nextEl: '.swiper-button-next', //「次へボタン」要素の指定
-          prevEl: '.swiper-button-prev', //「前へボタン」要素の指定
-        }
-      });
-    </script>
-
   </div>
-  <div class="row"></div>
 </div>

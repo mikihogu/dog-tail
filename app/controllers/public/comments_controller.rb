@@ -1,5 +1,5 @@
 class Public::CommentsController < ApplicationController
-  before_action :authenticate_member!
+  before_action :authenticate_member!, except: [:destroy]
 
   def create
     @post = Post.find(params[:post_id])

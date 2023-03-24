@@ -10,3 +10,45 @@ Admin.create!(
   email: 'dog@dog',
   password: 'thedoggies'
 )
+
+# (1..10).each do |n|
+#   Member.create!(email: "user#{n}@dog",
+#                 password: "password#{n}",
+#                 nickname: "user#{n}",
+#                 name: "username#{n}",
+#                 dog: "papillon",
+#                 introduction: "hello")
+# end
+
+# 会員登録
+[
+ ['保倉こむぎ', 'こむぎ', 'comugi', 'comugi@dog', 'パピヨン', 'Hello'],
+ ['保倉こころ', 'こころ', 'cocoro', 'cocoro@dog', 'パピヨン', 'Hello'],
+ ['保倉ちょこ', 'ちょこ', 'chocochoco', 'choco@dog', 'パピヨン', 'Hello'],
+ ['篠原アル', 'アル', 'aruaru', 'aru@dog', 'キャバリアキングチャールズスパニエル', 'Hello'],
+ ['山本コタロー', 'コタロー', 'kotaro', 'kotaro@dog', 'ゴールデンレトリバー', 'Hello'],
+ ['中村マル', 'マル', 'marumaru', 'maru@dog', 'ヨークシャーテリア', 'Hello'],
+ ['高橋はる', 'ハル', 'haruharu', 'haru@dog', 'チワワ', 'Hello'],
+ ['野口ジョン', 'ジョン', 'jonjon', 'jon@dog', 'ビーグル', 'Hello'],
+ ['北村サク', 'サク', 'sakusaku', 'saku@dog', 'フレンチブルドッグ', 'Hello'],
+].each do |name, nickname, password, email, dog, introduction|
+ Member.create!({ name: name, 
+                  nickname: nickname, 
+                  password: password,
+                  email: email,
+                  dog: dog,
+                  introduction: introduction })
+ end
+
+
+categories = %w(ドッグラン 公園 カフェ 病院 ホテル 他)
+
+categories.each do |category|
+  Category.create!(name: category)
+end
+
+tags = %w(ドッグラン 公園 カフェ 病院 ホテル 預かり所 大型犬OK 中型犬 小型犬 ワクチン接種証明 マナーパンツ必須 店内OK)
+
+tags.each do |tag|
+  Tag.create!(name: tag)
+end

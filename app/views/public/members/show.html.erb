@@ -1,118 +1,59 @@
 <div class="container my-3">
   <div class="row">
-    <div class="col-md-6 text-center border-bottom">
-      <h2 class="m-3">
+    <div class="col-md-8">
+      <h2 class="title m-3">
         <%= image_tag @member.get_image, style: 'border-radius: 50%', size: '50x50' %>
         "<%= @member.nickname %>" さんのページ
       </h2>
     </div>
 
-    <div class="col-md-6 p-3">
+    <div class="col-md-4 p-3">
       <div class="row">
         <% if @member.id == current_member.id %>
-          <div class="col-md-3">
+          <span class="mx-5">
             <%= link_to edit_member_path, class: 'link' do %>
               <i class="fas fa-edit"></i>
             <% end %>
-          </div>
-          <div class="col-md-2">
-            <i class="fas fa-thumbs-up"></i> <%= @member.favorites.count %>
-          </div>
-          <div class="col-md-2">
+          </span>
+          <span class="mx-3">
+            <i class="fas fa-star"></i> <%= @member.favorites.count %>
+          </span>
+          <span class="mx-3">
             <%= link_to post_interests_path(current_member), class: 'link' do %>
-              <i class="fas fa-star"></i> <%= @member.interests.count %>
+              <i class="fas fa-paw"></i> <%= @member.interests.count %>
             <% end %>
-          </div>
-          <div class="col-md-2">
+          </span>
+          <span class="mx-3">
             <i class="fas fa-comment-dots"></i> <%= @member.comments.count %>
-          </div>
-          <div class="col-md-2">
+          </span>
+          <span class="mx-3">
             <% if @member.id == current_member.id %>
               <%= link_to notifications_path(filter: 'unchecked'), class: 'link' do %>
                 <i class="fas fa-bell"></i> <%= @member.passive_notifications.where(checked: false).count %>
               <% end %>
             <% end %>
-          </div>
+          </span>
         <% end %>
       </div>
     </div>
   </div>
-  <!--会員情報-->
+  
   <div class="row">
     <div class="col-md-6 my-5 p-5 shadow-lg">
-      <div class="row">
-        <div class="col-md-10 mb-3 mx-auto">
-          <%= image_tag @member.get_image, height: '150', class: 'img-fluid img-thumbnail' %>
-        </div>
-      </div>
-      <% if @member.id == current_member.id %>
-        <div class="row">
-          <div class="col-md-4"><p>名前：</p></div>
-          <div class="col-md-8"><%= @member.name %></div>
-        </div>
-      <% end %>
-      <div class="row">
-        <div class="col-md-4"><p>ニックネーム：</p></div>
-        <div class="col-md-8"><%= @member.nickname %></div>
-      </div>
-      <div class="row">
-        <div class="col-md-4"><p>好きな犬種：</p></div>
-        <div class="col-md-8"><%= @member.dog %></div>
-      </div>
-      <div class="row">
-        <div class="col-md-4"><p>自己紹介文：</p></div>
-        <div class="col-md-8"><%= safe_join(@member.introduction.split("\n"),tag(:br)) %></div>
-      </div>
+      <!--会員情報-->
+      <%= render 'member_info', member: @member %>
     </div>
 
-    <!--画像Swiper-->
     <div class="col-md-6 pt-5">
-      <div class="row">
-        <div class="col-md-8 my-7 mx-auto">
-          <div class="swiper">
-            <div class="swiper-wrapper">
-              <% @member.get_dog_images.each do |dimage| %>
-                <div class="swiper-slide">
-                  <%= image_tag dimage, height: '200', class: 'img-fluid' %>
-                </div>
-              <% end %>
-            </div>
-            <!-- ページネーションの要素 -->
-            <div class="swiper-pagination"></div>
-            <!-- ナビゲーションボタン （前、次） -->
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-button-next"></div>
-          </div>
-        </div>
-      </div>
+      <!--画像Swiper-->
+      <%= render 'image_swipe', member: @member %>
 
-      <!--Swiper js-->
-      <script>
-        const swiper = new Swiper('.swiper', {
-          //オプションの設定
-          loop: true, //最後までスライドしたら最初の画像に戻る
-          autoplay: {
-            delay: 2000, // 2秒ごとにスライドを自動で切り替える
-          },
-
-          //ページネーション表示の設定
-          pagination: {
-            el: '.swiper-pagination', //ページネーションの要素
-          },
-
-          //ナビゲーションボタン（矢印）表示の設定
-          navigation: {
-            nextEl: '.swiper-button-next', //「次へボタン」要素の指定
-            prevEl: '.swiper-button-prev', //「前へボタン」要素の指定
-          }
-        });
-      </script>
-
+      <!--ブックマーク一覧-->
       <% if @member.id == current_member.id %>
         <div class="row">
           <div class="col-md-11 mt-3 mx-auto">
             <h5>
-              <i class="fas fa-star"></i>ブックマーク（全<%= @member.interests.count %>件）
+              <i class="fas fa-paw"></i>ブックマークした施設（全<%= @member.interests.count %>件）
               <%= link_to "全て見る", post_interests_path(current_member), class: 'btn btn-sm btn-outline-secondary rounded-pill' %>
             </h5>
             <table class="table table-hover border">
@@ -155,10 +96,13 @@
         投稿一覧（全<%= @member.posts.count %>件）
         <%= link_to "全て見る", member_path(@member.id, show_all: true), class: 'btn btn-sm btn-outline-secondary rounded-pill' %>
         <%= link_to "表示を減らす", member_path(@member.id), class: 'btn btn-sm btn-outline-secondary rounded-pill' %>
+        <%= link_to "+", new_post_path, class: "btn btn-sm rounded-pill border shadow-sm" %>
       </h5>
 
       <%= render 'public/posts/index', posts: @posts %>
-      <%#= paginate @posts %>
+      <div class="row justify-content-center mt-3">
+        <%= paginate @posts %>
+      </div>
     </div>
   </div>
   <!--Top-pageリンク-->

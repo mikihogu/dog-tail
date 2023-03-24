@@ -1,7 +1,7 @@
 <div class="search_form">
   <%= form_with url: search_path, local: true, method: :get do |f| %>
     <div class="input-group">
-      <%= f.text_field :word, class: "form-control search-control d-flex align-items-stretch", placeholder: " Search... ", autocomplete: "off", value: params[:word] %>
+      <%= f.text_field :word, class: "form-control search-control d-flex align-items-stretch", placeholder: " 施設名、所在地 ", autocomplete: "off", value: params[:word] %>
       <%= button_tag type: "submit", class: "btn btn-light search-btn" do %>
         <i class="fas fa-search"></i>
       <% end %>

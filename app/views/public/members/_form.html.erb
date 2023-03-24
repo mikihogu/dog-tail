@@ -1,59 +1,61 @@
 <div class="form-group row">
-  <%= f.label :name, '氏名', class: 'col-md-3 offset-1' %>
+  <%= f.label :name, '氏名', class: 'col-md-3 offset-0 offset-md-1' %>
   <%= f.text_field :name, autofocus: true, placeholder: '公開されません', class: 'col-md-7' %>
 </div>
 
 <div class="form-group row">
-  <%= f.label :nickname, 'ニックネーム', class: 'col-md-3 offset-1' %>
+  <%= f.label :nickname, 'ニックネーム', class: 'col-md-3 offset-0 offset-md-1' %>
   <%= f.text_field :nickname, autofocus: true, placeholder: 'サイト上で表示されます', class: 'col-md-7' %>
 </div>
 
 <!--パスワードは編集画面には不要-->
-<% if current_page?(new_member_registration_path) %>
+<% unless current_page?(edit_member_path　) %>
   <div class="form-group row">
-    <%= f.label :password, 'パスワード', class: 'col-md-3 offset-1' %>
+    <%= f.label :password, 'パスワード', class: 'col-md-3 offset-0 offset-md-1' %>
     <%= f.password_field :password, autofocus: true, placeholder: '6文字以上', class: 'col-md-7' %>
   </div>
 <% end %>
 
 <div class="form-group row">
-  <%= f.label :email, 'メールアドレス', class: 'col-md-3 offset-1' %>
+  <%= f.label :email, 'メールアドレス', class: 'col-md-3 offset-0 offset-md-1' %>
   <%= f.email_field :email, autofocus: true, class: 'col-md-7' %>
 </div>
 
 <div class="form-group row">
-  <%= f.label :image, '会員画像', class: 'col-md-3 offset-1' %>
+  <%= f.label :image, '会員画像', class: 'col-md-3 offset-0 offset-md-1' %>
   <div class="img-preview col-md-7">
     <%= f.file_field :image, accept: 'image/*', class: 'img_field d-none', onchange: "loadImage(this, 'member-img');" %>
-    <%= image_tag member.get_image, height: 100, onClick: "$('.img_field').click()", class: "img_prev img-fluid" %>
+    <%= image_tag member.get_image, width: '200', onClick: "$('.img_field').click()", class: "img_prev img-fluid" %>
     <p id="member-img"></p>
   </div>
 </div>
 
 <div class="form-group row">
-  <%= f.label :dog, '好きな犬種', class: 'col-md-3 offset-1' %>
+  <%= f.label :dog, '好きな犬種', class: 'col-md-3 offset-0 offset-md-1' %>
   <%= f.text_field :dog, autofocus: true, placeholder: '複数OKです', class: 'col-md-7' %>
 </div>
 
 <div class="form-group row">
-  <%= f.label :introduction, '自己紹介文', class: 'col-md-3 offset-1' %>
+  <%= f.label :introduction, '自己紹介文', class: 'col-md-3 offset-0 offset-md-1' %>
   <%= f.text_area :introduction, autofocus: true, class: 'col-md-7' %>
 </div>
 
 <div class="form-group row">
-  <%= f.label :dog_images, '犬の画像', class: 'col-md-3 offset-1' %>
-  <div class="img-preview col-md-7" style="display: flex;">
-    <% if member.dog_images.attached? %>
-      <% member.dog_images.each do |dimage| %>
-        <div style="margin: 5px 5px 5px 0;">
-          <%#= f.check_box :dog_images_ids, {multiple: true}, dimage.id, false %>
-          <%= image_tag dimage, height: 100, onClick: "$('.img_field2').click()", class: "img_prev2" %>
-        </div>
+  <%= f.label :dog_images, '犬の画像', class: 'col-md-3 offset-0 offset-md-1' %>
+  <div class="img-preview col-md-7">
+    <!--複数プレビュー表示-->
+    <div class="d-flex flex-row flex-wrap">
+      <% if member.dog_images.attached? %>
+        <% member.dog_images.each do |dimage| %>
+          <div style="margin: 5px 5px 5px 0;">
+            <%= image_tag dimage, height: '100', onClick: "$('.img_field2').click()", class: "img_prev2" %>
+          </div>
+        <% end %>
       <% end %>
-    <% end %>
+    </div>
     <%= f.file_field :dog_images, accept: 'image/*', multiple: true, class: 'img_field2 d-none', onchange: "loadImage(this, 'dog-images');" %>
-    <button type="button" class="add-dog-images">画像を選ぶ</button>
-    <p id="dog-images"></p>
+    <button type="button" class="add-dog-images">ファイルから画像を選ぶ</button>
+    <div id="dog-images"></div>
     <!--画像をクリックして編集-->
     <script>
       $(document).ready(function() {
@@ -63,6 +65,7 @@
       });
     </script>
   </div>
+
 </div>
 
 <div class="form-group row">
@@ -75,11 +78,11 @@
 <script>
   function loadImage(obj, elem)
   {
-  	document.getElementById(elem).innerHTML = '<small>以下の画像を登録します</small>';
+  	document.getElementById(elem).innerHTML = '<div><small>↓ 以下の画像を登録します ↓</small></div>';
   	for (i = 0; i < obj.files.length; i++) {
   		var fileReader = new FileReader();
   		fileReader.onload = (function (e) {
-  		  document.getElementById(elem).innerHTML += '<img class="img-fluid" src="' + e.target.result + '" style="margin: 5px 0;">';
+  		  document.getElementById(elem).innerHTML += '<img class="img-fluid preview" src="' + e.target.result + '">';
   		});
   		fileReader.readAsDataURL(obj.files[i]);
   	}
