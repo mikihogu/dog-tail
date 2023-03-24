@@ -16,21 +16,8 @@
             <% end %>
           </span>
           <span class="mx-3">
-            <i class="fas fa-star"></i> <%= @member.favorites.count %>
-          </span>
-          <span class="mx-3">
-            <%= link_to post_interests_path(current_member), class: 'link' do %>
-              <i class="fas fa-paw"></i> <%= @member.interests.count %>
-            <% end %>
-          </span>
-          <span class="mx-3">
-            <i class="fas fa-comment-dots"></i> <%= @member.comments.count %>
-          </span>
-          <span class="mx-3">
-            <% if @member.id == current_member.id %>
-              <%= link_to notifications_path(filter: 'unchecked'), class: 'link' do %>
-                <i class="fas fa-bell"></i> <%= @member.passive_notifications.where(checked: false).count %>
-              <% end %>
+            <%= link_to notifications_path(filter: 'unchecked'), class: 'link' do %>
+              <i class="fas fa-bell"></i> <%= @member.passive_notifications.where(checked: false).count %>
             <% end %>
           </span>
         <% end %>
