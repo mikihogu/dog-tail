@@ -4,14 +4,14 @@ class Public::MembersController < ApplicationController
   def show
     @member = Member.find(params[:id])
     if params[:show_all]
-      @posts = @member.posts.page(params[:page]).per(10)
+      @posts = @member.posts.order(created_at: :desc).page(params[:page]).per(10)
     else
-      @posts = @member.posts.limit(4)
-      @posts = Kaminari.paginate_array(@posts).page(params[:page])
+      posts = @member.posts.order(created_at: :desc).limit(4)
+      @posts = Kaminari.paginate_array(posts).page(params[:page])
     end
     # ブックマーク施設表示
     interests = Interest.where(member_id: @member.id).pluck(:post_id)
-    @interest_posts = Post.where(id: interests).limit(4)
+    @interest_posts = Post.where(id: interests).order(created_at: :desc).limit(4)
   end
 
   def edit

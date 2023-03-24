@@ -50,7 +50,9 @@
                 </div>
               <% end %>
             <% end %>
-            <%= paginate @notifications %>
+            <div class="row justify-content-center my-2">
+              <%= paginate @notifications %>
+            </div>
           <!--通知が存在しない場合-->
           <% else %>
             <p>現在、未読のコメントはありません</p>
