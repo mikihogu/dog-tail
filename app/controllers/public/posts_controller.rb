@@ -30,15 +30,17 @@ class Public::PostsController < ApplicationController
     # タブ表示(カテゴリー別or全件)
     if params[:category]
       @category = Category.find_by(name: params[:category])
-      @posts = @category.posts.page(params[:page]).per(8)
+      @posts = @category.posts
     else
-      @posts = Post.all.page(params[:page]).per(8)
+      @posts = Post.all
     end
 
     # 並べ替え  #三項演算子
     @posts = params[:condition] ? @posts.send(params[:condition]) : @posts.order(created_at: :desc)
     if params[:condition] == "most_favorited"
       @posts = Kaminari.paginate_array(@posts).page(params[:page]).per(8)
+    else
+      @posts = @posts.page(params[:page]).per(8)
     end
     
   end
