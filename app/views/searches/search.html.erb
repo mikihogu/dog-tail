@@ -41,7 +41,7 @@
               <td>
                 <span><i class="fas fa-star"></i> <%= post.favorites.count %></span>
                 <span><i class="fas fa-paw"></i> <%= post.interests.count %></span>
-                <span><i class="fas fa-comment-dots"></i> <%= post.comments.count %></span>
+                <span><i class="far fa-comment-dots"></i> <%= post.comments.count %></span>
               </td>
               <td><%= l post.updated_at %></td>
               <td><%= l post.created_at %></td>
@@ -74,44 +74,15 @@
         <% else %>
         <!--タグ検索の並べ替え-->
           <h2 class="title m-3"><i class="fas fa-search"></i> "<%= @tag_word %>" 検索結果</h2>
-          <!--<div class="row mx-5">-->
           <%= link_to '最新順(更新日)', search_path(condition: :latest, tag_ids: @tag_ids), class: 'btn btn-sm btn-outline-secondary rounded-pill' %>
           <%= link_to '古い順(投稿日)', search_path(condition: :old, tag_ids: @tag_ids), class: 'btn btn-sm btn-outline-secondary rounded-pill' %>
           <%= link_to search_path(condition: :most_favorited, tag_ids: @tag_ids), class: 'btn btn-sm btn-outline-secondary rounded-pill' do %>
             <i class="fas fa-star"></i>おすすめ順
           <% end %>
-            <%#= form_with url: search_path, local: true, method: :get do |f| %>
-              <%# @tag_ids.each do |tag_id| %>
-                <%#= hidden_field_tag 'tag_ids[]', tag_id %>
-              <%# end %>
-              <%#= hidden_field_tag 'condition', 'latest' %>
-              <%#= button_tag type: "submit", class: 'btn btn-sm btn-outline-secondary rounded-pill mx-1' do %>
-                <!--最新順(更新日)-->
-              <%# end %>
-            <%# end %>
-            <%#= form_with url: search_path, local: true, method: :get do |f| %>
-              <%# @tag_ids.each do |tag_id| %>
-                <%#= hidden_field_tag 'tag_ids[]', tag_id %>
-              <%# end %>
-              <%#= hidden_field_tag 'condition', 'old' %>
-              <%#= button_tag type: "submit", class: 'btn btn-sm btn-outline-secondary rounded-pill mx-1' do %>
-                <!--古い順(投稿日)-->
-              <%# end %>
-            <%# end %>
-            <%#= form_with url: search_path, local: true, method: :get do |f| %>
-              <%# @tag_ids.each do |tag_id| %>
-                <%#= hidden_field_tag 'tag_ids[]', tag_id %>
-              <%# end %>
-              <%#= hidden_field_tag 'condition', 'most_favorited' %>
-              <%#= button_tag type: "submit", class: 'btn btn-sm btn-outline-secondary rounded-pill mx-1' do %>
-                <!--<i class="fas fa-star"></i>おすすめ順-->
-              <%# end %>
-            <%# end %>
-          <!--</div>-->
         <% end %>
       </div>
     </div>
-    
+
     <div class="wrapper">
       <!--キーワード検索結果の場合tab表示-->
       <% unless @tag_ids %>

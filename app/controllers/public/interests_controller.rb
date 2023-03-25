@@ -3,16 +3,18 @@ class Public::InterestsController < ApplicationController
 
   def index
     interests = Interest.where(member_id: current_member.id).pluck(:post_id)
-    @interest_posts = Post.where(id: interests).page(params[:page]).per(4)
+    @interest_posts = Post.where(id: interests)
     @categories = Category.all
     if params[:category]
       @category = Category.find_by(name: params[:category])
-      @interest_posts = @category.posts.where(id: interests).page(params[:page]).per(4)
+      @interest_posts = @category.posts.where(id: interests)
     end
     # 並べ替え  #三項演算子
     @interest_posts = params[:condition] ? @interest_posts.send(params[:condition]) : @interest_posts.order(created_at: :desc)
     if params[:condition] == "most_favorited"
       @interest_posts = Kaminari.paginate_array(@interest_posts).page(params[:page]).per(4)
+    else
+      @interest_posts = @interest_posts.page(params[:page]).per(4)
     end
   end
 

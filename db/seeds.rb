@@ -11,15 +11,6 @@ Admin.create!(
   password: 'thedoggies'
 )
 
-# (1..10).each do |n|
-#   Member.create!(email: "user#{n}@dog",
-#                 password: "password#{n}",
-#                 nickname: "user#{n}",
-#                 name: "username#{n}",
-#                 dog: "papillon",
-#                 introduction: "hello")
-# end
-
 # 会員登録
 [
  ['保倉こむぎ', 'こむぎ', 'comugi', 'comugi@dog', 'パピヨン', 'Hello'],
@@ -32,8 +23,8 @@ Admin.create!(
  ['野口ジョン', 'ジョン', 'jonjon', 'jon@dog', 'ビーグル', 'Hello'],
  ['北村サク', 'サク', 'sakusaku', 'saku@dog', 'フレンチブルドッグ', 'Hello'],
 ].each do |name, nickname, password, email, dog, introduction|
- Member.create!({ name: name, 
-                  nickname: nickname, 
+  Member.create!({ name: name,
+                  nickname: nickname,
                   password: password,
                   email: email,
                   dog: dog,
