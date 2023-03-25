@@ -25,7 +25,8 @@ class Post < ApplicationRecord
   after_validation :geocode, if: :address_changed?
 
   # 並べ替え
-  scope :latest, -> { order(updated_at: :desc) }
+  scope :update_latest, -> { order(updated_at: :desc) }
+  scope :latest, -> { order(created_at: :desc) }
   scope :old, -> { order(created_at: :asc) }
   scope :most_favorited, -> { includes(:favorited_members)
     .sort_by { |x| x.favorited_members.includes(:favorites).size }.reverse }

@@ -26,7 +26,6 @@ class Public::PostsController < ApplicationController
 
   def index
     @categories = Category.all
-
     # タブ表示(カテゴリー別or全件)
     if params[:category]
       @category = Category.find_by(name: params[:category])
