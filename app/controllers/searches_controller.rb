@@ -1,13 +1,18 @@
 class SearchesController < ApplicationController
-  # before_action :authenticate_admin!
-  # before_action :authenticate_member!
 
   def search
     # キーワードが空欄の場合
-    if  params[:word].blank?
-      @message = "no keyword"
-      redirect_back(fallback_location: root_path)
+    if admin_signed_in?
+      if params[:word].blank?
+        redirect_to request.referer, notice: "検索ワードを入力してください"
+      end
+    elsif member_signed_in?
+      if params[:word].blank?
+        redirect_to request.referer, notice: "検索ワードを入力、またはタグを一つ以上選択してください"
+      end
     end
+    
+    
 
     # カテゴリー別タブ表示
     @categories = Category.all
@@ -47,9 +52,9 @@ class SearchesController < ApplicationController
     # 並べ替え  #三項演算子
     @posts = params[:condition] ? @posts.send(params[:condition]) : @posts.order(created_at: :desc)
     if params[:condition] == "most_favorited"
-      @posts = Kaminari.paginate_array(@posts).page(params[:page]).per(4)
+      @posts = Kaminari.paginate_array(@posts).page(params[:page]).per(8)
     else
-      @posts = @posts.page(params[:page]).per(4)
+      @posts = @posts.page(params[:page]).per(8)
     end
   end
 

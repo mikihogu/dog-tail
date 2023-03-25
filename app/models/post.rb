@@ -3,13 +3,10 @@ class Post < ApplicationRecord
   validates :name, presence: true
   validates :introduction, presence: true
   validates :information, presence: true, length: { maximum: 200 }
-  # validates :post_image, presence: true
   validates :category, presence: true
   validates :tags, presence: true
   validates :prefecture, presence: true
   validates :address, presence: true
-  # validates :latitude, presence: true
-  # validates :longitude, presence: true
 
   belongs_to :member
   belongs_to :category, optional: true #上記バリデーションのメッセージを統一するため
