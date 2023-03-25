@@ -44,10 +44,6 @@ class SearchesController < ApplicationController
       @posts = Kaminari.paginate_array(@posts).page(params[:page]).per(4)
     end
     
-    # @posts = @posts.send(params[:condition]) if params[:condition]
-    # if params[:condition] == "most_favorited"
-    #   @posts = Kaminari.paginate_array(@posts).page(params[:page]).per(3)
-    # end
   end
 
 end
