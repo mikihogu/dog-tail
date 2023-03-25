@@ -76,7 +76,7 @@ class Post < ApplicationRecord
   # キーワード検索用
   def self.search(keyword)
     prefecture = prefectures.select{|k, v| k =~ /#{keyword}/ }
-    Post.where("name LIKE ? OR prefecture IS ?","%#{keyword}%", prefecture.values)
+    Post.where("name LIKE ? OR prefecture IN (?)","%#{keyword}%", prefecture.values)
   end
 
   # enum利用
