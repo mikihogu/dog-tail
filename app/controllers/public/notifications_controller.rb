@@ -3,9 +3,9 @@ class Public::NotificationsController < ApplicationController
 
   def index
     if params[:filter] == "unchecked"
-      @notifications = current_member.passive_notifications.where(checked: false).page(params[:page]).per(10)
+      @notifications = current_member.passive_notifications.where(checked: false).order(created_at: :desc).page(params[:page]).per(10)
     else
-      @notifications = current_member.passive_notifications.page(params[:page]).per(10)
+      @notifications = current_member.passive_notifications.order(created_at: :desc).page(params[:page]).per(10)
     end
   end
 
