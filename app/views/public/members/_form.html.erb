@@ -36,7 +36,7 @@
       <% end %>
     </div>
     <%= f.file_field :dog_images, accept: 'image/*', multiple: true, class: 'img_field2 d-none', onchange: "loadImage(this, 'dog-images');" %>
-    <button type="button" class="add-dog-images">ファイルから画像を選ぶ</button>
+    <button type="button" class="add-dog-images">ファイルから画像を選ぶ（複数可）</button>
     <div id="dog-images"></div>
     <!--画像をクリックして編集-->
     <script>
