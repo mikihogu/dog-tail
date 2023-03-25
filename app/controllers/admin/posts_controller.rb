@@ -3,15 +3,12 @@ class Admin::PostsController < ApplicationController
 
   def index
     # 並べ替え
-    if params[:old]
-      @posts = Post.old.page(params[:page]).per(10)
-    elsif params[:latest]
-      @posts = Post.latest.page(params[:page]).per(10)
-    elsif params[:most_favorited]
-      posts = Post.most_favorited
-      @posts = Kaminari.paginate_array(posts).page(params[:page]).per(10)
+    @posts = Post.all
+    @posts = params[:condition] ? @posts.send(params[:condition]) : @posts.order(created_at: :desc)
+    if params[:condition] == "most_favorited"
+      @posts = Kaminari.paginate_array(@posts).page(params[:page]).per(8)
     else
-      @posts = Post.all.order(created_at: :desc).page(params[:page]).per(10)
+      @posts = @posts.page(params[:page]).per(8)
     end
 
     # 会員ごとの投稿一覧表示のため

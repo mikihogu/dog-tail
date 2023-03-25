@@ -3,7 +3,8 @@
     <div class="col-md-7">
       <h2 class="title m-3"><i class="fas fa-map-marked-alt"></i> 施設一覧</h2>
       <%= link_to "+", new_post_path, class: "btn btn-lg rounded-pill border shadow-sm" %>
-      <%= link_to '最新順(更新日)', posts_path(condition: :latest, category: @category&.name), class: 'btn btn-sm btn-outline-secondary rounded-pill' %>
+      <%= link_to '最新順(更新日)', posts_path(condition: :update_latest, category: @category&.name), class: 'btn btn-sm btn-outline-secondary rounded-pill' %>
+      <%= link_to '最新順(投稿日)', posts_path(condition: :latest, category: @category&.name), class: 'btn btn-sm btn-outline-secondary rounded-pill' %>
       <%= link_to '古い順(投稿日)', posts_path(condition: :old, category: @category&.name), class: 'btn btn-sm btn-outline-secondary rounded-pill' %>
       <% if member_signed_in? %>
         <%= link_to posts_path(condition: :most_favorited, category: @category&.name), class: 'btn btn-sm btn-outline-secondary rounded-pill' do %>

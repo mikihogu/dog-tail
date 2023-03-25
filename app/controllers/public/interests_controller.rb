@@ -12,9 +12,9 @@ class Public::InterestsController < ApplicationController
     # 並べ替え  #三項演算子
     @interest_posts = params[:condition] ? @interest_posts.send(params[:condition]) : @interest_posts.order(created_at: :desc)
     if params[:condition] == "most_favorited"
-      @interest_posts = Kaminari.paginate_array(@interest_posts).page(params[:page]).per(4)
+      @interest_posts = Kaminari.paginate_array(@interest_posts).page(params[:page]).per(8)
     else
-      @interest_posts = @interest_posts.page(params[:page]).per(4)
+      @interest_posts = @interest_posts.page(params[:page]).per(8)
     end
   end
 
@@ -22,14 +22,12 @@ class Public::InterestsController < ApplicationController
     @post = Post.find(params[:post_id])
     interest = current_member.interests.new(post_id:@post.id)
     interest.save
-    # redirect_to request.referer
   end
 
   def destroy
     @post = Post.find(params[:post_id])
     interest = current_member.interests.find_by(post_id:@post.id)
     interest.destroy
-    # redirect_to request.referer
   end
 
 end
