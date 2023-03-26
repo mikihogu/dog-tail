@@ -6,8 +6,10 @@
 <div class="form-group row">
   <%= f.label :image, '会員画像', class: 'col-md-3 offset-0 offset-md-1' %>
   <div class="img-preview col-md-7">
-    <%= f.file_field :image, accept: 'image/*', class: 'img_field d-none', onchange: "loadImage(this, 'member-img');" %>
-    <%= image_tag member.get_image, width: '200', onClick: "$('.img_field').click()", class: "img_prev img-fluid" %>
+    <%= f.file_field :image, accept: 'image/*', class: 'img_field_member d-none' %>
+    <!--画像をクリックしたらファイル選択可-->
+    <%= image_tag member.get_image, width: '200', onClick: "$('.img_field_member').click();", class: "img-fluid" %>
+    <!--画像プレビュー表示-->
     <p id="member-img"></p>
   </div>
 </div>
@@ -25,29 +27,21 @@
 <div class="form-group row">
   <%= f.label :dog_images, '犬の画像', class: 'col-md-3 offset-0 offset-md-1' %>
   <div class="img-preview col-md-7">
-    <!--複数プレビュー表示-->
     <div class="d-flex flex-row flex-wrap">
       <% if member.dog_images.attached? %>
         <% member.dog_images.each do |dimage| %>
           <div style="margin: 5px 5px 5px 0;">
-            <%= image_tag dimage, height: '100', onClick: "$('.img_field2').click()", class: "img_prev2" %>
+            <!--画像をクリックしたらファイル選択可-->
+            <%= image_tag dimage, height: '100', onClick: "$('.img_field_dogs').click();" %>
           </div>
         <% end %>
       <% end %>
     </div>
-    <%= f.file_field :dog_images, accept: 'image/*', multiple: true, class: 'img_field2 d-none', onchange: "loadImage(this, 'dog-images');" %>
-    <button type="button" class="add-dog-images">ファイルから画像を選ぶ（複数可）</button>
+    <%= f.file_field :dog_images, accept: 'image/*', multiple: true, class: 'img_field_dogs d-none' %>
+    <button type="button" class="add-dog-images" onClick="$('.img_field_dogs').click();">ファイルから画像を選ぶ（複数可）</button>
+    <!--画像プレビュー表示-->
     <div id="dog-images"></div>
-    <!--画像をクリックして編集-->
-    <script>
-      $(document).ready(function() {
-        $('.add-dog-images').on('click', function() {
-          $('.img_field2').click();
-        });
-      });
-    </script>
   </div>
-
 </div>
 
 <div class="form-group row">
@@ -56,17 +50,4 @@
   </div>
 </div>
 
-<!--画像プレビュー表示-->
-<script>
-  function loadImage(obj, elem)
-  {
-  	document.getElementById(elem).innerHTML = '<div><small>↓ 以下の画像を登録します ↓</small></div>';
-  	for (i = 0; i < obj.files.length; i++) {
-  		var fileReader = new FileReader();
-  		fileReader.onload = (function (e) {
-  		  document.getElementById(elem).innerHTML += '<img class="img-fluid preview" src="' + e.target.result + '">';
-  		});
-  		fileReader.readAsDataURL(obj.files[i]);
-  	}
-  }
-</script>
+<%= javascript_pack_tag 'preview' %>
