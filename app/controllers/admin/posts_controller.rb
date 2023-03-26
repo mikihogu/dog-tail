@@ -6,9 +6,9 @@ class Admin::PostsController < ApplicationController
     @posts = Post.all
     @posts = params[:condition] ? @posts.send(params[:condition]) : @posts.order(created_at: :desc)
     if params[:condition] == "most_favorited"
-      @posts = Kaminari.paginate_array(@posts).page(params[:page]).per(8)
+      @posts = Kaminari.paginate_array(@posts).page(params[:page]).per(10)
     else
-      @posts = @posts.page(params[:page]).per(8)
+      @posts = @posts.page(params[:page]).per(10)
     end
 
     # 会員ごとの投稿一覧表示のため

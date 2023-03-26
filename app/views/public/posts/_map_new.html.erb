@@ -13,10 +13,10 @@
 </style>
 
 <script>
-  let map;
-  let marker;
-  let geocoder;
-  let aft;
+  let map; // マップ
+  let marker; // ピン
+  let geocoder;// 住所
+  let aft; // 一回ピンを作ったか判定用
 
   //初期マップの設定
   function initMap(){
@@ -29,6 +29,7 @@
 
   // 位置情報を入力してEnter(keyCode13)押したらMapに反映される
   document.getElementById('address').addEventListener('keydown',(event) => {
+    // エンターキーがクリックされたか
     if (event.keyCode == 13) {
       codeAddress();
     }
@@ -39,12 +40,11 @@
   function codeAddress(){
     let inputAddress = document.getElementById('address').value;
     geocoder.geocode( { 'address': inputAddress}, function(results, status) {
-      if (status == 'OK') {
+      if (status == 'OK') {  //住所が取得できた場合
         //マーカーが複数できないようにする
         if (aft == true){
-            marker.setMap(null);
+          marker.setMap(null);
         }
-
         //新しくマーカーを作成する
         map.setCenter(results[0].geometry.location);
           marker = new google.maps.Marker({
@@ -72,7 +72,7 @@
           document.getElementById('post_latitude').value = ev.latLng.lat();
           document.getElementById('post_longitude').value = ev.latLng.lng();
 
-          // ドラッグでのピン移動で樹ぅ所を求めるコーディング
+          // ドラッグでのピン移動で住所を求めるコーディング
           let geocoder = new google.maps.Geocoder();
 
           geocoder.geocode({
@@ -96,7 +96,7 @@
   function formattedAddress(address)
   {
     let splitAddress = address.split(' ')
-    splitAddress.shift(1)
+    splitAddress.shift();
 
     return splitAddress.join(' ')
   }
