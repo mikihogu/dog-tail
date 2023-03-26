@@ -1,13 +1,13 @@
 class SearchesController < ApplicationController
 
   def search
-    # キーワードが空欄の場合
+    # 検索条件が空欄の場合
     if admin_signed_in?
       if params[:word].blank?
         redirect_to request.referer, notice: "検索ワードを入力してください"
       end
     elsif member_signed_in?
-      if params[:word].blank?
+      unless (params[:word].present?) || (params[:tag_ids]&.select(&:present?).present?)
         redirect_to request.referer, notice: "検索ワードを入力、またはタグを一つ以上選択してください"
       end
     end
