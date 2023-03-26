@@ -13,12 +13,12 @@
   <%= f.text_area :information, autofocus: true, placeholder: '施設の情報、おすすめポイント 等（200文字以内）', class: 'col-md-8', size: '30x5' %>
 </div>
 
-<!--プレビュー表示-->
 <div class="form-group row">
   <%= f.label :post_image, '施設画像', class: 'col-md-4' %>
   <div class="img-preview col-md-8">
-    <%= f.file_field :post_image, accept: 'image/*', class: 'img_field d-none', onchange: "loadImage(this, 'post-img');" %>
-    <%= image_tag post.get_post_image, width: '200', onClick: "$('.img_field').click()", class: "img_prev img-fluid" %>
+    <%= f.file_field :post_image, accept: 'image/*', class: 'img_field_post d-none' %>
+    <%= image_tag post.get_post_image, width: '200', onClick: "$('.img_field_post').click();", class: "img-fluid" %>
+    <!--画像プレビュー表示-->
     <p id="post-img"></p>
   </div>
 </div>
@@ -59,17 +59,4 @@
   <%= f.hidden_field :longitude, id: 'post_longitude' %>
 </div>
 
-<!--画像プレビュー表示-->
-<script>
-  function loadImage(obj, elem)
-  {
-  	document.getElementById(elem).innerHTML = '<div><small>↓ 以下の画像を登録します ↓</small></div>';
-  	for (i = 0; i < obj.files.length; i++) {
-  		var fileReader = new FileReader();
-  		fileReader.onload = (function (e) {
-  			document.getElementById(elem).innerHTML += '<img class="img-fluid preview" src="' + e.target.result + '">';
-  		});
-  		fileReader.readAsDataURL(obj.files[i]);
-  	}
-  }
-</script>
+<%= javascript_pack_tag 'preview' %>
