@@ -93,7 +93,7 @@ body {
   /*文字に影*/
   font-size: xx-large;
   font-weight: bold;
-  text-shadow: 0 0 10px gray;
+  text-shadow: 0 0 10px #a4a4a4;
 }
 .headline:after {
   background: none;
@@ -186,8 +186,6 @@ body {
 }
 /*マイページswipeサイズ*/
 .swipe-img {
-  /*width: auto;*/
-  /*max-height: 250px;*/
   width: auto;
   max-height: 280px;
 }

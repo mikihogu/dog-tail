@@ -1,5 +1,5 @@
 <!--コメント一覧-->
-<div class="card">
+<div class="card mb-1">
   <div class="comments-count_<%= post.id %>">
     <p class="card-header">
       この施設に関するコメント <i class="far fa-comment-dots"></i> <%= post.comments.count %>件
@@ -11,7 +11,7 @@
       <div class="row border-bottom py-1 align-items-center">
         <div class="col-md-1">
           <%= link_to member_path(comment.member) do %>
-            <%= image_tag comment.member.get_image, size: '30x30' %>
+            <%= image_tag comment.member.get_image, size: '20x20', class: 'img-fluid' %>
           <% end %>
         </div>
         <div class="col-md-7 px-2"><%= safe_join(comment.comment.split("\n"),tag(:br)) %></div>

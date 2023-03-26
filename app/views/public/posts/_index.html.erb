@@ -10,7 +10,7 @@
           <h6 class="card-title border-bottom"><b><%= post.name %></b></h6>
         <% end %>
         <small>
-          <div class="card-text">一言紹介：<br><%= post.introduction.truncate(18) %></div>
+          <div class="card-text"><%= post.introduction.truncate(18) %></div>
         </small>
       </div>
       <div class="card-footer bg-light">
