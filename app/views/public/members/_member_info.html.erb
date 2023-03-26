@@ -5,23 +5,23 @@
 </div>
 <% if (member == current_member) || (admin_signed_in?) %>
   <div class="row my-3">
-    <div class="col-md-4 col-sm-4 offset-0 offset-md-1">名前：</div>
-    <div class="col-md-7 col-sm-7"><%= member.name %></div>
+    <div class="col-md-4 col-4 offset-0 offset-md-1">名前：</div>
+    <div class="col-md-7 col-7"><%= member.name %></div>
   </div>
 <% end %>
 <div class="row my-3">
-  <div class="col-md-4 col-sm-4 offset-0 offset-md-1">ニックネーム：</div>
-  <div class="col-md-7 col-sm-7"><%= member.nickname %></div>
+  <div class="col-md-4 col-4 offset-0 offset-md-1">ニックネーム：</div>
+  <div class="col-md-7 col-7"><%= member.nickname %></div>
 </div>
 <div class="row my-3">
-  <div class="col-md-4 col-sm-4 offset-0 offset-md-1">好きな犬種：</div>
-  <div class="col-md-7 col-sm-7"><%= member.dog %></div>
+  <div class="col-md-4 col-4 offset-0 offset-md-1">好きな犬種：</div>
+  <div class="col-md-7 col-7"><%= member.dog %></div>
 </div>
 <div class="row my-3">
-  <div class="col-md-4 col-sm-4 offset-0 offset-md-1">自己紹介文：</div>
-  <div class="col-md-7 col-sm-7"><%= safe_join(member.introduction.split("\n"),tag(:br)) %></div>
+  <div class="col-md-4 col-4 offset-0 offset-md-1">自己紹介文：</div>
+  <div class="col-md-7 col-7"><%= safe_join(member.introduction.split("\n"),tag(:br)) %></div>
 </div>
 <div class="row my-3">
-  <div class="col-md-4 col-sm-4 offset-0 offset-md-1">登録日：</div>
-  <div class="col-md-7 col-sm-7"><%= l member.created_at %></div>
+  <div class="col-md-4 col-4 offset-0 offset-md-1">登録日：</div>
+  <div class="col-md-7 col-7"><%= l member.created_at %></div>
 </div>
