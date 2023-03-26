@@ -20,6 +20,7 @@ class SearchesController < ApplicationController
     else
       @posts = Post.all
     end
+    
     # キーワード検索結果
     @word = params[:word]
     if params[:word].present?
@@ -48,11 +49,20 @@ class SearchesController < ApplicationController
     end
 
     # 並べ替え  #三項演算子
-    @posts = params[:condition] ? @posts.send(params[:condition]) : @posts.order(created_at: :desc)
-    if params[:condition] == "most_favorited"
-      @posts = Kaminari.paginate_array(@posts).page(params[:page]).per(8)
-    else
-      @posts = @posts.page(params[:page]).per(8)
+    if admin_signed_in?
+      @posts = params[:condition] ? @posts.send(params[:condition]) : @posts.order(created_at: :desc)
+      if params[:condition] == "most_favorited"
+        @posts = Kaminari.paginate_array(@posts).page(params[:page]).per(10)
+      else
+        @posts = @posts.page(params[:page]).per(10)
+      end
+    elsif member_signed_in?
+      @posts = params[:condition] ? @posts.send(params[:condition]) : @posts.order(created_at: :desc)
+      if params[:condition] == "most_favorited"
+        @posts = Kaminari.paginate_array(@posts).page(params[:page]).per(8)
+      else
+        @posts = @posts.page(params[:page]).per(8)
+      end
     end
   end
 
