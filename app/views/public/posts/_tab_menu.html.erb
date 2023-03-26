@@ -1,7 +1,0 @@
-    <ul class="tab-menu">
-      <li class="<%= 'active' unless @category %>"><%= link_to '全て', link_to_all_tab %></li>
-      <!--タブに表示されたカテゴリー名に紐づく投稿を一覧表示-->
-      <% @categories.each do |category| %>
-        <li class="<%= 'active' if category == @category %>"><%= link_to category.name, posts_path(category: category.name) %></li>
-      <% end %>
-    </ul>

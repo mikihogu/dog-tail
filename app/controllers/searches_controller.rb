@@ -12,8 +12,6 @@ class SearchesController < ApplicationController
       end
     end
     
-    
-
     # カテゴリー別タブ表示
     @categories = Category.all
     if params[:category]

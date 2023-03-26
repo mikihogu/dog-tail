@@ -7,7 +7,6 @@
 }
 </style>
 
-<!-- js部分 -->
 <script>
   function initMap() {
 
@@ -28,8 +27,6 @@
       styles: styles,
       center: latlng
     });
-    let transitLayer = new google.maps.TransitLayer();
-    transitLayer.setMap(map);
 
     // 複数マーカー ここから
     <% posts.each do |post|%>
@@ -39,15 +36,15 @@
           position: markerLatLng,
           map: map
         });
-        // マーカーをクリックしたとき、詳細情報を表示
+        // マーカーをクリックしたとき、詳細情報(infowindow)を表示
         let infowindow = new google.maps.InfoWindow({
           position: markerLatLng,
-          <% if admin_signed_in? %>
+          <% if admin_signed_in? %> //詳細ページへのリンク(別タブで開く)
             content: "<a href='<%= admin_post_path(post.id) %>' target='_blank'><%= post.name %></a>"
           <% else %>
             content: "<a href='<%= post_path(post.id) %>' target='_blank'><%= post.name %></a>"
           <% end %>
-        }); //ここで詳細ページへのリンクを表示させる
+        }); //infowindowをクリックすると開く
         marker.addListener('click', function() {
           infowindow.open(map, marker);
         });
