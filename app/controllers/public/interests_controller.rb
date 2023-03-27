@@ -9,6 +9,10 @@ class Public::InterestsController < ApplicationController
       @category = Category.find_by(name: params[:category])
       @interest_posts = @category.posts.where(id: interests)
     end
+    
+    # 表示件数
+    @posts_count = @interest_posts
+    
     # 並べ替え  #三項演算子
     @interest_posts = params[:condition] ? @interest_posts.send(params[:condition]) : @interest_posts.order(created_at: :desc)
     if params[:condition] == "most_favorited"
