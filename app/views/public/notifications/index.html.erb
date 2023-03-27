@@ -22,23 +22,24 @@
             <% @notifications.each do |notification| %>
               <% if notification.visited_id == current_member.id %>
                 <div class="row align-bottom">
-                  <div class="col-md-8">
+                  <div class="col-md-8 col-12">
                     <%= link_to member_path(notification.comment.member), class: 'link' do %>
-                      <%= image_tag notification.comment.member.get_image, size: '30x30' %> <%= notification.comment.member.nickname %>
+                      <%= image_tag notification.comment.member.get_image, size: '30x30', style: 'border-radius: 50%' %> 
+                      <%= notification.comment.member.nickname %>
                     <% end %>
                     さんから
                     <%= link_to post_path(notification.post), class: 'link' do %>
-                      "<b><%= notification.post.name %></b>"
+                      "<b><%= notification.post.name.truncate(15) %></b>"
                     <% end %>
                     に対してコメントがあります。
                   </div>
-                  <div class="col-md-2"><small><%= l notification.created_at %></small></div>
-                  <div class="col-md-1">
+                  <div class="col-md-2 col-9 text-right"><small><%= l notification.created_at %></small></div>
+                  <div class="col-md-1 col-1">
                     <%= link_to notification_path(notification), class: 'link' do %>
                       <i class="far fa-comment-dots"></i>
                     <% end %>
                   </div>
-                  <div class="col-md-1">
+                  <div class="col-md-1 col-1">
                     <%= link_to recheck_notification_path(notification), method: :put, class: 'link' do %>
                       <i class="fas fa-check" style="color: <%= notification.checked? ? 'gray' : 'red' %>;"></i>
                     <% end %>
