@@ -54,7 +54,7 @@
           </li>
           <li>
             <%= link_to member_path(current_member), class:"a" do %>
-              <div class="nav-link a-header"><i class="fas fa-user"></i><small> マイページ</small></div>
+              <div class="nav-link a-header"><%= image_tag current_member.get_image, style: 'border-radius: 50%', size: '20x20' %><small> マイページ</small></div>
             <% end %>
           </li>
           <li>

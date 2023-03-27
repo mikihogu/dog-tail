@@ -12,20 +12,14 @@
 
     // 初期表示位置
     let latlng = new google.maps.LatLng(37.5, 137.5);
-    // デザイン
-    let styles = [
-      {
-        stylers: [
-          { "saturation": 0 },
-          { "lightness": 0 }
-        ]
-        }
-      ];
 
     let map = new google.maps.Map(document.getElementById('map'), {
       zoom: 4.7,
-      styles: styles,
-      center: latlng
+      center: latlng,
+      fullscreenControl: false, //マップを全画面モードで表示するボタンを非表示
+      streetViewControl: false, //ストリートビューに切り替えるボタンを非表示
+      scaleControl: true, //地図のスケールを表示（デフォルトは非表示）
+      mapTypeControl: false //地図と航空写真を切り替えるボタンを非表示
     });
 
     // 複数マーカー ここから
