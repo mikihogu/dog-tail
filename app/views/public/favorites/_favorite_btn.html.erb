@@ -6,7 +6,7 @@
   </div>
 <% else %>
   <div>
-    <%= link_to post_favorites_path(post), method: :post, remote: true, class:"link", style: 'opacity: 0.5;' do |f| %>
+    <%= link_to post_favorites_path(post), method: :post, remote: true, class:"link", style: 'opacity: 0.4;' do |f| %>
       <i class="far fa-star"></i> <%= post.favorites.count %>
     <% end %>
   </div>

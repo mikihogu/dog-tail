@@ -6,6 +6,7 @@ class Public::CommentsController < ApplicationController
     @comment = Comment.new(comment_params)
     @comment.member_id = current_member.id
     @comment.post_id = @post.id
+    @comments = @post.comments.order(created_at: :desc).page(params[:page]).per(10)
     @comment.save
     @post.create_notification_comment!(current_member, @comment.id) #通知する
   end
@@ -14,6 +15,7 @@ class Public::CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
     @post = Post.find(params[:post_id])
     @comment.post_id = @post.id
+    @comments = @post.comments.order(created_at: :desc).page(params[:page]).per(10)
     @comment.destroy
   end
 

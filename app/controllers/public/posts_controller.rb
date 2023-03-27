@@ -47,6 +47,7 @@ class Public::PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @comment = Comment.new
+    @comments = @post.comments.order(created_at: :desc).page(params[:page]).per(10)
   end
 
   def edit
