@@ -4,7 +4,7 @@
   <div class="container my-3">
     <div class="row">
       <div class="col mb-3">
-        <h2 class="title m-3"><i class="fas fa-search"></i> "<%= @word %>" 検索結果<small>(全<%= @posts.length %>件)</small></h2>
+        <h2 class="title m-3"><i class="fas fa-search"></i> "<%= @word %>" 検索結果<small>(全<%= @posts_count.length %>件)</small></h2>
         <%= link_to '最新順(更新日)', search_path(condition: :update_latest, category: @category&.name, word: @word), class: 'btn btn-sm btn-outline-secondary rounded-pill' %>
         <%= link_to '最新順(投稿日)', search_path(condition: :latest, category: @category&.name, word: @word), class: 'btn btn-sm btn-outline-secondary rounded-pill' %>
         <%= link_to '古い順(投稿日)', search_path(condition: :old, category: @category&.name, word: @word), class: 'btn btn-sm btn-outline-secondary rounded-pill' %>
@@ -74,7 +74,7 @@
       <div class="col mb-3">
         <% unless @tag_ids %>
         <!--キーワード検索の並べ替え-->
-          <h2 class="title m-3"><i class="fas fa-search"></i> "<%= @word %>" 検索結果</h2>
+          <h2 class="title m-3"><i class="fas fa-search"></i> "<%= @word %>" 検索結果<small>(全<%= @posts_count.length %>件)</small></h2>
           <%= link_to '最新順(更新日)', search_path(condition: :update_latest, category: @category&.name, word: @word), class: 'btn btn-sm btn-outline-secondary rounded-pill' %>
           <%= link_to '最新順(投稿日)', search_path(condition: :latest, category: @category&.name, word: @word), class: 'btn btn-sm btn-outline-secondary rounded-pill' %>
           <%= link_to '古い順(投稿日)', search_path(condition: :old, category: @category&.name, word: @word), class: 'btn btn-sm btn-outline-secondary rounded-pill' %>
@@ -83,7 +83,7 @@
           <% end %>
         <% else %>
         <!--タグ検索の並べ替え-->
-          <h2 class="title m-3"><i class="fas fa-search"></i> "<%= @tag_word %>" 検索結果</h2>
+          <h2 class="title m-3"><i class="fas fa-search"></i> "<%= @tag_word %>" 検索結果<small>(全<%= @posts_count.length %>件)</small></h2>
           <%= link_to '最新順(更新日)', search_path(condition: :update_latest, tag_ids: @tag_ids), class: 'btn btn-sm btn-outline-secondary rounded-pill' %>
           <%= link_to '最新順(投稿日)', search_path(condition: :latest, tag_ids: @tag_ids), class: 'btn btn-sm btn-outline-secondary rounded-pill' %>
           <%= link_to '古い順(投稿日)', search_path(condition: :old, tag_ids: @tag_ids), class: 'btn btn-sm btn-outline-secondary rounded-pill' %>

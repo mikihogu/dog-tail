@@ -47,7 +47,10 @@ class SearchesController < ApplicationController
       end
       @posts = @posts.joins(:post_tags).where(post_tags: {tag_id: @tag_ids}).group("posts.id").having("count(*) = #{@tag_ids.length}")
     end
-
+    
+    # 検索結果件数
+    @posts_count = @posts
+    
     # 並べ替え  #三項演算子
     if admin_signed_in?
       @posts = params[:condition] ? @posts.send(params[:condition]) : @posts.order(created_at: :desc)
