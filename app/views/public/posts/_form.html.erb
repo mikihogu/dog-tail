@@ -19,7 +19,7 @@
     <%= f.file_field :post_image, accept: 'image/*', class: 'img_field_post d-none' %>
     <%= image_tag post.get_post_image, width: '200', onClick: "$('.img_field_post').click();", class: "img-fluid" %>
     <!--画像プレビュー表示-->
-    <p id="post-img"></p>
+    <div id="post-img"></div>
   </div>
 </div>
 
