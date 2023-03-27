@@ -44,6 +44,10 @@
       <div class="comment p-3 my-3">
         <%= render 'public/comments/comment', post: @post, comment: @comment, comments: @comments %>
       </div>
+      
+      <div id="paginateWrapper">
+        <%= paginate @comments %>
+      </div>
 
     </div>
   </div>
