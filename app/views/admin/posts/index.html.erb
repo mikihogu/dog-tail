@@ -6,11 +6,20 @@
   </div>
   <div class="row">
     <div class="col-md-12 mb-3">
-      <%= link_to '最新順(更新日)', admin_posts_path(condition: :update_latest), class: 'btn btn-sm btn-outline-secondary rounded-pill' %>
-      <%= link_to '最新順(投稿日)', admin_posts_path(condition: :latest), class: 'btn btn-sm btn-outline-secondary rounded-pill' %>
-      <%= link_to '古い順(投稿日)', admin_posts_path(condition: :old), class: 'btn btn-sm btn-outline-secondary rounded-pill' %>
-      <%= link_to admin_posts_path(condition: :most_favorited), class: 'btn btn-sm btn-outline-secondary rounded-pill' do %>
-        <i class="fas fa-star"></i>おすすめ順
+      <% if @member %>
+        <%= link_to '最新順(更新日)', admin_posts_path(condition: :update_latest, member_id: @member.id), class: 'btn btn-sm btn-outline-secondary rounded-pill' %>
+        <%= link_to '最新順(投稿日)', admin_posts_path(condition: :latest, member_id: @member.id), class: 'btn btn-sm btn-outline-secondary rounded-pill' %>
+        <%= link_to '古い順(投稿日)', admin_posts_path(condition: :old, member_id: @member.id), class: 'btn btn-sm btn-outline-secondary rounded-pill' %>
+        <%= link_to admin_posts_path(condition: :most_favorited, member_id: @member.id), class: 'btn btn-sm btn-outline-secondary rounded-pill' do %>
+          <i class="fas fa-star"></i>おすすめ順
+        <% end %>
+      <% else %>
+        <%= link_to '最新順(更新日)', admin_posts_path(condition: :update_latest), class: 'btn btn-sm btn-outline-secondary rounded-pill' %>
+        <%= link_to '最新順(投稿日)', admin_posts_path(condition: :latest), class: 'btn btn-sm btn-outline-secondary rounded-pill' %>
+        <%= link_to '古い順(投稿日)', admin_posts_path(condition: :old), class: 'btn btn-sm btn-outline-secondary rounded-pill' %>
+        <%= link_to admin_posts_path(condition: :most_favorited), class: 'btn btn-sm btn-outline-secondary rounded-pill' do %>
+          <i class="fas fa-star"></i>おすすめ順
+        <% end %>
       <% end %>
     </div>
   </div>
