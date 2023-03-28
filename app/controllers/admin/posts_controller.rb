@@ -16,9 +16,6 @@ class Admin::PostsController < ApplicationController
     else
       @posts = @posts.page(params[:page]).per(10)
     end
-
-   
-    
   end
 
   def show
