@@ -5,7 +5,8 @@
       <div class="card-title">コメントする</div>
       <div class="card-text">
         <%= form_with model: Comment.new, url: post_comments_path(post), method: :post, local: false do |f| %>
-          <%= f.text_area :comment, width: '80%', placeholder: 'コメントを入力してください', class: 'col-md-9', id: "comment_text_area" %>
+          <%= render "public/shared/error_messages", resource: comment %>
+          <%= f.text_area :comment, width: '80%', placeholder: 'コメントを入力してください（50文字以内）', class: 'col-md-9', id: "comment_text_area" %>
           <%= f.submit '送信', class: 'btn btn-sm btn-outline-secondary rounded-pill col-md-2' %>
         <% end %>
       </div>
