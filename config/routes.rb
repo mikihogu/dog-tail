@@ -19,18 +19,11 @@ Rails.application.routes.draw do
     get "/about" => "homes#about"
     resources :members, only: [:show, :edit, :update]
     resources :posts do
-      resource :post_reports, only: [:new, :create] do
-        get :done, on: :collection
-      end
       resource :favorites, only: [:create, :destroy]
       resource :interests, only: [:create, :destroy] do
         get :index, on: :member
       end
-      resources :comments, only: [:create, :destroy] do
-        resources :comment_reports, only: [:new, :create] do
-          get :done, on: :collection
-        end
-      end
+      resources :comments, only: [:create, :destroy]
     end
     resources :notifications, only: [:index, :show] do
       put :recheck, on: :member
