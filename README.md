@@ -1,6 +1,6 @@
 # with Doggies
-
-
+<img width="1000" alt="with_Doggies_Top" src="https://user-images.githubusercontent.com/121223610/228140966-9404fd00-9858-47c8-8961-66c1cc5229c0.png">
+<img width="1000" alt="with_Doggies_About" src="https://user-images.githubusercontent.com/121223610/228140980-6614df75-29c1-470c-a192-c3bb695f31da.png">
 
 ## サイト概要
 
@@ -31,9 +31,28 @@
 - [実装機能リスト](https://docs.google.com/spreadsheets/d/1uibf8WzyrorbvmAVGgPADHIxtlQzcdWY0-Ia8a2LICc/edit#gid=885378170)
 - [テーブル定義書](https://docs.google.com/spreadsheets/d/1Vg60vlp4J8IuGgUmoPncdSRsUhZXsSVHsGsOeahPf0o/edit#gid=1442913927)
 - [詳細設計書](https://docs.google.com/spreadsheets/d/116qFBjLM16b-cSfXoUtjNvBnW8o79Ya05zE9A7bcaPA/edit#gid=60403140)
-- [ワイヤーフレーム](https://www.figma.com/file/4BJmmAL4gTf422EgEqxIk0/Wireframing-in-Figma?node-id=118%3A275&t=gM5si8bRzkqzBjgH-0)
-- [ER図](https://user-images.githubusercontent.com/121223610/222967325-2a0f7100-fb64-489f-995f-aff8c799712c.png)
+- [ワイヤーフレーム](https://www.figma.com/file/4BJmmAL4gTf422EgEqxIk0/Wireframing-in-Figma?node-id=118-275&t=knUa2cimJ7flng6s-0)
+- [ER図](https://user-images.githubusercontent.com/121223610/228139968-5ac22a36-5d98-4313-a392-78768b75b103.png)
 
+## 実装機能
+#### 管理者側
+`[会員管理機能]` 会員の退会(論理削除)が可能<br>
+`[投稿管理機能]` 不適切な投稿は削除(物理削除)が可能<br>
+`[コメント管理機能]` 不適切なコメントは削除(物理削除)が可能<br>
+`[検索機能]` キーワード検索：投稿施設名と都道府県名で検索が可能<br>
+`[並べ替え機能]` 検索以外にも投稿と会員を探しやすくするため<br>
+#### 会員側
+`[会員機能]` マイページで画像/自身の投稿/ブックマークした投稿を表示（退会機能は不要と考え実装なし）<br>
+`[投稿機能]` 一覧画面では投稿時のカテゴリー別でタブ表示<br>
+`[検索機能]` キーワード検索：投稿施設名と都道府県名で検索が可能<br>
+`[検索機能]` 複数タグ検索：チェックボックスで複数指定可能<br>
+`[おすすめ機能]` 他の会員におすすめ施設を伝える<br>
+`[ブックマーク機能]` ブックマーク一覧画面で確認可能<br>
+`[コメント機能]` 感想や補足情報を伝える<br>
+`[コメント通知機能]` コメントがあればマイページから通知を確認可能<br>
+`[外部MapAPI機能]` 投稿施設の場所を表示し、Mapから施設住所を取得<br>
+`[並べ替え機能]` 検索以外にも投稿を探しやすくするため<br>
+#### ゲストログイン（アクセス制限なし）
 
 ## 開発環境
 - OS：Linux(CentOS)
