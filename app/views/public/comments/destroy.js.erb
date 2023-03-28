@@ -31,7 +31,7 @@ if (<%== @_destroy %>) {
     prev.find('.page-link').removeAttr('href')
     //元のアクティブボタンを削除
     active.remove()
-    
+
     //アクティブなボタンの右に要素が3つある場合(数字ボタンと次へボタンと最後へボタン)
   } else if (nextButtons.length == 3) {
     //3つの要素をeachで回して
@@ -41,9 +41,10 @@ if (<%== @_destroy %>) {
     })
     //アクティブ要素のリンク先を削除
     active.find('.page-link').removeAttr('href')
-    
-    //アクティブボタンの右に4つ以上の要素がありKaminariの省略記号が右側にない場合(6pageを超えるとgapクラスのspanが出現)
-  } else if (nextButtons.length >= 4 && nextButtons.find('.gap').length == 0) {
+
+    //アクティブボタンの右に4つ以上の要素がありKaminariの省略記号が右側にない場合(コメントが増えると省略記号でgapクラスのspanが右から3番目に出現)
+  } else if (nextButtons.length >= 4 && !$(nextButtons[nextButtons.length -3]).hasClass('gap')) {
+
     //右側から2つのボタンを排除しindexを数えるためさらに1を引くものを特定したいボタンのindexとして定義
     const index = nextButtons.length - 2 - 1
     //アクティブ要素からリンク先を削除
@@ -53,15 +54,13 @@ if (<%== @_destroy %>) {
   }
 }
 
-//コメント数が60以下のとき(kaminariの省略記号がなくなる境目の数)
-if (<%= @post.comments.size <= 60 %>) {
-    //省略記号の要素を下記のHTMLに置き換える
-    $('.page.gap').replaceWith(
-      `
-      <li class="page-item">
-        <a rel="next" class="page-link" href="/posts/<%= @post.id %>?page=6">6</a>
-      </li>
-      `
-    )
+//ボタンの表示された数✖️10とコメント数が一致のとき(kaminariの省略記号がなくなる境目の数)
+var prevNum = $('.page.gap').prev().text()
+var commentCount = <%= @post.comments.count %>
+if (prevNum * 10 == commentCount) {
+    //省略記号を削除
+    $('.page.gap').remove()
 }
+
+console.log( prevNum * 10 == commentCount )
 $ ("#comment_text_area").val("");
