@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-10 mx-auto">
       <div class="row">
-        <div class="col border-bottom">
+        <div class="col">
           <h2 class="title m-3"><i class="far fa-comment-dots"></i>コメント確認</h2>
         </div>
       </div>
@@ -12,36 +12,36 @@
         <div class="col-md-10 mx-auto my-3">
           <div class="place-info border p-3">
             <div class="row border-bottom mb-3">
-              <div class="col-md-3"><p>名称：</p></div>
-              <div class="col-md-9"><p><%= @post.name %></p></div>
+              <div class="col-md-3 col-4"><p>名称：</p></div>
+              <div class="col-md-9 col-8"><p><%= @post.name %></p></div>
             </div>
-            <div class="row">
-              <div class="col-md-3"><p>施設カテゴリー：</p></div>
-              <div class="col-md-9"><%= @post.category.name %></div>
+            <div class="row my-3">
+              <div class="col-md-3 col-4">施設カテゴリー：</div>
+              <div class="col-md-9 col-8"><%= @post.category.name %></div>
             </div>
-            <div class="row">
-              <div class="col-md-3"><p>一言紹介：</p></div>
-              <div class="col-md-9"><%= @post.introduction %></div>
+            <div class="row my-3">
+              <div class="col-md-3 col-4">一言紹介：</div>
+              <div class="col-md-9 col-8"><%= @post.introduction %></div>
             </div>
-            <div class="row">
-              <div class="col-md-3"><p>詳細：</p></div>
-              <div class="col-md-9"><%= safe_join(@post.information.split("\n"),tag(:br)) %></div>
+            <div class="row my-3">
+              <div class="col-md-3 col-4">詳細：</div>
+              <div class="col-md-9 col-8"><%= safe_join(@post.information.split("\n"),tag(:br)) %></div>
             </div>
-            <div class="row">
-              <div class="col-md-3"><p>タグ：</p></div>
-              <div class="col-md-9"><%= @post.tags.pluck(:name).join(' / ') %></div>
+            <div class="row my-3">
+              <div class="col-md-3 col-4">タグ：</div>
+              <div class="col-md-9 col-8"><%= @post.tags.pluck(:name).join(' / ') %></div>
             </div>
-            <div class="row">
-              <div class="col-md-3"><p>施設住所:</p></div>
-              <div class="col-md-9"><%= @post.address %></div>
+            <div class="row my-3">
+              <div class="col-md-3 col-4">施設住所:</div>
+              <div class="col-md-9 col-8"><%= @post.address %></div>
             </div>
-            <div class="row">
-              <div class="col-md-3"><p>投稿日：</p></div>
-              <div class="col-md-9"><%= l @post.created_at, format: :time %></div>
+            <div class="row mt-3">
+              <div class="col-md-3 col-4">投稿日：</div>
+              <div class="col-md-9 col-8"><%= l @post.created_at, format: :time %></div>
             </div>
-            <div class="row">
-              <div class="col-md-3"><p>更新日：</p></div>
-              <div class="col-md-9"><%= l @post.updated_at, format: :time %></div>
+            <div class="row mb-3">
+              <div class="col-md-3 col-4">更新日：</div>
+              <div class="col-md-9 col-8"><%= l @post.updated_at, format: :time %></div>
             </div>
           </div>
         </div>
@@ -60,12 +60,12 @@
             </div>
             <div class="card-body">
               <div class="row align-items-center">
-                <div class="col-md-3">
-                  <%= image_tag @comment.member.get_image, size: '30x30' %>
+                <div class="col-md-3 col-12">
+                  <%= image_tag @comment.member.get_image, size: '30x30', style: 'border-radius: 50%' %>
                   <%= @comment.member.nickname %>
                 </div>
-                <div class="col-md-7"><%= safe_join(@comment.comment.split("\n"),tag(:br)) %></div>
-                <div class="col-md-2"><small><%= l @comment.created_at %></small></div>
+                <div class="col-md-6 col-9"><%= safe_join(@comment.comment.split("\n"),tag(:br)) %></div>
+                <div class="col-md-3 col-3"><small><%= l @comment.created_at, format: :time %></small></div>
               </div>
             </div>
           </div>
