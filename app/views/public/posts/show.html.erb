@@ -52,11 +52,11 @@
       <%= render 'public/posts/place_info', post: @post %>
 
       <!--コメント-->
-      <div class="comment p-3 my-3">
+      <div class="comment p-3">
         <%= render 'public/comments/comment', post: @post, comment: @comment, comments: @comments %>
       </div>
       
-      <div id="paginateWrapper">
+      <div id="paginateWrapper" class="row justify-content-center">
         <%= paginate @comments %>
       </div>
 

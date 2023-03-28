@@ -14,7 +14,7 @@
 <% end %>
 
 <!--コメント一覧-->
-<div class="card mb-1">
+<div class="card mt-1">
   <div class="comments-count_<%= post.id %>">
     <p class="card-header">
       この施設に関するコメント <i class="far fa-comment-dots"></i> <%= post.comments.count %>件
@@ -33,16 +33,13 @@
         <div class="col-md-3 col-3"><small><%= l comment.created_at %></small></div>
         <div class="col-md-1 col-1">
           <% if (comment.member == current_member) || (admin_signed_in?) %>
-            <%= link_to post_comment_path(post, comment, page: params[:page]), method: :delete, remote: true, class: 'link' do %>
+            <%= link_to post_comment_path(post, comment, page: params[:page]), method: :delete, remote: true, class: 'link', 'data-confirm'=>'このコメントを削除します' do %>
               <i class="fas fa-trash-alt"></i>
             <% end %>
           <% end %>
         </div>
       </div>
     <% end %>
-    </div>
-    <div class="row justify-content-center my-2">
-      <%#= paginate comments %>
     </div>
   </div>
 </div>
