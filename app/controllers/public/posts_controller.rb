@@ -1,5 +1,6 @@
 class Public::PostsController < ApplicationController
   before_action :authenticate_member!, except: [:index]
+  before_action :ensure_correct_member, only: [:edit, :update]
 
   def new
     @post = Post.new
@@ -82,4 +83,11 @@ class Public::PostsController < ApplicationController
     )
   end
 
+  def ensure_correct_member
+    @post = Post.find(params[:id])
+    unless @post.member == current_member
+      redirect_to post_path(@post)
+    end
+  end
+  
 end

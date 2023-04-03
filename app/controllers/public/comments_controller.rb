@@ -15,8 +15,6 @@ class Public::CommentsController < ApplicationController
     #findからfind_byに変更して,ボタン連打で見つからない場合を考慮
     @comment = Comment.find_by(id:params[:id])
     @post = Post.find(params[:post_id])
-    #ここがエラの原因commentが見つからない場合エラになるのと必要がない定義
-    #@comment.post_id = @post.id
     #destroyメソッドもifをつけておく
     @comment.destroy if @comment
     @comments = Comment.where(post_id: @post.id).order(created_at: :desc)
