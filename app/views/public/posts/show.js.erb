@@ -1,0 +1,4 @@
+$ (".comment").html("<%= j(render 'public/comments/comment', post: @post, comment: @comment, comments: @comments) %>");
+var commentsPaginate = document.querySelector('#comments');  <!--ここで設定したidを特定。ページ切り替えで再定義されるのでvarがいい-->
+commentsPaginate.innerHTML = "<%= j(paginate @comments, remote: true) %> "  <!--innerHTMLでページネーションの中身を置き換える。-->
+history.replaceState( "", "" ,"?page=<%= @page %>"); <!--リロードできる様に各ページのURLを書き換えている-->

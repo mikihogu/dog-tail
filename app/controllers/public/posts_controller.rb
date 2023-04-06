@@ -48,7 +48,17 @@ class Public::PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @comment = Comment.new
-    @comments = @post.comments.order(created_at: :desc).page(params[:page]).per(10)
+    if params[:show_all]
+      @comments = @post.comments.order(created_at: :desc).page(params[:page]).per(10)
+    else
+      @comments = @post.comments.order(created_at: :desc).limit(10)
+      @comments = Kaminari.paginate_array(@comments).page(params[:page]).per(11)
+    end
+    # ページネーション非同期のための記述
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def edit

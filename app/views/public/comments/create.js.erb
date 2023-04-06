@@ -1,28 +1,5 @@
+
 $ (".comment").html("<%= j(render 'public/comments/comment', post: @post, comment: @comment, comments: @comments) %>");
 $ (".comments-count_<%= @post.id %>").html("この施設に関するコメント <i class=\"far fa-comment-dots\"></i> <%= @post.comments.count %>件");
-
-history.replaceState('','', location.pathname)
-
-<!--//kaminariを読み込む(ボタン全体を初期化して1枚目がアクティブの状態にする)-->
-$("#paginateWrapper").html('<%=j paginate @comments %>')
-
-<!--//paginationの要素をあつめる-->
-var items = $('.page-item')
-<!--//eachで回して-->
-items.each((i, e) => {
-  <!--//一つ下層のaタグ要素を取得し-->
-  const link = $(e).find('.page-link')
-  <!--//繰り返しの最初の回以外は-->
-  if (i != 0 ) {
-    <!--//リンク要素を特定し-->
-    const linkPath = link.attr('href')
-    <!--//paramatorぶぶんだけ取り出し-->
-    const pageParam = linkPath.split('&').slice(-1)[0]
-    <!--//Ajaxで崩れたURLを修正-->
-    link.attr('href', `<%= @post.id %>?${pageParam}`)
-  } else {
-    <!--//一番左のアクティブ要素からリンク先を外す-->
-    link.removeAttr('href')
-  }
-})
+$ ('.pagination').hide();
 $ ("#comment_text_area").val("");

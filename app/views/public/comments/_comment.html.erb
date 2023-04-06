@@ -16,12 +16,15 @@
 
 <!--コメント一覧-->
 <div class="card mt-1">
-  <div class="comments-count_<%= post.id %>">
-    <p class="card-header">
+  <div class="card-header">
+    <p class="comments-count_<%= post.id %>">
       この施設に関するコメント <i class="far fa-comment-dots"></i> <%= post.comments.count %>件
     </P>
+    <%= link_to "全件表示", post_path(post, show_all: true), class: 'btn btn-sm btn-outline-secondary rounded-pill' %>
+    <%= link_to "表示を減らす", post_path(post), class: 'btn btn-sm btn-outline-secondary rounded-pill' %>
   </div>
   <div class="card-body">
+    
     <div class="card-text">
     <% comments.each do |comment| %>
       <div class="row border-bottom py-1 align-items-center">
