@@ -56,9 +56,15 @@
         <%= render 'public/comments/comment', post: @post, comment: @comment, comments: @comments %>
       </div>
       
-      <div id="paginateWrapper" class="row justify-content-center">
-        <%= paginate @comments %>
+      <div id="comments" class="row justify-content-center">
+        <%= paginate @comments, remote: true %>
       </div>
+      <script>
+        $(document).on("click", ".page-link", function(event) {
+          event.preventDefault();
+          $.getScript(this.href);
+        });
+      </script>
 
     </div>
   </div>
